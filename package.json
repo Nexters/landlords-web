@@ -13,6 +13,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",
     "axios": "^0.19.2",
+    "eslint-plugin-react": "^7.20.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -25,11 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint --fix src/**/*.ts"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "lint": "eslint src/**/*.{js,ts,tsx}",
+    "lint:fix": "eslint --fix src/**/*.{js,ts,tsx}"
   },
   "browserslist": {
     "production": [

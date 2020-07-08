@@ -1,3 +1,3 @@
-import React from 'react'
+import React from 'react';
 
-export const DummyComponent = () => <div>Dummy Component</div>
+export const DummyComponent = () => <div>Dummy Component</div>;
