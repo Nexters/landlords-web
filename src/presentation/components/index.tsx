@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default TestComponent = () => <div />;
+export const TestComponent = () => <div />;
