@@ -2,15 +2,35 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   extends: [
-    'airbnb-base',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:react/recommended',
   ],
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
   rules: {
-    semi: ['error', 'always'],
-    'import/prefer-default-export': 'off',
-    indent: ['error', 2],
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
+    'react/jsx-one-expression-per-line': 0,
+    'react/prop-types': 0,
+    '@typescript-eslint/no-empty-function': [
+      'error',
+      { allow: ['arrowFunctions'] },
+    ],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    quotes: ['error', 'single', { avoidEscape: true }],
+  },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
   },
 };
