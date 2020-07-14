@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EntryRoute from './presentation/routes';
-import GlobalStyles from './styles/GlobalStyles';
+import EntryRoute from './pages';
+import GlobalStyles from './GlobalStyles';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
