@@ -1,6 +1,7 @@
 name: Deploy
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - master
 
@@ -21,6 +22,7 @@ jobs:
           name: build
           path: build
   deploy:
+    if: github.event.pull_request.merged == true
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
