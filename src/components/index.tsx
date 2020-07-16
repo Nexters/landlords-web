@@ -1,3 +1,3 @@
-import React from 'react';
+import Button from './button/Button';
 
-export const TestComponent = () => <div />;
+export { Button };
