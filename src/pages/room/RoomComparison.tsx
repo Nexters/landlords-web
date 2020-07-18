@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { StyledWrapper } from './styled';
+import * as S from './styled';
 
 type RoomComparisonPageProps = {};
 
 export default function RoomComparisonPage({}: RoomComparisonPageProps): ReactElement {
-  return <StyledWrapper>RoomComparisonPage</StyledWrapper>;
+  return <S.Container>RoomComparisonPage</S.Container>;
 }

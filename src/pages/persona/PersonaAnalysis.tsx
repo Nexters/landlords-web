@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { StyledWrapper } from './styled';
+import * as S from './styled';
 
 type PersonaAnalysisPageProps = {};
 
 export default function PersonaAnalysisPage({}: PersonaAnalysisPageProps): ReactElement {
-  return <StyledWrapper>PersonaAnalysisPage</StyledWrapper>;
+  return <S.Container>PersonaAnalysisPage</S.Container>;
 }
