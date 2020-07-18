@@ -1,10 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { DummyComponent } from './DummyComponent';
+import MainPage from './main/MainPage';
+import ChecklistPage from './checklist/ChecklistPage';
+import PersonaAnalysisPage from './personaAnalysis/PersonaAnalysis';
+import RoomComparisonPage from './roomComparison/RoomComparison';
 
 const EntryRoute = () => (
   <BrowserRouter>
-    <Route path='/' component={DummyComponent} />
+    <Route path='/' component={MainPage} />
+    <Route path='/checklist' component={ChecklistPage} />
+    <Route path='/personaAnalysis' component={PersonaAnalysisPage} />
+    <Route path='/roomComparison' component={RoomComparisonPage} />
   </BrowserRouter>
 );
 
