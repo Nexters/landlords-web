@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-const StyledWrapper = styled.div``;
+const Container = styled.div``;
 
-export { StyledWrapper };
+export { Container };
