@@ -1,8 +1,12 @@
 import React, { ReactElement } from 'react';
-import { StyledWapper } from './styled';
+import * as S from './styled';
 
 type ButtonProps = {};
 
 export default function Button({}: ButtonProps): ReactElement {
-  return <button>버튼</button>;
+  return (
+    <S.Container>
+      <button>버튼</button>
+    </S.Container>
+  );
 }
