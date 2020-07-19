@@ -5,11 +5,11 @@
 ## 🏗 설치방법
 
 ```shell
-$ yarn install
+$ npm install
 ```
 
 ## 🏃‍♀️ 실행방법
 
 ```shell
-$ yarn start
+$ npm start
 ```
