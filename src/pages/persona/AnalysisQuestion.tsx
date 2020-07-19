@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './styled';
 
+import Button from '../../components/Button';
+
 type AnalysisQuestionProps = {};
 
 export default function AnalysisQuestion({ }: AnalysisQuestionProps): ReactElement {
@@ -23,7 +25,7 @@ export default function AnalysisQuestion({ }: AnalysisQuestionProps): ReactEleme
             </div>
 
             <Link to='/persona/result'>
-                <button>다음</button>
+                <Button name='next' value='다음' />
             </Link>
         </S.Container>
     );

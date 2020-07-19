@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './styled';
 
+import Button from '../../components/Button';
+
 type AnalysisResultProps = {};
 
 export default function AnalysisResult({ }: AnalysisResultProps): ReactElement {
@@ -25,7 +27,7 @@ export default function AnalysisResult({ }: AnalysisResultProps): ReactElement {
             <p>체크리스트로 더 현명하게 방을 구해보자!</p>
 
             <Link to='/checklist'>
-                <button>나만의 체크리스트 보러가기</button>
+                <Button name='result' value='나만의 체크리스트 보러가기' />
             </Link>
         </S.Container>
     );

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './styled';
 
-
+import Button from '../../components/Button';
 
 type PersonaAnalysisPageProps = {};
 
@@ -16,7 +16,7 @@ export default function PersonaAnalysisPage({ }: PersonaAnalysisPageProps): Reac
         <p>총 10,000명이 체크해방을 참고했습니다.</p>
 
         <Link to='/persona/question'>
-          <button>자취 준비 시작</button>
+          <Button name='start' value='자취 준비 시작' />
         </Link>
 
       </div>
