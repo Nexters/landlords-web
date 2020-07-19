@@ -5,13 +5,13 @@ import ChecklistPage from './checklist/ChecklistPage';
 import PersonaAnalysisPage from './persona/PersonaAnalysis';
 import RoomComparisonPage from './room/RoomComparison';
 
-const EntryRoute = () => (
+export default function EntryRoute() {
+  return (
   <BrowserRouter>
     <Route path='/' component={MainPage} />
     <Route path='/checklist' component={ChecklistPage} />
     <Route path='/persona' component={PersonaAnalysisPage} />
     <Route path='/room' component={RoomComparisonPage} />
   </BrowserRouter>
-);
-
-export default EntryRoute;
+  );
+}
