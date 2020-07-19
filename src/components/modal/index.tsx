@@ -3,6 +3,6 @@ import * as S from './styled';
 
 export default function Modal() {
   return (
-    <div>Modal</div>
+    <S.Container>Modal</S.Container>
   )
 }
