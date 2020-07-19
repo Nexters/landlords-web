@@ -9,17 +9,21 @@ type PersonaAnalysisPageProps = {};
 export default function PersonaAnalysisPage({ }: PersonaAnalysisPageProps): ReactElement {
   return (
     <S.Container>
-      <div>
-        <h1>당신만을 위한 자취방 체크리스트를 만들어드릴게요!</h1>
-        <h2>방 구하기부터 이사까지, 그누구도 알려주지 않은 맞춤형 꿀팁</h2>
+      <S.title>
+        당신만을 위한<br />
+        자취방 체크리스트를<br />
+        만들어드릴게요!
+      </S.title>
+      <S.secondTitle>
+        방 구하기부터 이사까지,<br />
+        그누구도 알려주지 않은 맞춤형 꿀팁
+      </S.secondTitle>
 
-        <p>총 10,000명이 체크해방을 참고했습니다.</p>
+      <S.viewCounter>총 10,000명이 체크해방을 참고했습니다.</S.viewCounter>
 
-        <Link to='/persona/question'>
-          <Button name='start' value='자취 준비 시작' />
-        </Link>
-
-      </div>
+      <Link to='/persona/question'>
+        <Button name='start' value='자취 준비 시작' />
+      </Link>
     </S.Container>
   );
 }
