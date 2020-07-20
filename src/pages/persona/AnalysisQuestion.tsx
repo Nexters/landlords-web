@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import * as S from './styled';
 
 import Button from '../../components/Button';
+import Card from '../../components/Card';
 
 type AnalysisQuestionProps = {};
 
@@ -18,8 +19,10 @@ export default function AnalysisQuestion({ }: AnalysisQuestionProps): ReactEleme
 
 
             <S.cardContainer>
-                <a>card1</a>
-                <a>card2</a>
+                <Card title='핵인싸' subTitle='일주일에 4번 이상 약속있는' />
+                <Card title='핵인싸' subTitle='일주일에 4번 이상 약속있는' />
+                <Card title='핵인싸' subTitle='일주일에 4번 이상 약속있는' />
+                <Card title='핵인싸' subTitle='일주일에 4번 이상 약속있는' />
             </S.cardContainer>
 
             <Button name='next' value='다음' link='/persona/result' />

@@ -72,7 +72,11 @@ const progress = styled.div`
 
 const cardContainer = styled.div`
     display: grid;
-    margin-top: 39px;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 12px 12px;
+    height: calc(100vh - 269px);
+    padding: 39px 0 54px;
 `;
 
 // Analysis Result Page
