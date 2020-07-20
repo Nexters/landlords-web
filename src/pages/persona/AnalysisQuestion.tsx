@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
 import * as S from './styled';
 
 import Button from '../../components/Button';
@@ -9,24 +8,21 @@ type AnalysisQuestionProps = {};
 export default function AnalysisQuestion({ }: AnalysisQuestionProps): ReactElement {
     return (
         <S.Container>
-            <button>back</button>
+            <S.backButton>back</S.backButton>
 
-            <div>
-                <h1>Question?</h1>
-                <p>1/10</p>
-            </div>
-            <div>
-                progress bar
-            </div>
+            <S.questionContainer>
+                <S.qeustionTitle>Question?</S.qeustionTitle>
+                <S.questionCounter>1/10</S.questionCounter>
+                <S.progress />
+            </S.questionContainer>
 
-            <div>
+
+            <S.cardContainer>
                 <a>card1</a>
                 <a>card2</a>
-            </div>
+            </S.cardContainer>
 
-            <Link to='/persona/result'>
-                <Button name='next' value='다음' />
-            </Link>
+            <Button name='next' value='다음' link='/persona/result' />
         </S.Container>
     );
 }

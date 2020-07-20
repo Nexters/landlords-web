@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
 import * as S from './styled';
 
 import Button from '../../components/Button';
@@ -19,11 +18,9 @@ export default function PersonaAnalysisPage({ }: PersonaAnalysisPageProps): Reac
         그누구도 알려주지 않은 맞춤형 꿀팁
       </S.secondTitle>
 
-      <S.viewCounter>총 10,000명이 체크해방을 참고했습니다.</S.viewCounter>
+      <S.buttonExplanation>총 10,000명이 체크해방을 참고했습니다.</S.buttonExplanation>
 
-      <Link to='/persona/question'>
-        <Button name='start' value='자취 준비 시작' />
-      </Link>
+      <Button name='start' value='자취 준비 시작' link='/persona/question' />
     </S.Container>
   );
 }
