@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+
 import * as S from './styled';
 
 type ChecklistPageProps = {};
