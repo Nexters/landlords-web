@@ -103,7 +103,7 @@ const explanation = styled.p`
 
 
 export {
-    Container, title, secondTitle, buttonExplanation,
-    backButton, questionContainer, qeustionTitle, questionCounter, progress, cardContainer,
-    endButton, personaTitle, explanation
+  Container, title, secondTitle, buttonExplanation,
+  backButton, questionContainer, qeustionTitle, questionCounter, progress, cardContainer,
+  endButton, personaTitle, explanation
 };

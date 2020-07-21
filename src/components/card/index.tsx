@@ -7,10 +7,10 @@ type CardProps = {
 };
 
 export default function Card({ title, subTitle }: CardProps): ReactElement {
-    return (
-        <S.Container>
-            <S.subTitle>{subTitle}</S.subTitle>
-            <S.title>{title}</S.title>
-        </S.Container>
-    );
+  return (
+    <S.Container>
+      <S.subTitle>{subTitle}</S.subTitle>
+      <S.title>{title}</S.title>
+    </S.Container>
+  );
 }

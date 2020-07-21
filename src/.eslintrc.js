@@ -22,6 +22,7 @@ module.exports = {
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
     quotes: ['error', 'single', { avoidEscape: true }],
+    indent: ['error', 2, { SwitchCase: 1 }],
   },
   settings: {
     'import/parsers': {
