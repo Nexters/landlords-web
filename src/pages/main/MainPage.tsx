@@ -4,6 +4,6 @@ import * as S from './styled';
 
 type MainPageProps = {};
 
-export default function MainPage({}: MainPageProps): ReactElement {
+export default function MainPage(_: MainPageProps): ReactElement {
   return <S.Container>MainPage</S.Container>;
 }
