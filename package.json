@@ -29,6 +29,7 @@
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "6.6.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "5.2.1",
     "eslint-loader": "3.0.3",
     "eslint-plugin-flowtype": "4.6.0",
@@ -82,8 +83,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint src/**/*.{js,ts,tsx}",
-    "lint:fix": "eslint --fix src/**/*.{js,ts,tsx}"
+    "prettier": "prettier --write ./**/*.ts"
   },
   "browserslist": {
     "production": [
