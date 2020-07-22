@@ -9,10 +9,10 @@ import RoomComparisonPage from './room/RoomComparison';
 export default function EntryRoute() {
   return (
     <BrowserRouter>
-      <Route path='/' component={ MainPage } />
-      <Route path='/checklist' component={ ChecklistPage } />
-      <Route path='/persona' component={ PersonaAnalysisPage } />
-      <Route path='/room' component={ RoomComparisonPage } />
+      <Route path='/' exact component={MainPage} />
+      <Route path='/checklist' component={ChecklistPage} />
+      <Route path='/persona' component={PersonaAnalysisPage} />
+      <Route path='/room' component={RoomComparisonPage} />
     </BrowserRouter>
   );
 }
