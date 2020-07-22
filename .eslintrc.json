@@ -15,7 +15,6 @@
     "simple-import-sort/sort": "error",
     "sort-imports": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "object-curly-spacing": ["error", "always", { "objectsInObjects": false }],
     "react/prop-types": 0,
     "comma-dangle": ["error", "always-multiline"],
     "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }],
@@ -44,16 +43,6 @@
     ],
     "@typescript-eslint/explicit-function-return-type": "off",
     "quotes": ["error", "single", { "avoidEscape": true }],
-    "react/jsx-curly-spacing": [
-      "error",
-      {
-        "when": "always",
-        "allowMultiline": false,
-        "spacing": {
-          "objectLiterals": "never"
-        }
-      }
-    ],
     "react/prefer-stateless-function": 0
   },
   "settings": {
