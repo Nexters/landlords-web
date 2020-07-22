@@ -50,4 +50,4 @@ const ModalCloseButton = styled.div`
   justify-content: flex-end;
 `;
 
-export { ModalInner, ModalWrapper, ModalOverlay, ModalCloseButton };
+export {ModalInner, ModalWrapper, ModalOverlay,ModalCloseButton };

@@ -5,7 +5,7 @@ import * as S from './styled';
 
 type MainPageProps = {};
 
-export default function MainPage(_: MainPageProps): ReactElement {
+export default function MainPage(): ReactElement {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
