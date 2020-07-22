@@ -39,7 +39,7 @@ export default function Modal({
         visible={visible}
       >
         <S.ModalInner tabIndex={0} className="modal-inner">
-          {closable && <CloseButton onClick={close} />}
+          {closable && <S.ModalCloseButton><CloseButton onClick={close} /></S.ModalCloseButton>}
           {children}
         </S.ModalInner>
       </S.ModalWrapper>

@@ -41,7 +41,13 @@ const ModalInner = styled.div`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 20px 40px;
 `;
 
-export { ModalInner, ModalWrapper, ModalOverlay };
+const ModalCloseButton = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export { ModalInner, ModalWrapper, ModalOverlay, ModalCloseButton };
