@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components';;
 
 export interface Props {
   visible: boolean;
@@ -15,7 +15,7 @@ const ModalWrapper = styled.div`
   z-index: 1000;
   overflow: auto;
   outline: 0;
-`
+`;
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -25,9 +25,10 @@ const ModalOverlay = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
-`
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: background-color 1s ease;
+`;
 
 const ModalInner = styled.div`
   box-sizing: border-box;
@@ -41,6 +42,6 @@ const ModalInner = styled.div`
   transform: translateY(-50%);
   margin: 0 auto;
   padding: 40px 20px;
-`
+`;
 
 export { ModalInner, ModalWrapper, ModalOverlay };

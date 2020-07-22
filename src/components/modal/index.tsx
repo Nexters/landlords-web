@@ -1,8 +1,9 @@
-import * as S from './styled';
+import React, { SyntheticEvent,useEffect } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
-import React, { useEffect, SyntheticEvent } from 'react'
-import CloseButton from './CloseButton'
-import Portal from './Portal'
+import CloseButton from './CloseButton';
+import Portal from './Portal';
+import * as S from './styled';
 
 interface Props {
   className: string;
@@ -23,39 +24,50 @@ export default function Modal({
 } :Props) {
   const onMaskClick = (e: SyntheticEvent) => {
     if (e.target === e.currentTarget) {
-      onClose()
+      onClose();
+      console.log('onMaskClick');
     }
-  }
+  };
 
   const close = () => {
     if (onClose) {
-      onClose()
+      onClose();
+      console.log('onClose');
     }
-  }
+  };
 
   useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`
+    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+
     return () => {
-      const scrollY = document.body.style.top
-      document.body.style.cssText = 'position: ""; top: "";'
-      window.scrollTo(0, parseInt(scrollY || '0') * -1)
-    }
-  }, [])
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = 'position: ""; top: "";';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    };
+  }, []);
 
   return (
-    <Portal elementId="modal-root">
-      <S.ModalOverlay visible={visible} />
-      <S.ModalWrapper
-        className={className}
-        onClick={maskClosable ? onMaskClick : () => null}
-        tabIndex={-1}
-        visible={visible}
-      >
-        <S.ModalInner tabIndex={0} className="modal-inner">
-          {closable && <CloseButton onClick={close} />}
-          {children}
-        </S.ModalInner>
-      </S.ModalWrapper>
-    </Portal>
-  )
+    <>
+      <div className='modal-root'>
+        <CSSTransition
+          in={ visible }
+          timeout={ 500 }
+          classNames="dialog"
+        >
+          <S.ModalOverlay visible={ visible } />
+        </CSSTransition>
+        <S.ModalWrapper
+          className={ className }
+          onClick={ maskClosable ? onMaskClick : () => null }
+          tabIndex={ -1 }
+          visible={ visible }
+        >
+          <S.ModalInner tabIndex={ 0 } className="modal-inner">
+            {closable && <CloseButton onClick={ close } />}
+            {children}
+          </S.ModalInner>
+        </S.ModalWrapper>
+      </div>
+    </>
+  );
 }

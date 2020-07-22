@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
-import { createPortal } from 'react-dom'
+import React, { useMemo } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Props {
   children: React.ReactNode;
@@ -7,9 +7,7 @@ interface Props {
 }
 
 export default function Portal({ children, elementId }: Props) {
-  const rootElement = useMemo(() => document.getElementById(elementId), [
-    elementId,
-  ]) || document.createElement('div')
+  // const rootElement = document.getElementById(elementId));
 
-  return createPortal(children, rootElement)
+  return createPortal(children, document.getElementById(elementId)!);
 }
