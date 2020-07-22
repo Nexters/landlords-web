@@ -1,12 +1,12 @@
-import styled from 'styled-components';;
+import styled from 'styled-components';
 
-export interface Props {
+export interface ModalStyleProps {
   visible: boolean;
 }
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
-  display: ${({ visible }: Props) => (visible ? 'block' : 'none')};
+  display: ${({ visible }: ModalStyleProps) => (visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   right: 0;
@@ -19,7 +19,7 @@ const ModalWrapper = styled.div`
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
-  display: ${({ visible }: Props) => (visible ? 'block' : 'none')};
+  display: ${({ visible }: ModalStyleProps) => (visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;

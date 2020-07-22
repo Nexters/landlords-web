@@ -1,9 +1,10 @@
 import React from 'react';
 
-interface Props {
+interface CloseButtonProps {
   onClick: () => void;
 }
 
-export default function CloseButton({ onClick }: Props) {
+// TBD
+export default function CloseButton({ onClick }: CloseButtonProps) {
   return <div onClick={ onClick }>X</div>;
 }
