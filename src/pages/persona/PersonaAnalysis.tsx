@@ -1,5 +1,5 @@
 import { History } from 'history';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import * as S from './styled';
 
@@ -15,6 +15,8 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProps): ReactElement {
+  const [viewerCount, setViewerCount] = useState(0);
+
   const goQuestion = () => {
     history.push('/persona/question');
   };
@@ -27,7 +29,7 @@ export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProp
       <S.Title>{TEXT.title}</S.Title>
       <S.Description>{TEXT.description}</S.Description>
 
-      <S.CounterDescription>총 명이 체크해방을 참고했습니다.</S.CounterDescription>
+      <S.CounterDescription>총 {viewerCount}명이 체크해방을 참고했습니다.</S.CounterDescription>
       <S.StartButton onClick={goQuestion}>{TEXT.start}</S.StartButton>
       <S.BackButton onClick={goBack}>{TEXT.back}</S.BackButton>
     </S.Container>
