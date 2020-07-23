@@ -15,14 +15,14 @@ const UserName = styled.h1`
 
 const Title = styled.h1`
   margin-top: 5rem;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: bold;
   line-height: normal;
 `;
 
 const Description = styled.p`
   margin-top: 0.75rem;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 500;
   line-height: 1.35;
 `;
@@ -50,8 +50,10 @@ const CloseButton = styled.button`
 const Button = styled.button`
   width: 100%;
   height: 3.3rem;
+  margin-top: 1rem;
   border: none;
   border-radius: 4px;
+  background-color: #f7b500;
   font-size: 1.23rem;
   font-weight: 500;
 `;
@@ -80,7 +82,7 @@ const BackButton = styled.button`
   border: none;
   border-radius: 4px;
   background-color: #d8d8d8;
-  font-size: 1.3rem;
+  font-size: 1.23rem;
   font-weight: 500;
 `;
 
