@@ -55,7 +55,6 @@
     "postcss-normalize": "8.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
-    "prettier": "2.0.5",
     "react": "16.13.1",
     "react-app-polyfill": "1.0.6",
     "react-dev-utils": "10.2.1",
@@ -105,7 +104,10 @@
     "eslint": "6.6.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-plugin-import": "2.22.0",
-    "eslint-plugin-simple-import-sort": "5.0.3"
+    "eslint-plugin-simple-import-sort": "5.0.3",
+    "import-sort-style-module": "6.0.0",
+    "prettier": "^2.0.5",
+    "prettier-plugin-import-sort": "0.0.4"
   },
   "jest": {
     "roots": [
@@ -164,5 +166,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
   }
 }
