@@ -16,8 +16,9 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   return (
     <S.Container>
-      <S.CloseButton>X</S.CloseButton>
-      {/* 버튼 클릭시 종료 modal */}
+      <Link to='/checklist'>
+        <S.CloseButton>X</S.CloseButton>
+      </Link>
 
       <S.UserName>
         {userName}님은
