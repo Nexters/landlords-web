@@ -1,5 +1,17 @@
-// Types and Interfaces
+// PersonaAnalysis
+interface PersonaUserChoice {
+  question_id: number;
+  choice_id: number;
+}
 
-export interface DummyInterface {
-  dummy: string;
+interface PersonaQuestion {
+  uid: number;
+  contents: string;
+  choice_items: ChoiceItem[];
+  is_multi_choice: boolean;
+}
+
+interface ChoiceItem {
+  uid: number;
+  contents: string;
 }
