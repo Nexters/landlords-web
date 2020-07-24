@@ -4,6 +4,6 @@ import * as S from './styled';
 
 type PersonaAnalysisPageProps = {};
 
-export default function PersonaAnalysisPage(_: PersonaAnalysisPageProps): ReactElement {
+export default function PersonaAnalysisPage(): ReactElement {
   return <S.Container>PersonaAnalysisPage</S.Container>;
 }
