@@ -1,7 +1,7 @@
-import React, { SyntheticEvent,useEffect } from 'react';
+import React, { SyntheticEvent, useEffect } from 'react';
 
 import CloseButton from './CloseButton';
-import * as S from './styled';;
+import * as S from './styled';
 
 interface ModalProps {
   className?: string;
@@ -10,6 +10,7 @@ interface ModalProps {
   closable: boolean;
   visible: boolean;
   children: React.ReactNode;
+  modalWidth?: string;
 }
 
 export default function Modal({
@@ -19,6 +20,7 @@ export default function Modal({
   closable,
   visible,
   children,
+  modalWidth = '160px',
 }: ModalProps) {
   const onMaskClick = (e: SyntheticEvent) => {
     if (e.target === e.currentTarget) {
@@ -31,15 +33,18 @@ export default function Modal({
   };
 
   return (
-    <div className={className} >
+    <div className={className}>
       <S.ModalOverlay visible={visible} />
       <S.ModalWrapper
         onClick={maskClosable ? onMaskClick : () => null}
         tabIndex={-1}
-        visible={visible}
-      >
-        <S.ModalInner tabIndex={0} className="modal-inner">
-          {closable && <S.ModalCloseButton><CloseButton onClick={close} /></S.ModalCloseButton>}
+        visible={visible}>
+        <S.ModalInner tabIndex={0} className='modal-inner' modalWidth={modalWidth}>
+          {closable && (
+            <S.ModalCloseButton>
+              <CloseButton onClick={close} />
+            </S.ModalCloseButton>
+          )}
           {children}
         </S.ModalInner>
       </S.ModalWrapper>

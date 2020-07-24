@@ -1,12 +1,8 @@
 import styled from 'styled-components';
 
-export interface ModalStyleProps {
-  visible: boolean;
-}
-
-const ModalWrapper = styled.div`
+const ModalWrapper = styled.div<{ visible: boolean }>`
   box-sizing: border-box;
-  display: ${({ visible }: ModalStyleProps) => (visible ? 'block' : 'none')};
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   right: 0;
@@ -17,9 +13,9 @@ const ModalWrapper = styled.div`
   outline: 0;
 `;
 
-const ModalOverlay = styled.div`
+const ModalOverlay = styled.div<{ visible: boolean }>`
   box-sizing: border-box;
-  display: ${({ visible }: ModalStyleProps) => (visible ? 'block' : 'none')};
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -30,13 +26,13 @@ const ModalOverlay = styled.div`
   transition: background-color 1s ease;
 `;
 
-const ModalInner = styled.div`
+const ModalInner = styled.div<{ modalWidth: string }>`
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 360px;
+  width: ${({ modalWidth }) => modalWidth};
   max-width: 480px;
   top: 50%;
   transform: translateY(-50%);
@@ -50,4 +46,4 @@ const ModalCloseButton = styled.div`
   justify-content: flex-end;
 `;
 
-export {ModalInner, ModalWrapper, ModalOverlay,ModalCloseButton };
+export { ModalInner, ModalWrapper, ModalOverlay, ModalCloseButton };

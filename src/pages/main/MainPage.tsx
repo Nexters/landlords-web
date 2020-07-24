@@ -1,8 +1,6 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 
 import * as S from './styled';
-
-type MainPageProps = {};
 
 export default function MainPage(): ReactElement {
   return (
