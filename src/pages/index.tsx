@@ -15,7 +15,7 @@ export default function EntryRoute() {
         <Route path='/persona' component={PersonaAnalysisPage} />
         <Route path='/checklist' component={ChecklistPage} />
         <Route path='/room' component={RoomComparisonPage} />
-        <Route path='/' exact component={MainPage} />
+        <Route path='/' component={MainPage} />
       </Switch>
     </BrowserRouter>
   );
