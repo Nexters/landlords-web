@@ -33,7 +33,7 @@ const ModalInner = styled.div<{ modalWidth: string }>`
   background-color: #fff;
   border-radius: 10px;
   width: ${({ modalWidth }) => modalWidth};
-  max-width: 480px;
+  max-width: 100vw;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
