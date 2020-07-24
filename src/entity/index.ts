@@ -1,10 +1,11 @@
 // PersonaAnalysis
-interface PersonaUserChoice {
+export interface PersonaUserChoice {
+  user_id: number;
   question_id: number;
   choice_id: number;
 }
 
-interface PersonaQuestion {
+export interface PersonaQuestion {
   uid: number;
   contents: string;
   choice_items: ChoiceItem[];
