@@ -1,10 +1,9 @@
-import { History } from 'history';
 import React, { ReactElement, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
 type PersonaAnalysisPageProps = {
-  history: History;
 };
 
 enum TEXT {
@@ -14,12 +13,10 @@ enum TEXT {
   BACK = '아니요, 괜찮아요',
 }
 
-export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProps): ReactElement {
+export default function PersonaAnalysisPage(_: PersonaAnalysisPageProps): ReactElement {
   const [viewerCount, setViewerCount] = useState(0);
+  const history = useHistory();
 
-  const goQuestion = () => {
-    history.push('/persona/question');
-  };
   const goBack = () => {
     history.goBack();
   };
@@ -48,7 +45,10 @@ export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProp
       </S.Description>
 
       <S.CounterDescription>총 {viewerCount}명이 체크해방을 참고했습니다.</S.CounterDescription>
-      <S.StartButton onClick={goQuestion}>{TEXT.START}</S.StartButton>
+
+      <Link to='/persona/question'>
+        <S.StartButton>{TEXT.START}</S.StartButton>
+      </Link>
       <S.BackButton onClick={goBack}>{TEXT.BACK}</S.BackButton>
     </S.Container>
   );

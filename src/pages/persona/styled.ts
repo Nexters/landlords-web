@@ -41,12 +41,6 @@ const ButtonDescription = styled.p`
   font-weight: normal;
 `;
 
-const CloseButton = styled.button`
-  width: 1.5rem;
-  height: 1.5rme;
-  margin-top: 2.8rem;
-`;
-
 const Button = styled.button`
   width: 100%;
   height: 3.3rem;
@@ -84,6 +78,12 @@ const BackButton = styled.button`
   background-color: #d8d8d8;
   font-size: 1.23rem;
   font-weight: 500;
+`;
+
+const CloseButton = styled.button`
+  width: 1.5rem;
+  height: 1.5rme;
+  margin-top: 2.8rem;
 `;
 
 export {
