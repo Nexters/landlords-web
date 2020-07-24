@@ -8,10 +8,10 @@ type PersonaAnalysisPageProps = {
 };
 
 enum TEXT {
-  title = '당신만을 위한\n자취방 체크리스트를\n만들어드릴게요!',
-  description = '방 구하기부터 이사까지,\n그 누구도 알려주지 않은 맞춤형 꿀팁',
-  start = '자취 준비 시작',
-  back = '아니요, 괜찮아요',
+  TITLE = '당신만을 위한\n자취방 체크리스트를\n만들어드릴게요!',
+  DESCRIPTION = '방 구하기부터 이사까지,\n그 누구도 알려주지 않은 맞춤형 꿀팁',
+  START = '자취 준비 시작',
+  BACK = '아니요, 괜찮아요',
 }
 
 export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProps): ReactElement {
@@ -27,7 +27,7 @@ export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProp
   return (
     <S.Container>
       <S.Title>
-        {TEXT.title.split('\n').map((line) => {
+        {TEXT.TITLE.split('\n').map((line) => {
           return (
             <span key={line}>
               {line}
@@ -37,7 +37,7 @@ export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProp
         })}
       </S.Title>
       <S.Description>
-        {TEXT.description.split('\n').map((line) => {
+        {TEXT.DESCRIPTION.split('\n').map((line) => {
           return (
             <span key={line}>
               {line}
@@ -48,8 +48,8 @@ export default function PersonaAnalysisPage({ history }: PersonaAnalysisPageProp
       </S.Description>
 
       <S.CounterDescription>총 {viewerCount}명이 체크해방을 참고했습니다.</S.CounterDescription>
-      <S.StartButton onClick={goQuestion}>{TEXT.start}</S.StartButton>
-      <S.BackButton onClick={goBack}>{TEXT.back}</S.BackButton>
+      <S.StartButton onClick={goQuestion}>{TEXT.START}</S.StartButton>
+      <S.BackButton onClick={goBack}>{TEXT.BACK}</S.BackButton>
     </S.Container>
   );
 }
