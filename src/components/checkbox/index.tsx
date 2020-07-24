@@ -2,9 +2,7 @@ import React, { ReactElement } from 'react';
 
 import * as S from './styled';
 
-type CheckboxProps = {};
-
-export default function Checkbox({}: CheckboxProps): ReactElement {
+export default function Checkbox(): ReactElement {
   return (
     <S.Container>
       <input type='checkbox' name='' value='' checked />
