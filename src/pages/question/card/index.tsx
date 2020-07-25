@@ -9,12 +9,8 @@ interface CardProps {
 }
 
 export default function Card({ contents, onClick }: CardProps) {
-  const choice = () => {
-    onClick();
-  };
-
   return (
-    <S.CardWrapper onClick={choice}>
+    <S.CardWrapper onClick={onClick}>
       <S.CardContent>{contents}</S.CardContent>
     </S.CardWrapper>
   );
