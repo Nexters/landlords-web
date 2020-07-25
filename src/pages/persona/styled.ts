@@ -10,6 +10,12 @@ const Container = styled.div`
 const UserName = styled.h1`
   margin-top: 0.6rem;
   font-size: 1.7rem;
+  color: #000000;
+`;
+
+const Title = styled.h1`
+  margin-top: 5rem;
+  font-size: 1.7rem;
   font-weight: bold;
   line-height: normal;
 `;
@@ -35,17 +41,13 @@ const ButtonDescription = styled.p`
   font-weight: normal;
 `;
 
-const CloseButton = styled.button`
-  width: 1.5rem;
-  height: 1.5rme;
-  margin-top: 2.8rem;
-`;
-
 const Button = styled.button`
   width: 100%;
   height: 3.3rem;
+  margin-top: 1rem;
   border: none;
   border-radius: 4px;
+  background-color: #f7b500;
   font-size: 1.23rem;
   font-weight: 500;
 `;
@@ -61,13 +63,39 @@ const ShareButton = styled(Button)`
   color: ${color.orange};
 `;
 
+const CounterDescription = styled.p`
+  margin-top: 16rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+`;
+
+const BackButton = styled.button`
+  height: 3.3rem;
+  margin-top: 1.3rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #d8d8d8;
+  font-size: 1.23rem;
+  font-weight: 500;
+`;
+
+const CloseButton = styled.button`
+  width: 1.5rem;
+  height: 1.5rme;
+  margin-top: 2.8rem;
+`;
+
 export {
   Container,
+  Title,
   UserName,
   Description,
   PersonaDescription,
   ButtonDescription,
   CloseButton,
+  CounterDescription,
   StartButton,
+  BackButton,
   ShareButton,
 };
