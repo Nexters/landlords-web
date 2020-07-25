@@ -4,7 +4,7 @@ import * as S from './styled';
 
 interface CardProps {
   uid: number;
-  contents: String;
+  contents: string;
   onClick: () => void;
 }
 
