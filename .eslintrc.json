@@ -28,17 +28,6 @@
         "objectsInObjects": false
       }
     ],
-    "react/jsx-curly-spacing": [
-      "error",
-      {
-        "when": "always",
-        "allowMultiline": true,
-        "children": true,
-        "spacing": {
-          "objectLiterals": "never"
-        }
-      }
-    ],
     "react/jsx-filename-extension": [
       2,
       {
