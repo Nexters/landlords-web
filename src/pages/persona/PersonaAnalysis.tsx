@@ -3,8 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
-type PersonaAnalysisPageProps = {};
-
 enum TEXT {
   TITLE = '당신만을 위한\n자취방 체크리스트를\n만들어드릴게요!',
   DESCRIPTION = '방 구하기부터 이사까지,\n그 누구도 알려주지 않은 맞춤형 꿀팁',
@@ -12,7 +10,7 @@ enum TEXT {
   BACK = '아니요, 괜찮아요',
 }
 
-export default function PersonaAnalysisPage(_: PersonaAnalysisPageProps): ReactElement {
+export default function PersonaAnalysisPage(): ReactElement {
   const [viewerCount] = useState(0);
   const history = useHistory();
 
