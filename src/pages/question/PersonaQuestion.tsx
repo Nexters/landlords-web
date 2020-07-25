@@ -5,23 +5,28 @@ import Card from './card';
 import questions from './questions';
 import * as S from './styled';
 
+interface choiceProvider {
+  id: number;
+  contents: string;
+}
+
 export default function PersonaQuestionPage(): ReactElement {
   const history = useHistory();
-
-  const [questionNum, setQuestionNum] = useState(1);
-  const [quesitonLen] = useState(questions.length);
-  const [question, setQuestion] = useState(questions[0]);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const quesitonLen = questions.length;
+  const { title, choice } = currentIdx < quesitonLen ? questions[currentIdx] : questions[0];
 
   useEffect(() => {
-    questionNum > quesitonLen ? history.push('/persona/result') : '';
-    setQuestion(questions[questionNum - 1]);
-  }, [questionNum]);
+    if (currentIdx >= quesitonLen) {
+      history.push('/persona/result');
+    }
+  }, [currentIdx]);
 
   const handleCardClick = () => {
-    setQuestionNum(questionNum + 1);
+    setCurrentIdx(currentIdx + 1);
   };
 
-  const getCard = question['choice'].map((item: any) => {
+  const renderCardList = choice.map((item: choiceProvider) => {
     return (
       <Card key={item.id} uid={item.id} contents={item.contents} onClick={handleCardClick}></Card>
     );
@@ -31,14 +36,12 @@ export default function PersonaQuestionPage(): ReactElement {
     <S.Container>
       <S.BackButton>-</S.BackButton>
 
-      <S.QuestionID>
-        {questionNum}/{quesitonLen}
-      </S.QuestionID>
-      <S.Title>{question ? question['title'] : ''}</S.Title>
+      <S.QuestionID>{`${currentIdx + 1}/${quesitonLen}`}</S.QuestionID>
+      <S.Title>{title}</S.Title>
 
-      <S.CardDiv>{question ? getCard : ''}</S.CardDiv>
+      <S.CardDiv>{renderCardList}</S.CardDiv>
 
-      <S.ProgressDiv></S.ProgressDiv>
+      <S.ProgressDiv />
     </S.Container>
   );
 }
