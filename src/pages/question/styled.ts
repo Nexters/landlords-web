@@ -25,6 +25,10 @@ const QuestionID = styled.h2`
 `;
 
 const CardDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 12px 12px;
   margin: 2.5rem 0 3.8rem;
 `;
 
