@@ -3,7 +3,7 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components';
 const Container = styled.span<{ iconLayoutStyle?: FlattenSimpleInterpolation }>`
   display: inline-block;
   vertical-align: middle;
-  svg {
+  img {
     display: block;
     height: 100%;
     fill: currentColor;
