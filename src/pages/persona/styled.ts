@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
+import Color from '../../styles/Color';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1.25rem;
-  color: #000000;
 `;
 
 const UserName = styled.h1`
@@ -41,25 +42,24 @@ const CloseButton = styled.button`
   margin-top: 2.8rem;
 `;
 
-const StartButton = styled.button`
+const Button = styled.button`
   width: 100%;
   height: 3.3rem;
-  margin-top: 1rem;
   border: none;
   border-radius: 4px;
-  background-color: #f7b500;
   font-size: 1.23rem;
   font-weight: 500;
 `;
 
-const ShareButton = styled.button`
-  height: 3.3rem;
+const StartButton = styled(Button)`
+  margin-top: 1rem;
+  background-color: ${Color.mainYellow};
+`;
+
+const ShareButton = styled(Button)`
   margin-top: 0.5rem;
-  border: none;
   background-color: transparent;
-  color: #fa6400;
-  font-size: 1.23rem;
-  font-weight: 500;
+  color: ${Color.orange};
 `;
 
 export {
