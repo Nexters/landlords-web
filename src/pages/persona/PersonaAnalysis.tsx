@@ -18,28 +18,28 @@ export default function PersonaAnalysisPage(): ReactElement {
     history.goBack();
   };
 
+  const sortedTitle = TEXT.TITLE.split('\n').map((line) => {
+    return (
+      <span key={line}>
+        {line}
+        <br />
+      </span>
+    );
+  });
+
+  const sortedDesc = TEXT.DESCRIPTION.split('\n').map((line) => {
+    return (
+      <span key={line}>
+        {line}
+        <br />
+      </span>
+    );
+  });
+
   return (
     <S.Container>
-      <S.Title>
-        {TEXT.TITLE.split('\n').map((line) => {
-          return (
-            <span key={line}>
-              {line}
-              <br />
-            </span>
-          );
-        })}
-      </S.Title>
-      <S.Description>
-        {TEXT.DESCRIPTION.split('\n').map((line) => {
-          return (
-            <span key={line}>
-              {line}
-              <br />
-            </span>
-          );
-        })}
-      </S.Description>
+      <S.Title>{sortedTitle}</S.Title>
+      <S.Description> {sortedDesc}</S.Description>
 
       <S.CounterDescription>총 {viewerCount}명이 체크해방을 참고했습니다.</S.CounterDescription>
 
