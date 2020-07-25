@@ -10,9 +10,11 @@ export default function PersonaQuestionPage(): ReactElement {
 
   const [questionNum, setQuestionNum] = useState(1);
   const [quesitonLen] = useState(questions.length);
+  const [question, setQuestion] = useState();
 
   useEffect(() => {
-    questionNum >= quesitonLen ? history.push('/persona/result') : '';
+    questionNum > quesitonLen ? history.push('/persona/result') : '';
+    setQuestion(questions[questionNum - 1]);
   }, [questionNum]);
 
   const handleCardClick = () => {
@@ -26,7 +28,7 @@ export default function PersonaQuestionPage(): ReactElement {
       <S.QuestionID>
         {questionNum}/{quesitonLen}
       </S.QuestionID>
-      <S.Title>title</S.Title>
+      <S.Title>{question ? question['title'] : ''}</S.Title>
 
       <S.CardDiv>
         <Card uid={1} contents='남자' onClick={handleCardClick}></Card>

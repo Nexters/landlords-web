@@ -20,20 +20,20 @@ const quesitons = [
   },
 
   {
-    uid: 1,
+    uid: 3,
     type_: 0,
-    title: '당신의 성별은?',
+    title: '당신은 아침형? 야행성?',
     choice: [
       {
         id: 1,
         question_id: 1,
-        contents: '남자',
+        contents: '아침형',
         category: 0,
       },
       {
         id: 2,
         question_id: 2,
-        contents: '여자',
+        contents: '야행성',
         category: 1,
       },
     ],
