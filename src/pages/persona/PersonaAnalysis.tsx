@@ -20,8 +20,8 @@ export default function PersonaAnalysisPage(): ReactElement {
 
   const sortedTitle = TEXT.TITLE.split('\n').map((line) => {
     return (
-      <span key={line}>
-        {line}
+      <span key={ line }>
+        { line }
         <br />
       </span>
     );
@@ -29,8 +29,8 @@ export default function PersonaAnalysisPage(): ReactElement {
 
   const sortedDesc = TEXT.DESCRIPTION.split('\n').map((line) => {
     return (
-      <span key={line}>
-        {line}
+      <span key={ line }>
+        { line }
         <br />
       </span>
     );
@@ -38,15 +38,15 @@ export default function PersonaAnalysisPage(): ReactElement {
 
   return (
     <S.Container>
-      <S.Title>{sortedTitle}</S.Title>
-      <S.Description> {sortedDesc}</S.Description>
+      <S.Title>{ sortedTitle }</S.Title>
+      <S.Description> { sortedDesc }</S.Description>
 
-      <S.CounterDescription>총 {viewerCount}명이 체크해방을 참고했습니다.</S.CounterDescription>
+      <S.CounterDescription>총 { viewerCount }명이 체크해방을 참고했습니다.</S.CounterDescription>
 
       <Link to='/persona/question'>
-        <S.StartButton>{TEXT.START}</S.StartButton>
+        <S.StartButton>{ TEXT.START }</S.StartButton>
       </Link>
-      <S.BackButton onClick={handleBackButton}>{TEXT.BACK}</S.BackButton>
+      <S.BackButton onClick={ handleBackButton }>{ TEXT.BACK }</S.BackButton>
     </S.Container>
   );
 }
