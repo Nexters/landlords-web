@@ -18,7 +18,6 @@ const quesitons = [
       },
     ],
   },
-
   {
     uid: 3,
     type_: 0,
@@ -38,7 +37,6 @@ const quesitons = [
       },
     ],
   },
-
   {
     uid: 2,
     type_: 1,
