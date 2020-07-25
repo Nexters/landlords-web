@@ -2,8 +2,17 @@ import React, { ReactElement } from 'react';
 
 import * as S from './styled';
 
-type PersonaQuestionPageProps = {};
+export default function PersonaQuestionPage(): ReactElement {
+  return (
+    <S.Container>
+      <S.BackButton>-</S.BackButton>
 
-export default function PersonaQuestionPage(_: PersonaQuestionPageProps): ReactElement {
-  return <S.Container>PersonaQuestionPage</S.Container>;
+      <S.QuestionID>question_id</S.QuestionID>
+      <S.Title>title</S.Title>
+
+      <S.CardDiv>card</S.CardDiv>
+
+      <S.ProgressDiv></S.ProgressDiv>
+    </S.Container>
+  );
 }
