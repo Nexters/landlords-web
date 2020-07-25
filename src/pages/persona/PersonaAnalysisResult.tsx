@@ -21,16 +21,16 @@ export default function PersonaAnalysisResultPage(): ReactElement {
       </Link>
 
       <S.UserName>
-        {userName}님은
+        { userName }님은
         <br />
-        {userPersona}!
+        { userPersona }!
       </S.UserName>
-      <S.PersonaDescription>{PersonaDescription}</S.PersonaDescription>
-      <S.ButtonDescription>{TEXT.BUTTON_DESCRIPTION}</S.ButtonDescription>
+      <S.PersonaDescription>{ PersonaDescription }</S.PersonaDescription>
+      <S.ButtonDescription>{ TEXT.BUTTON_DESCRIPTION }</S.ButtonDescription>
       <Link to='/checklist'>
-        <S.StartButton>{TEXT.GO_CHECKLIST}</S.StartButton>
+        <S.StartButton>{ TEXT.GO_CHECKLIST }</S.StartButton>
       </Link>
-      <S.ShareButton>{TEXT.SHARE}</S.ShareButton>
+      <S.ShareButton>{ TEXT.SHARE }</S.ShareButton>
     </S.Container>
   );
 }
