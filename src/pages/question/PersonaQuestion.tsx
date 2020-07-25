@@ -23,9 +23,7 @@ export default function PersonaQuestionPage(): ReactElement {
 
   const getCard = question['choice'].map((item: any) => {
     return (
-      <div key='card'>
-        <Card uid={item.id} contents={item.contents} onClick={handleCardClick}></Card>
-      </div>
+      <Card key={item.id} uid={item.id} contents={item.contents} onClick={handleCardClick}></Card>
     );
   });
 
