@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-import Color from '../../styles/Color';
+import color from 'styles/color';
 
 const Container = styled.div`
   display: flex;
@@ -53,13 +52,13 @@ const Button = styled.button`
 
 const StartButton = styled(Button)`
   margin-top: 1rem;
-  background-color: ${Color.mainYellow};
+  background-color: ${color.mainYellow};
 `;
 
 const ShareButton = styled(Button)`
   margin-top: 0.5rem;
   background-color: transparent;
-  color: ${Color.orange};
+  color: ${color.orange};
 `;
 
 export {
