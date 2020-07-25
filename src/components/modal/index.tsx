@@ -33,19 +33,19 @@ export default function Modal({
   };
 
   return (
-    <div className={className}>
-      <S.ModalOverlay visible={visible} />
+    <div className={ className }>
+      <S.ModalOverlay visible={ visible } />
       <S.ModalWrapper
-        onClick={maskClosable ? onMaskClick : () => null}
-        tabIndex={-1}
-        visible={visible}>
-        <S.ModalInner tabIndex={0} className='modal-inner' modalWidth={modalWidth}>
-          {closable && (
+        onClick={ maskClosable ? onMaskClick : () => null }
+        tabIndex={ -1 }
+        visible={ visible }>
+        <S.ModalInner tabIndex={ 0 } className='modal-inner' modalWidth={ modalWidth }>
+          { closable && (
             <S.ModalCloseButton>
-              <CloseButton onClick={close} />
+              <CloseButton onClick={ close } />
             </S.ModalCloseButton>
-          )}
-          {children}
+          ) }
+          { children }
         </S.ModalInner>
       </S.ModalWrapper>
     </div>
