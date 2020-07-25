@@ -14,7 +14,7 @@ export default function PersonaAnalysisPage(): ReactElement {
   const [viewerCount] = useState(0);
   const history = useHistory();
 
-  const goBack = () => {
+  const handleBackButton = () => {
     history.goBack();
   };
 
@@ -46,7 +46,7 @@ export default function PersonaAnalysisPage(): ReactElement {
       <Link to='/persona/question'>
         <S.StartButton>{TEXT.START}</S.StartButton>
       </Link>
-      <S.BackButton onClick={goBack}>{TEXT.BACK}</S.BackButton>
+      <S.BackButton onClick={handleBackButton}>{TEXT.BACK}</S.BackButton>
     </S.Container>
   );
 }
