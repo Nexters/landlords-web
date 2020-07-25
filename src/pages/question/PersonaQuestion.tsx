@@ -1,7 +1,7 @@
-import Card from 'components/card';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import Card from './card';
 import questions from './questions';
 import * as S from './styled';
 
