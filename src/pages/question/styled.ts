@@ -3,24 +3,24 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 1.25rem;
+  padding: 0 20px;
 `;
 
 const BackButton = styled.button`
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-top: 2.8rem;
+  width: 24px;
+  height: 24px;
+  margin-top: 45px;
 `;
 
 const Title = styled.h1`
-  margin-top: 0.5rem;
-  font-size: 1.7rem;
+  margin-top: 8px;
+  font-size: 27px;
   font-weight: bold;
 `;
 
 const QuestionID = styled.h2`
-  margin-top: 3rem;
-  font-size: 1.7rem;
+  margin-top: 48px;
+  font-size: 27px;
   font-weight: bold;
 `;
 
@@ -29,7 +29,7 @@ const CardDiv = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 12px 12px;
-  margin: 2.5rem 0 3.8rem;
+  margin: 40px 0 60px;
 `;
 
 const ProgressDiv = styled.div`

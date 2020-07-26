@@ -6,14 +6,14 @@ const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 1rem;
-  height: 12rem;
+  padding: 16px;
+  height: 192px;
   border: none;
   border-radius: 4px;
   background-color: ${color.cardGray};
 `;
 const CardContent = styled.p`
-  font-size: 1.2rem;
+  font-size: 19px;
   color: #ffffff;
 `;
 
