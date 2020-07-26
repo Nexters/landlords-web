@@ -82,7 +82,7 @@ const BackButton = styled.button`
 
 const CloseButton = styled.button`
   width: 1.5rem;
-  height: 1.5rme;
+  height: 1.5rem;
   margin-top: 2.8rem;
 `;
 
