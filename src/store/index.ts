@@ -1,10 +1,6 @@
 import { combineReducers, configureStore, EnhancedStore } from '@reduxjs/toolkit';
 
-// import authReducer from './auth';
-import {QUESTIONS,questionsReducer} from './personaQuestionsSlice';
-
-// const reducer = combineReducers({ authReducer, personaReducer });
-// export const store = configureStore({ reducer });
+import { QUESTIONS, questionsReducer } from './personaQuestionsSlice';
 
 const rootReducer = combineReducers({
   [QUESTIONS]: questionsReducer,

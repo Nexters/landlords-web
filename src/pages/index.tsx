@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { createStore } from '../store';
@@ -13,15 +14,17 @@ export default function EntryRoute() {
   const store = createStore();
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/persona/result' component={ PersonaAnalysisResultPage } />
-        <Route path='/persona/question' component={ PersonaQuestionPage } />
-        <Route path='/persona' component={ PersonaAnalysisPage } />
-        <Route path='/checklist' component={ ChecklistPage } />
-        <Route path='/room' component={ RoomComparisonPage } />
-        <Route path='/' component={ MainPage } />
-      </Switch>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/persona/result' component={ PersonaAnalysisResultPage } />
+          <Route path='/persona/question' component={ PersonaQuestionPage } />
+          <Route path='/persona' component={ PersonaAnalysisPage } />
+          <Route path='/checklist' component={ ChecklistPage } />
+          <Route path='/room' component={ RoomComparisonPage } />
+          <Route path='/' component={ MainPage } />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   );
 }
