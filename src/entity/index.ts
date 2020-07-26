@@ -7,12 +7,14 @@ export interface PersonaUserChoice {
 
 export interface PersonaQuestion {
   uid: number;
-  contents: string;
-  choice_items: ChoiceItem[];
-  is_multi_choice: boolean;
+  title: string;
+  choices: Choice[];
+  type_: boolean;
 }
 
-interface ChoiceItem {
-  uid: number;
+export interface Choice {
+  uid: number,
+  question_id: number,
   contents: string;
+  category: number;
 }
