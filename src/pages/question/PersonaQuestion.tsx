@@ -18,7 +18,6 @@ export default function PersonaQuestionPage(): ReactElement {
   const progressVal = (100 / quesitonLen) * (currentIdx + 1);
 
   const handleCardClick = () => {
-    console.log(progressVal);
     if (currentIdx < quesitonLen - 1) {
       setCurrentIdx(currentIdx + 1);
     } else {
