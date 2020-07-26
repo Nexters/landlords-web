@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import color from 'styles/color';
 
 const Container = styled.div`
   display: flex;
@@ -32,11 +33,23 @@ const CardDiv = styled.div`
   margin: 40px 0 60px;
 `;
 
-const ProgressDiv = styled.div`
-  height: 3px;
+const ProgressContainer = styled.div`
+  width: 100%;
+  height: 4px;
   margin-top: 12px;
   border-radius: 4px;
   background-color: #f0f0f0;
 `;
 
-export { Container, BackButton, Title, QuestionID, CardDiv, ProgressDiv };
+const ProgressComplete = styled.div<{ barWidth: number }>`
+  width: ${({ barWidth }) => `${barWidth}%`};
+  height: 4px;
+  z-index: 2;
+  background-color: ${color.mainYellow};
+  -webkit-transition: width 0.5s ease-in-out;
+  -moz-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+`;
+
+export { Container, BackButton, Title, QuestionID, CardDiv, ProgressContainer, ProgressComplete };

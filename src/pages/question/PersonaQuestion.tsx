@@ -15,6 +15,7 @@ export default function PersonaQuestionPage(): ReactElement {
   const [currentIdx, setCurrentIdx] = useState(0);
   const quesitonLen = questions.length;
   const { title, choice } = questions[currentIdx];
+  const progressVal = (100 / quesitonLen) * (currentIdx + 1);
 
   const handleCardClick = () => {
     if (currentIdx < quesitonLen - 1) {
@@ -39,7 +40,9 @@ export default function PersonaQuestionPage(): ReactElement {
 
       <S.CardDiv>{renderCardList}</S.CardDiv>
 
-      <S.ProgressDiv />
+      <S.ProgressContainer>
+        <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
+      </S.ProgressContainer>
     </S.Container>
   );
 }
