@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {personaQuestionSelector,questionsAction} from '../../store/personaQuestionsSlice';
+import { personaQuestionSelector,questionsAction } from '../../store/personaQuestionsSlice';
 import * as S from './styled';
 
 type MainPageProps = {};
@@ -14,7 +14,7 @@ export default function MainPage(_: MainPageProps): ReactElement {
     dispatch(questionsAction.setQuestions([
       {
         uid: 2, contents: 'abcd',
-        choice_items: [{uid: 12, contents: 'abcc'}],
+        choice_items: [{ uid: 12, contents: 'abcc' }],
         is_multi_choice: true,
       },
     ],
