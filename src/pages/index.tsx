@@ -12,12 +12,12 @@ export default function EntryRoute() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/persona/result' component={PersonaAnalysisResultPage} />
-        <Route path='/persona/question' component={PersonaQuestionPage} />
-        <Route path='/persona' component={PersonaAnalysisPage} />
-        <Route path='/checklist' component={ChecklistPage} />
-        <Route path='/room' component={RoomComparisonPage} />
-        <Route path='/' component={MainPage} />
+        <Route path='/persona/result' component={ PersonaAnalysisResultPage } />
+        <Route path='/persona/question' component={ PersonaQuestionPage } />
+        <Route path='/persona' component={ PersonaAnalysisPage } />
+        <Route path='/checklist' component={ ChecklistPage } />
+        <Route path='/room' component={ RoomComparisonPage } />
+        <Route path='/' component={ MainPage } />
       </Switch>
     </BrowserRouter>
   );
