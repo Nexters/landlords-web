@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Card from './card';
@@ -14,16 +14,14 @@ export default function PersonaQuestionPage(): ReactElement {
   const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
   const quesitonLen = questions.length;
-  const { title, choice } = currentIdx < quesitonLen ? questions[currentIdx] : questions[0];
-
-  useEffect(() => {
-    if (currentIdx >= quesitonLen) {
-      history.push('/persona/result');
-    }
-  }, [currentIdx]);
+  const { title, choice } = questions[currentIdx];
 
   const handleCardClick = () => {
-    setCurrentIdx(currentIdx + 1);
+    if (currentIdx < quesitonLen - 1) {
+      setCurrentIdx(currentIdx + 1);
+    } else {
+      history.push('/persona/result');
+    }
   };
 
   const renderCardList = choice.map((item: choiceProvider) => {
