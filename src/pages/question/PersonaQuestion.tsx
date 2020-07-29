@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { Choice } from '../../entity';
-import { personaQuestionSelector,questionsAction } from '../../store/personaQuestionsSlice';
+import { personaQuestionSelector, questionsAction } from '../../store/personaQuestionsSlice';
 import Card from './card';
-import * as S from './styled';;
+import questions from './questions';
+import * as S from './styled';
 
 export default function PersonaQuestionPage(): ReactElement {
   const dispatch = useDispatch();
-  const { questions } = useSelector(personaQuestionSelector);
+  // const { questions } = useSelector(personaQuestionSelector);
   const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
   const quesitonLen = questions.length;
@@ -36,7 +37,6 @@ export default function PersonaQuestionPage(): ReactElement {
       <S.QuestionID>{`${currentIdx + 1}/${quesitonLen}`}</S.QuestionID>
       <S.Title>{title}</S.Title>
       <S.CardDiv>{renderCardList}</S.CardDiv>
-      <S.Container>PersonaQuestionPage</S.Container>;
       <S.ProgressContainer>
         <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
       </S.ProgressContainer>
