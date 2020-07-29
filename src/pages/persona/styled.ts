@@ -4,27 +4,34 @@ import color from 'styles/color';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 1.25rem;
+  padding: 0 24px;
+  height: 100vh;
+  background-color: ${color.grayscalef9};
+`;
+
+const ResultContainer = styled(Container)`
+  background-color: ${color.basicWhite};
 `;
 
 const UserName = styled.h1`
-  margin-top: 0.6rem;
-  font-size: 1.7rem;
-  color: #000000;
+  margin-top: 18px;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 35px;
 `;
 
 const Title = styled.h1`
-  margin-top: 5rem;
-  font-size: 1.7rem;
+  margin-top: 64px;
+  font-size: 26px;
   font-weight: bold;
-  line-height: normal;
+  line-height: 34.5px;
 `;
 
 const Description = styled.p`
-  margin-top: 0.75rem;
-  font-size: 1.05rem;
+  margin-top: 16px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 18.5px;
 `;
 
 const PersonaDescription = styled.p`
@@ -34,50 +41,57 @@ const PersonaDescription = styled.p`
   line-height: 1.5;
 `;
 
-const ButtonDescription = styled.p`
-  margin-top: 1.6rem;
-  text-align: center;
-  font-size: 0.95rem;
-  font-weight: normal;
-`;
-
 const Button = styled.button`
   width: 100%;
-  height: 3.3rem;
-  margin-top: 1rem;
+  height: 54px;
   border: none;
   border-radius: 4px;
-  background-color: #f7b500;
-  font-size: 1.23rem;
-  font-weight: 500;
+  background-color: ${color.basicWhite};
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 21.5px;
 `;
 
 const StartButton = styled(Button)`
-  margin-top: 1rem;
-  background-color: ${color.mainYellow};
+  margin-top: 24px;
+`;
+
+const GoChecklistButton = styled(Button)`
+  margin-top: 16px;
+  background-color: ${color.primaryYellow};
 `;
 
 const ShareButton = styled(Button)`
   margin-top: 0.5rem;
   background-color: transparent;
-  color: ${color.orange};
 `;
 
-const CounterDescription = styled.p`
-  margin-top: 16rem;
+const CounterDescription = styled.button`
+  margin: 277px 29px 0;
+  height: 31px;
   text-align: center;
-  font-size: 1rem;
-  font-weight: normal;
+  font-size: 12px;
+  line-height: 15.5px;
+  color: ${color.basicWhite};
+  background-color: rgba(41, 41, 44, 0.8);
+  border: none;
+  border-radius: 17px;
+  pointer-events: none;
+  cursor: not-allowed;
 `;
 
-const BackButton = styled.button`
-  height: 3.3rem;
-  margin-top: 1.3rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #d8d8d8;
-  font-size: 1.23rem;
-  font-weight: 500;
+const Count = styled.span`
+  color: ${color.primaryYellow};
+`;
+
+const BackButton = styled.a`
+  margin-top: 18px;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-position: under;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 15.5px;
 `;
 
 const CloseButton = styled.button`
@@ -88,14 +102,16 @@ const CloseButton = styled.button`
 
 export {
   Container,
+  ResultContainer,
   Title,
   UserName,
   Description,
   PersonaDescription,
-  ButtonDescription,
   CloseButton,
   CounterDescription,
+  Count,
   StartButton,
   BackButton,
+  GoChecklistButton,
   ShareButton,
 };
