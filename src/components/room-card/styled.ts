@@ -6,7 +6,7 @@ const ACITVE_THUMBNAIL = `
   background-image: linear-gradient(to bottom, #ffc856, #ffc856);
 `;
 
-const INACITVE_THUMBNAIL = `background-color: ${color.white};`;
+const INACITVE_THUMBNAIL = `background-color: ${color.basicWhite};`;
 
 const Container = styled.div`
   display: flex;
