@@ -10,11 +10,11 @@ const CardWrapper = styled.div`
   height: 192px;
   border: none;
   border-radius: 4px;
-  background-color: ${color.cardGray};
+  background-color: ${color.primaryDullPurple};
 `;
 const CardContent = styled.p`
   font-size: 19px;
-  color: #ffffff;
+  color: ${color.basicWhite};
 `;
 
 export { CardWrapper, CardContent };

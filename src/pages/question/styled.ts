@@ -45,7 +45,7 @@ const ProgressComplete = styled.div<{ barWidth: number }>`
   width: ${({ barWidth }) => `${barWidth}%`};
   height: 4px;
   z-index: 2;
-  background-color: ${color.mainYellow};
+  background-color: ${color.primaryYellow};
   -webkit-transition: width 0.5s ease-in-out;
   -moz-transition: width 0.5s ease-in-out;
   -o-transition: width 0.5s ease-in-out;
