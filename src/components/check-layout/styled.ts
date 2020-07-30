@@ -5,7 +5,7 @@ const Container = styled.div`
   padding: 1rem 1.5rem;
 `;
 
-const TitleLayout = styled.div`
+const TitleLayer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +17,7 @@ const TitleLayout = styled.div`
   }
 `;
 
-const CheckItem = styled.div`
+const CheckItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,4 +28,4 @@ const CheckItem = styled.div`
   }
 `;
 
-export { Container, CheckItem, TitleLayout };
+export { Container, CheckItemWrapper, TitleLayer };

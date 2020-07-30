@@ -4,28 +4,28 @@ import React, { ChangeEvent, MouseEvent, ReactElement } from 'react';
 
 import * as S from './styled';
 
-interface CheckboxLayoutProps {
+interface CheckLayoutProps {
   label: string;
   items: CheckItem[];
   onClick?: (index: number) => void;
 }
 
-export default function CheckboxLayout({
+export default function CheckLayout({
   label,
   items,
   onClick = () => {},
-}: CheckboxLayoutProps): ReactElement {
+}: CheckLayoutProps): ReactElement {
   return (
     <S.Container>
-      <S.TitleLayout>
+      <S.TitleLayer>
         <span>{label}</span>
         <Icon name='NAVIGATION_OPEN_DOWN' size='22' />
-      </S.TitleLayout>
+      </S.TitleLayer>
       {items.map((item, index) => (
-        <S.CheckItem key={index}>
+        <S.CheckItemWrapper key={index}>
           <span>{item.description}</span>
-          <Checkbox checked={item.value as boolean} onClick={() => onClick(index)} />
-        </S.CheckItem>
+          <Checkbox checked={item.value} onClick={() => onClick(index)} />
+        </S.CheckItemWrapper>
       ))}
     </S.Container>
   );
