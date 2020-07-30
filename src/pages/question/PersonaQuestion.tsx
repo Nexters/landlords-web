@@ -1,7 +1,7 @@
 import Icon from 'components/icon';
+import { Choice } from 'entity/persona';
 import React, { ReactElement, useMemo, useState } from 'react';
 
-import { Choice } from '../../entity';
 import Card from './card';
 import Loading from './loading';
 import questions from './questions';
