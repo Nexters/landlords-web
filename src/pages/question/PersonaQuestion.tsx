@@ -1,6 +1,6 @@
+import { render } from '@testing-library/react';
 import Icon from 'components/icon';
-import React, { ReactElement, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { ReactElement, useMemo, useState } from 'react';
 
 import { Choice } from '../../entity';
 import Card from './card';
@@ -9,14 +9,14 @@ import questions from './questions';
 import * as S from './styled';
 
 export default function PersonaQuestionPage(): ReactElement {
-  const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answer, setAnswer] = useState<Choice[]>([]);
-  const [isLoading, setLoading] = useState(false);
-  const { title, choices } = questions[currentIdx];
   const questionLen = questions.length;
+  const { title, choices } =
+    questions[currentIdx] != undefined ? questions[currentIdx] : questions[0];
   const questionNum = currentIdx + 1 < 10 ? '0' + (currentIdx + 1).toString() : currentIdx + 1;
   const progressVal = (100 / questionLen) * (currentIdx + 1);
+  const isLoading = useMemo(() => (currentIdx >= questionLen ? true : false), [currentIdx]);
 
   const getChoice = (index: number) => {
     return choices[index];
@@ -24,13 +24,7 @@ export default function PersonaQuestionPage(): ReactElement {
 
   const handleCardClick = (index: number) => {
     setAnswer(() => [...answer, getChoice(index)]);
-    if (currentIdx < questionLen - 1) {
-      setCurrentIdx(currentIdx + 1);
-    }
-    if (currentIdx >= questionLen - 1) {
-      setLoading(true);
-      // history.push('/persona/result');
-    }
+    setCurrentIdx(currentIdx + 1);
   };
 
   const handleBackButtonClick = () => {
