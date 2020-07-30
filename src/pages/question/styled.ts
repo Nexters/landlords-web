@@ -4,6 +4,7 @@ import color from 'styles/color';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
   padding: 0 24px;
   background-color: ${color.grayscalef9};
 `;
