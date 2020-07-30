@@ -10,8 +10,9 @@ import * as S from './styled';
 export default function PersonaQuestionPage(): ReactElement {
   const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
-  const quesitonLen = questions.length;
   const { title, choices } = questions[currentIdx];
+  const quesitonLen = questions.length;
+  const questionNum = currentIdx + 1 < 10 ? '0' + (currentIdx + 1).toString() : currentIdx + 1;
   const progressVal = (100 / quesitonLen) * (currentIdx + 1);
 
   const handleCardClick = () => {
@@ -36,7 +37,7 @@ export default function PersonaQuestionPage(): ReactElement {
 
       <S.TitleDiv>
         <S.Title>
-          {currentIdx + 1}
+          {questionNum}
           <br />
           {title}
         </S.Title>
