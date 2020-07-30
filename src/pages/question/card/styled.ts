@@ -7,13 +7,14 @@ const CardWrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 16px;
-  height: 192px;
+  height: 178px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: ${color.primaryDullPurple};
 `;
 const CardContent = styled.p`
-  font-size: 19px;
+  font-size: 16px;
+  line-height: 21.5px;
   color: ${color.basicWhite};
 `;
 

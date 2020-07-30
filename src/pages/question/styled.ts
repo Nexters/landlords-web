@@ -4,7 +4,8 @@ import color from 'styles/color';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 24px;
+  background-color: ${color.grayscalef9};
 `;
 
 const BackButton = styled.button`
@@ -13,37 +14,37 @@ const BackButton = styled.button`
   margin-top: 45px;
 `;
 
-const Title = styled.h1`
-  margin-top: 8px;
-  font-size: 27px;
-  font-weight: bold;
+const TitleDiv = styled.div`
+  margin-top: 50px;
+  height: 90px;
 `;
 
-const QuestionID = styled.h2`
-  margin-top: 48px;
-  font-size: 27px;
+const Title = styled.h1`
+  font-size: 22px;
   font-weight: bold;
+  line-height: 29.5px;
 `;
 
 const CardDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 12px 12px;
-  margin: 40px 0 60px;
+  gap: 16px 16px;
+  height: 352px;
+  margin-top: 16px;
 `;
 
 const ProgressContainer = styled.div`
   width: 100%;
-  height: 4px;
-  margin-top: 12px;
-  border-radius: 4px;
-  background-color: #f0f0f0;
+  height: 6px;
+  margin-top: 104px;
+  border-radius: 2.5px;
+  background-color: rgba(41, 41, 44, 0.08);
 `;
 
 const ProgressComplete = styled.div<{ barWidth: number }>`
   width: ${({ barWidth }) => `${barWidth}%`};
-  height: 4px;
+  height: 6px;
   z-index: 2;
   background-color: ${color.primaryYellow};
   -webkit-transition: width 0.5s ease-in-out;
@@ -52,4 +53,4 @@ const ProgressComplete = styled.div<{ barWidth: number }>`
   transition: width 0.5s ease-in-out;
 `;
 
-export { Container, BackButton, Title, QuestionID, CardDiv, ProgressContainer, ProgressComplete };
+export { Container, BackButton, TitleDiv, Title, CardDiv, ProgressContainer, ProgressComplete };

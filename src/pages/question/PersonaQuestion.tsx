@@ -34,8 +34,14 @@ export default function PersonaQuestionPage(): ReactElement {
   return (
     <S.Container>
       <S.BackButton>-</S.BackButton>
-      <S.QuestionID>{`${currentIdx + 1}/${quesitonLen}`}</S.QuestionID>
-      <S.Title>{title}</S.Title>
+
+      <S.TitleDiv>
+        <S.Title>
+          {currentIdx + 1}
+          <br />
+          {title}
+        </S.Title>
+      </S.TitleDiv>
       <S.CardDiv>{renderCardList}</S.CardDiv>
       <S.ProgressContainer>
         <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
