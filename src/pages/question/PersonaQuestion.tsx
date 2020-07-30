@@ -51,25 +51,24 @@ export default function PersonaQuestionPage(): ReactElement {
 
   if (isLoading) {
     return <Loading />;
-  } else {
-    return (
-      <S.Container>
-        <S.BackButton onClick={handleBackButtonClick}>
-          <Icon name='NAVIGATION_BACKWARD'></Icon>
-        </S.BackButton>
-
-        <S.TitleDiv>
-          <S.Title>
-            {questionNum}
-            <br />
-            {title}
-          </S.Title>
-        </S.TitleDiv>
-        <S.CardDiv>{cardList}</S.CardDiv>
-        <S.ProgressContainer>
-          <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
-        </S.ProgressContainer>
-      </S.Container>
-    );
   }
+  return (
+    <S.Container>
+      <S.BackButton onClick={handleBackButtonClick}>
+        <Icon name='NAVIGATION_BACKWARD'></Icon>
+      </S.BackButton>
+
+      <S.TitleDiv>
+        <S.Title>
+          {questionNum}
+          <br />
+          {title}
+        </S.Title>
+      </S.TitleDiv>
+      <S.CardDiv>{cardList}</S.CardDiv>
+      <S.ProgressContainer>
+        <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
+      </S.ProgressContainer>
+    </S.Container>
+  );
 }
