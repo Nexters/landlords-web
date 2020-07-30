@@ -8,4 +8,9 @@ const StyledInput = styled.input`
   margin: 0;
 `;
 
-export { Container, StyledInput };
+const StyledLabel = styled.label`
+  margin-left: 4px;
+  color: #2e2e2e;
+`;
+
+export { Container, StyledInput, StyledLabel };
