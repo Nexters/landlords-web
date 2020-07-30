@@ -4,12 +4,14 @@ import { FlattenSimpleInterpolation } from 'styled-components';
 import * as S from './styled';
 import CHECK_SQAURE from './svg/check-square.svg';
 import CHEVRON_DOWN from './svg/chevron-down.svg';
+import NAVIGATION_BACKWARD from './svg/navigation-backward.svg';
 import SQUARE from './svg/square.svg';
 
 const Icons = {
   CHEVRON_DOWN,
   CHECK_SQAURE,
   SQUARE,
+  NAVIGATION_BACKWARD,
 };
 
 type IconName = keyof typeof Icons;

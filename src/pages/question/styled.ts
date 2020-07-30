@@ -8,9 +8,7 @@ const Container = styled.div`
   background-color: ${color.grayscalef9};
 `;
 
-const BackButton = styled.button`
-  width: 24px;
-  height: 24px;
+const BackButton = styled.a`
   margin-top: 45px;
 `;
 

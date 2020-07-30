@@ -1,16 +1,13 @@
+import Icon from 'components/icon';
 import React, { ReactElement, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { Choice } from '../../entity';
-import { personaQuestionSelector, questionsAction } from '../../store/personaQuestionsSlice';
 import Card from './card';
 import questions from './questions';
 import * as S from './styled';
 
 export default function PersonaQuestionPage(): ReactElement {
-  const dispatch = useDispatch();
-  // const { questions } = useSelector(personaQuestionSelector);
   const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
   const quesitonLen = questions.length;
@@ -33,7 +30,9 @@ export default function PersonaQuestionPage(): ReactElement {
 
   return (
     <S.Container>
-      <S.BackButton>-</S.BackButton>
+      <S.BackButton>
+        <Icon name='NAVIGATION_BACKWARD'></Icon>
+      </S.BackButton>
 
       <S.TitleDiv>
         <S.Title>
