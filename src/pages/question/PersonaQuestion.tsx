@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { Choice } from '../../entity';
 import Card from './card';
+import Loading from './loading';
 import questions from './questions';
 import * as S from './styled';
 
@@ -11,6 +12,7 @@ export default function PersonaQuestionPage(): ReactElement {
   const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answer, setAnswer] = useState<Choice[]>([]);
+  const [isLoading, setLoading] = useState(false);
   const { title, choices } = questions[currentIdx];
   const questionLen = questions.length;
   const questionNum = currentIdx + 1 < 10 ? '0' + (currentIdx + 1).toString() : currentIdx + 1;
@@ -28,7 +30,8 @@ export default function PersonaQuestionPage(): ReactElement {
       setCurrentIdx(currentIdx + 1);
     }
     if (currentIdx >= questionLen - 1) {
-      history.push('/persona/result');
+      setLoading(true);
+      // history.push('/persona/result');
     }
   };
 
@@ -41,23 +44,27 @@ export default function PersonaQuestionPage(): ReactElement {
     return <Card key={index} uid={index} contents={item.contents} onClick={handleCardClick}></Card>;
   });
 
-  return (
-    <S.Container>
-      <S.BackButton onClick={handleBackButtonClick}>
-        <Icon name='NAVIGATION_BACKWARD'></Icon>
-      </S.BackButton>
+  if (isLoading) {
+    return <Loading />;
+  } else {
+    return (
+      <S.Container>
+        <S.BackButton onClick={handleBackButtonClick}>
+          <Icon name='NAVIGATION_BACKWARD'></Icon>
+        </S.BackButton>
 
-      <S.TitleDiv>
-        <S.Title>
-          {questionNum}
-          <br />
-          {title}
-        </S.Title>
-      </S.TitleDiv>
-      <S.CardDiv>{renderCardList}</S.CardDiv>
-      <S.ProgressContainer>
-        <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
-      </S.ProgressContainer>
-    </S.Container>
-  );
+        <S.TitleDiv>
+          <S.Title>
+            {questionNum}
+            <br />
+            {title}
+          </S.Title>
+        </S.TitleDiv>
+        <S.CardDiv>{renderCardList}</S.CardDiv>
+        <S.ProgressContainer>
+          <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
+        </S.ProgressContainer>
+      </S.Container>
+    );
+  }
 }
