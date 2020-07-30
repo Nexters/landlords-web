@@ -4,17 +4,17 @@ import React, { ChangeEvent, MouseEvent, ReactElement } from 'react';
 
 import * as S from './styled';
 
-interface CheckboxGroupProps {
+interface CheckboxLayoutProps {
   label: string;
   items: CheckItem[];
   onClick?: (index: number) => void;
 }
 
-export default function CheckboxGroup({
+export default function CheckboxLayout({
   label,
   items,
   onClick = () => {},
-}: CheckboxGroupProps): ReactElement {
+}: CheckboxLayoutProps): ReactElement {
   return (
     <S.Container>
       <S.TitleLayout>
