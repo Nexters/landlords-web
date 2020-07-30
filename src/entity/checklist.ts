@@ -1,12 +1,19 @@
-export interface CheckItem {
+interface BaseItem {
   type: string;
   label: string;
   description: string;
-  value: boolean | { name: string; selected: boolean }[];
 }
 
-export interface CheckItemsByLabel {
-  [label: string]: CheckItem[];
+export interface CheckItem extends BaseItem {
+  value: boolean;
+}
+
+export interface SelectItem extends BaseItem {
+  value: { name: string; selected: boolean }[];
+}
+
+export interface ItemsByLabel {
+  [label: string]: (CheckItem | SelectItem)[];
 }
 
 export interface RoomContent {
@@ -19,5 +26,5 @@ export interface RoomContent {
   elevator?: string;
   expenses?: string;
   active: boolean;
-  checklist: CheckItem[];
+  checklist: (CheckItem | SelectItem)[];
 }
