@@ -1,6 +1,6 @@
-import { RoomContent } from 'entity/checklist';
+import { Room } from 'entity/checklist';
 
-const rooms: RoomContent[] = [
+const rooms: Room[] = [
   {
     name: '1번째 방이름',
     cost: '월세 500/55',

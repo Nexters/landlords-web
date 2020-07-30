@@ -1,5 +1,5 @@
 import { CheckLayout, Icon, RoomCard, SelectLayout } from 'components';
-import { CheckItem, ItemsByLabel, RoomContent, SelectItem } from 'entity/checklist';
+import { CheckItem, ItemsByLabel, Room, SelectItem } from 'entity/checklist';
 import React, { ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const extractItemsByLabel = <T extends CheckItem | SelectItem>(items: T[], targe
 
 export default function ChecklistPage(): ReactElement {
   const history = useHistory();
-  const [rooms, setRooms] = useState<RoomContent[]>(mock);
+  const [rooms, setRooms] = useState<Room[]>(mock);
   const activeRoom = rooms.filter((room) => room.active)[0];
   const checkItems = extractItemsByLabel(activeRoom.checklist, 'check');
   const selectItems = extractItemsByLabel(activeRoom.checklist, 'select');

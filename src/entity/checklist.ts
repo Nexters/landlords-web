@@ -16,7 +16,7 @@ export interface ItemsByLabel {
   [label: string]: (CheckItem | SelectItem)[];
 }
 
-export interface RoomContent {
+export interface Room {
   name: string;
   cost?: string;
   location?: string;

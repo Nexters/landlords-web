@@ -1,11 +1,11 @@
-import { RoomContent } from 'entity/checklist';
+import { Room } from 'entity/checklist';
 import React, { MouseEvent, ReactElement } from 'react';
 
 import * as S from './styled';
 
 interface RoomCardProps {
   className?: string;
-  room?: RoomContent;
+  room?: Room;
   onClick?: (e: MouseEvent<HTMLInputElement>) => void;
   isEmpty?: boolean;
 }
