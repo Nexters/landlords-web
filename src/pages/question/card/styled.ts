@@ -14,7 +14,7 @@ const CardWrapper = styled.div`
 `;
 const CardContent = styled.p`
   font-size: 16px;
-  line-height: 21.5px;
+  line-height: 21px;
   color: ${color.basicWhite};
 `;
 

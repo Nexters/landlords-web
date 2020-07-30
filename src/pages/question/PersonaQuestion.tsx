@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import Icon from 'components/icon';
 import React, { ReactElement, useMemo, useState } from 'react';
 
@@ -53,11 +52,9 @@ export default function PersonaQuestionPage(): ReactElement {
       </S.BackButton>
 
       <S.TitleDiv>
-        <S.Title>
-          {questionNum}
-          <br />
-          {title}
-        </S.Title>
+        {questionNum}
+        <br />
+        {title}
       </S.TitleDiv>
       <S.CardDiv>{cardList}</S.CardDiv>
       <S.ProgressContainer>

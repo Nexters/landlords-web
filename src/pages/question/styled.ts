@@ -16,12 +16,9 @@ const BackButton = styled.a`
 const TitleDiv = styled.div`
   margin-top: 50px;
   height: 90px;
-`;
-
-const Title = styled.h1`
   font-size: 22px;
   font-weight: bold;
-  line-height: 29.5px;
+  line-height: 29px;
 `;
 
 const CardDiv = styled.div`
@@ -52,4 +49,4 @@ const ProgressComplete = styled.div<{ barWidth: number }>`
   transition: width 0.5s ease-in-out;
 `;
 
-export { Container, BackButton, TitleDiv, Title, CardDiv, ProgressContainer, ProgressComplete };
+export { Container, BackButton, TitleDiv, CardDiv, ProgressContainer, ProgressComplete };
