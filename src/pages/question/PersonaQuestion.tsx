@@ -17,9 +17,7 @@ export default function PersonaQuestionPage(): ReactElement {
   const progressVal = (100 / questionLen) * (currentIdx + 1);
   const isLoading = useMemo(() => (currentIdx >= questionLen ? true : false), [currentIdx]);
 
-  const getChoice = (index: number) => {
-    return choices[index];
-  };
+  const getChoice = (index: number) => choices[index];
 
   const handleCardClick = (index: number) => {
     setAnswer(() => [...answer, getChoice(index)]);
