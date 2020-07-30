@@ -1,16 +1,17 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 
 import * as S from './styled';
 
 interface CardProps {
   uid: number;
   contents: string;
-  onClick(e: SyntheticEvent): void;
+  index: number;
+  onClick: (index: number) => void;
 }
 
-export default function Card({ uid, contents, onClick }: CardProps) {
+export default function Card({ uid, contents, index, onClick }: CardProps) {
   return (
-    <S.CardWrapper onClick={onClick} data-index={uid}>
+    <S.CardWrapper onClick={() => onClick(index)} data-index={uid}>
       <S.CardContent>{contents}</S.CardContent>
     </S.CardWrapper>
   );

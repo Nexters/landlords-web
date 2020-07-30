@@ -1,5 +1,5 @@
 import Icon from 'components/icon';
-import React, { ReactElement, SyntheticEvent, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Choice } from '../../entity';
@@ -22,10 +22,8 @@ export default function PersonaQuestionPage(): ReactElement {
     return choices[index];
   };
 
-  const handleCardClick = (e: SyntheticEvent<HTMLButtonElement>) => {
-    const choiceIdx: string | undefined =
-      e.currentTarget.dataset.index != undefined ? e.currentTarget.dataset.index : '';
-    setAnswer(() => [...answer, getChoice(parseInt(choiceIdx))]);
+  const handleCardClick = (index: number) => {
+    setAnswer(() => [...answer, getChoice(index)]);
     if (currentIdx < questionLen - 1) {
       setCurrentIdx(currentIdx + 1);
     }
@@ -40,8 +38,15 @@ export default function PersonaQuestionPage(): ReactElement {
     setCurrentIdx(currentIdx - 1);
   };
 
-  const renderCardList = choices.map((item: Choice, index: number) => {
-    return <Card key={index} uid={index} contents={item.contents} onClick={handleCardClick}></Card>;
+  const cardList = choices.map((item: Choice, index: number) => {
+    return (
+      <Card
+        key={index}
+        uid={index}
+        contents={item.contents}
+        index={index}
+        onClick={() => handleCardClick(index)}></Card>
+    );
   });
 
   if (isLoading) {
@@ -60,7 +65,7 @@ export default function PersonaQuestionPage(): ReactElement {
             {title}
           </S.Title>
         </S.TitleDiv>
-        <S.CardDiv>{renderCardList}</S.CardDiv>
+        <S.CardDiv>{cardList}</S.CardDiv>
         <S.ProgressContainer>
           <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
         </S.ProgressContainer>
