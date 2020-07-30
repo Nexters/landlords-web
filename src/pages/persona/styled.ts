@@ -6,11 +6,11 @@ const Container = styled.div`
   flex-direction: column;
   padding: 0 24px;
   height: 100vh;
-  background-color: ${color.grayscalef9};
+  background-color: ${color.primaryYellow};
 `;
 
 const ResultContainer = styled(Container)`
-  background-color: ${color.basicWhite};
+  background-color: ${color.grayscalef9};
 `;
 
 const UserName = styled.h1`
