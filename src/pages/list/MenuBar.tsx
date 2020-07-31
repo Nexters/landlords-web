@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 
 import * as S from './styled';
 
+enum STATUS {
+  SEEKING = '방보는중',
+  BEFORE_CONTRACT = '방계약전',
+  MOVING = '이사중',
+}
+
 export default function MenuBar() {
-  enum STATUS {
-    SEEKING = '방보는중',
-    BEFORE_CONTRACT = '방계약전',
-    MOVING = '이사중',
-  }
   const [visible, setVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(STATUS.SEEKING);
   const dropdownItems = [STATUS.SEEKING, STATUS.BEFORE_CONTRACT, STATUS.MOVING].map(text => {
