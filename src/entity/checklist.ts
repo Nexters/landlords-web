@@ -4,12 +4,17 @@ interface BaseItem {
   description: string;
 }
 
+export interface SimpleCheckItem {
+  name: string;
+  checked: boolean;
+}
+
 export interface CheckItem extends BaseItem {
   value: boolean;
 }
 
 export interface SelectItem extends BaseItem {
-  value: { name: string; selected: boolean }[];
+  value: SimpleCheckItem[];
 }
 
 export interface ItemsByLabel {
