@@ -1,7 +1,8 @@
 import { CheckLayout, Icon, RoomCard, SelectLayout } from 'components';
-import { CheckItem, ItemsByLabel, Room, SelectItem } from 'entity/checklist';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import mock from './ChecklistPage.mock';
 import * as S from './styled';
@@ -17,42 +18,21 @@ const CONTENT_LABEL = {
 
 type ContentLabelType = keyof typeof CONTENT_LABEL;
 
-const extractItemsByLabel = <T extends CheckItem | SelectItem>(items: T[], targetType: string) =>
-  items
-    .filter((item) => item.type === targetType)
-    .reduce((total: ItemsByLabel, item: T) => {
-      if (total.hasOwnProperty(item.label)) total[item.label].push(item);
-      else total[item.label] = [item];
-      return total;
-    }, {});
-
 export default function ChecklistPage(): ReactElement {
+  const { rooms, activeRoom } = useSelector(roomsSelector);
+  const { setRooms } = roomsAction;
   const history = useHistory();
-  const [rooms, setRooms] = useState<Room[]>(mock);
-  const activeRoom = rooms.filter((room) => room.active)[0];
-  const checkItems = extractItemsByLabel(activeRoom.checklist, 'check');
-  const selectItems = extractItemsByLabel(activeRoom.checklist, 'select');
+  const dispatch = useDispatch();
 
   const handleRoomSelect = (index: number) => () => {
-    const nextRooms = rooms.map((room) => {
-      room.active = false;
-      return room;
-    });
+    const nextRooms = rooms.map((room) => ({ ...room, active: false }));
     nextRooms[index].active = true;
-    setRooms(nextRooms);
+    dispatch(setRooms(nextRooms));
   };
 
-  const handleCheckboxClick = (itemsByLabel: ItemsByLabel, label: string) => (index: number) => {
-    const nextRooms = rooms.slice();
-    const roomIndex = nextRooms.findIndex((room) => room.active);
-    nextRooms[roomIndex].checklist
-      .filter((item) => item.description === itemsByLabel[label][index].description)
-      .map((item) => {
-        item.value = !item.value;
-        return item;
-      });
-    setRooms(nextRooms);
-  };
+  useEffect(() => {
+    dispatch(setRooms(mock));
+  }, []);
 
   return rooms.length === 0 ? (
     <div>Loading...</div>
@@ -87,17 +67,8 @@ export default function ChecklistPage(): ReactElement {
               </S.RoomDetailRow>
             ))}
           </S.RoomDetail>
-          {Object.keys(checkItems).map((label, index) => (
-            <CheckLayout
-              key={index}
-              label={label}
-              items={checkItems[label] as CheckItem[]}
-              onClick={handleCheckboxClick(checkItems, label)}
-            />
-          ))}
-          {Object.keys(selectItems).map((label, index) => (
-            <SelectLayout key={index} label={label} items={selectItems[label] as SelectItem[]} />
-          ))}
+          <CheckLayout />
+          <SelectLayout />
           <S.DeleteButton>방 삭제하기</S.DeleteButton>
         </S.RoomContent>
       </S.RoomContentWrapper>

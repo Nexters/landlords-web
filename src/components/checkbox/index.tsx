@@ -1,5 +1,5 @@
 import { Icon } from 'components';
-import React, { ChangeEvent, FocusEvent, MouseEvent, ReactElement } from 'react';
+import React, { MouseEvent, ReactElement } from 'react';
 
 import * as S from './styled';
 
