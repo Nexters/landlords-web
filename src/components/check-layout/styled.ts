@@ -10,7 +10,7 @@ const TitleLayer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(133, 131, 146, 0.35);
+  border-bottom: 1px solid ${color.primaryDullPurple};
   span {
     font-size: 16px;
     font-weight: 600;
