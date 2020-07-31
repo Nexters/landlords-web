@@ -4,6 +4,7 @@ import { FlattenSimpleInterpolation } from 'styled-components';
 import * as S from './styled';
 import CHECK_SQAURE from './svg/check-square.svg';
 import CHEVRON_DOWN from './svg/chevron-down.svg';
+import ICON_HUMAN_NORMAL from './svg/icon-human-normal.svg';
 import NAVIGATION_BACKWARD from './svg/navigation-backward.svg';
 import SQUARE from './svg/square.svg';
 // TODO: 로고 전달받으면 교체하기
@@ -15,6 +16,7 @@ const Icons = {
   SQUARE,
   NAVIGATION_BACKWARD,
   TEMP_LOGO,
+  ICON_HUMAN_NORMAL,
 };
 
 type IconName = keyof typeof Icons;

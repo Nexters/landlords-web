@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStore } from '../store';
 import Login from './auth/Login';
 import ChecklistPage from './checklist/ChecklistPage';
+import CreatingRoom from './create/CreatingRoom';
 import MainPage from './main/MainPage';
 import PersonaAnalysisPage from './persona/PersonaAnalysis';
 import PersonaAnalysisResultPage from './persona/PersonaAnalysisResult';
@@ -24,6 +25,7 @@ export default function EntryRoute() {
           <Route path='/checklist' component={ChecklistPage} />
           <Route path='/room' component={RoomComparisonPage} />
           <Route path='/auth' component={Login} />
+          <Route path='/create' component={CreatingRoom} />
           <Route path='/' component={MainPage} />
         </Switch>
       </BrowserRouter>
