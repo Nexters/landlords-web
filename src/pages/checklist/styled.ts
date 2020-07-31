@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import color from 'styles/color';
 
-const Container = styled.div``;
+const Container = styled.div`
+  font-family: SpoqaHanSans;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.34;
+  letter-spacing: normal;
+`;
 
 const CategoryHeader = styled.header`
   padding: 1rem;
@@ -86,18 +92,15 @@ const RoomDetail = styled.div`
 const RoomDetailTitle = styled.div`
   font-size: 22px;
   font-weight: bold;
-  line-height: 1.34;
-  color: #292929;
+  color: ${color.grayscale29};
   padding-bottom: 0.5rem;
   border-bottom: solid 2px ${color.primaryDullPurple};
   margin-bottom: 0.5rem;
 `;
 
 const RoomDetailRow = styled.div`
-  font-family: SpoqaHanSans;
   font-size: 12px;
   font-weight: bold;
-  line-height: 1.35;
   padding-top: 0.5rem;
   border-bottom: 1px solid ${color.grayscalef9};
   span:nth-child(1) {
