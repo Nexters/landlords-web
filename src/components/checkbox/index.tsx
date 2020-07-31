@@ -1,34 +1,25 @@
-import React, { ChangeEvent, FocusEvent, ReactElement } from 'react';
+import { Icon } from 'components';
+import React, { MouseEvent, ReactElement } from 'react';
 
 import * as S from './styled';
 
 interface CheckboxProps {
-  name?: string;
   checked: boolean;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  onClick: (e: MouseEvent<HTMLInputElement>) => void;
   className?: string;
+  label?: string;
 }
 
 export default function Checkbox({
   checked,
-  onChange = (): void => {},
-  name,
-  disabled = false,
-  onBlur,
+  onClick,
   className,
+  label,
 }: CheckboxProps): ReactElement {
   return (
-    <S.Container className={className}>
-      <S.StyledInput
-        type='checkbox'
-        name={name}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        onBlur={onBlur}
-      />
+    <S.Container className={className} onClick={onClick}>
+      {checked ? <Icon name='CHECKED_BOX' size='18' /> : <Icon name='UNCHECKED_BOX' size='18' />}
+      {label && <S.StyledLabel>{label}</S.StyledLabel>}
     </S.Container>
   );
 }

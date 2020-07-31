@@ -1,6 +1,6 @@
+import { Icon } from 'components';
 import React from 'react';
 
-import Icon from '../../components/icon';
 import * as S from './styled';
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
   return (
     <S.Container>
       <S.IconWrapper>
-        <Icon name='TEMP_LOGO'/>
+        <Icon name='TEMP_LOGO' size='96' />
       </S.IconWrapper>
       <S.ButtonWrapper>
         <S.Button onClick={handleClick}>

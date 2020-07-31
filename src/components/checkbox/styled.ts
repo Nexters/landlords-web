@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 const Container = styled.span`
   display: inline-block;
-  position: relative;
-  width: 18px;
-  height: 18px;
-  vertical-align: -4px;
 `;
 
 const StyledInput = styled.input`
-  width: 24px;
-  height: 24px;
+  margin: 0;
 `;
 
-export { Container, StyledInput };
+const StyledLabel = styled.label`
+  margin-left: 4px;
+  color: #2e2e2e;
+`;
+
+export { Container, StyledInput, StyledLabel };

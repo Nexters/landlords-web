@@ -1,4 +1,4 @@
-import { BottomNavigation,Header, Icon } from 'components';
+import { BottomNavigation, Header, Icon } from 'components';
 import React from 'react';
 
 import MenuBar from './MenuBar';
@@ -9,12 +9,14 @@ export default function RoomList() {
 
   return (
     <S.Container>
-      <Header title={'예희\'s 체크리스트'}>
-        <Icon name='ICON_HUMAN_NORMAL' />
+      <Header title={"예희's 체크리스트"}>
+        <Icon name='HUMAN_NORMAL' size='17' />
       </Header>
       <MenuBar />
       <S.RoomContainer>
-        {mockRooms.map((item, idx) => <S.RoomBox key={idx}/>)}
+        {mockRooms.map((item, idx) => (
+          <S.RoomBox key={idx} />
+        ))}
         <S.CreateBox />
       </S.RoomContainer>
       <BottomNavigation />

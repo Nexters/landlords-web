@@ -11,8 +11,7 @@ const STATUS = {
 export default function MenuBar() {
   const [visible, setVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(STATUS.SEEKING);
-  const dropdownItems = Object.values(STATUS).map(text => {
-
+  const dropdownItems = Object.values(STATUS).map((text) => {
     return (
       <S.DropdownItem key={`key-${text}`}>
         <S.DropdownText>{text}</S.DropdownText>
@@ -35,9 +34,7 @@ export default function MenuBar() {
           {selectedItem} ▾{/* 아이콘 정식 제공되면 추후 수정 예정  */}
         </S.MenuBarDropdownButtonText>
       </S.MenuBarDropdownButton>
-      <S.DropdownBox visible={visible}>
-        {dropdownItems}
-      </S.DropdownBox>
+      <S.DropdownBox visible={visible}>{dropdownItems}</S.DropdownBox>
     </S.MenuBarContainer>
   );
 }
