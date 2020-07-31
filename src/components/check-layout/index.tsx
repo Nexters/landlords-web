@@ -1,32 +1,41 @@
 import { Checkbox, Icon } from 'components';
-import { CheckItem } from 'entity/checklist';
-import React, { ChangeEvent, MouseEvent, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import * as S from './styled';
 
-interface CheckLayoutProps {
-  label: string;
-  items: CheckItem[];
-  onClick?: (index: number) => void;
-}
+export default function CheckLayout(): ReactElement {
+  const { checkItemsByLabel } = useSelector(roomsSelector);
+  const { setCheckItemsByLabel } = roomsAction;
+  const dispatch = useDispatch();
 
-export default function CheckLayout({
-  label,
-  items,
-  onClick = () => {},
-}: CheckLayoutProps): ReactElement {
+  const handleCheckboxClick = (label: string, index: number) => () => {
+    const checkItems = checkItemsByLabel[label].slice();
+    checkItems[index] = { ...checkItems[index], value: !checkItems[index].value };
+    const nextCheckItemsByLabel = { ...checkItemsByLabel, [label]: checkItems };
+    dispatch(setCheckItemsByLabel(nextCheckItemsByLabel));
+  };
+
   return (
-    <S.Container>
-      <S.TitleLayer>
-        <span>{label}</span>
-        <Icon name='NAVIGATION_OPEN_DOWN' size='22' />
-      </S.TitleLayer>
-      {items.map((item, index) => (
-        <S.CheckItemWrapper key={index}>
-          <span>{item.description}</span>
-          <Checkbox checked={item.value} onClick={() => onClick(index)} />
-        </S.CheckItemWrapper>
+    <>
+      {Object.keys(checkItemsByLabel).map((label) => (
+        <S.Container key={label}>
+          <S.TitleLayer>
+            <span>{label}</span>
+            <Icon name='NAVIGATION_OPEN_DOWN' size='22' />
+          </S.TitleLayer>
+          {checkItemsByLabel[label].map((item, index) => (
+            <S.CheckItemWrapper key={index}>
+              <span>{item.description}</span>
+              <Checkbox
+                checked={item.value as boolean}
+                onClick={handleCheckboxClick(label, index)}
+              />
+            </S.CheckItemWrapper>
+          ))}
+        </S.Container>
       ))}
-    </S.Container>
+    </>
   );
 }
