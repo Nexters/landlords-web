@@ -6,12 +6,15 @@ import CHECK_SQAURE from './svg/check-square.svg';
 import CHEVRON_DOWN from './svg/chevron-down.svg';
 import NAVIGATION_BACKWARD from './svg/navigation-backward.svg';
 import SQUARE from './svg/square.svg';
+// TODO: 로고 전달받으면 교체하기
+import TEMP_LOGO from './svg/temp-logo.svg';
 
 const Icons = {
   CHEVRON_DOWN,
   CHECK_SQAURE,
   SQUARE,
   NAVIGATION_BACKWARD,
+  TEMP_LOGO,
 };
 
 type IconName = keyof typeof Icons;
