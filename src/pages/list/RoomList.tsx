@@ -1,11 +1,11 @@
-import { Header, Icon } from 'components';
+import { BottomNavigation,Header, Icon } from 'components';
 import React from 'react';
 
 import MenuBar from './MenuBar';
 import * as S from './styled';
 
 export default function RoomList() {
-  const mockRooms = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const mockRooms = new Array(2).fill(0);
 
   return (
     <S.Container>
@@ -14,9 +14,10 @@ export default function RoomList() {
       </Header>
       <MenuBar />
       <S.RoomContainer>
-        {mockRooms.map(i => <S.RoomBox key={i}/>)}
+        {mockRooms.map((item, idx) => <S.RoomBox key={idx}/>)}
         <S.CreateBox />
       </S.RoomContainer>
+      <BottomNavigation />
     </S.Container>
   );
 }
