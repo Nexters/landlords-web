@@ -1,42 +1,60 @@
-import React, { ReactElement, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import Icon from 'components/icon';
+import { Choice } from 'entity/persona';
+import React, { ReactElement, useMemo, useState } from 'react';
 
-import { Choice } from '../../entity';
-import { personaQuestionSelector,questionsAction } from '../../store/personaQuestionsSlice';
 import Card from './card';
-import * as S from './styled';;
+import Loading from './loading';
+import questions from './questions';
+import * as S from './styled';
 
 export default function PersonaQuestionPage(): ReactElement {
-  const dispatch = useDispatch();
-  const { questions } = useSelector(personaQuestionSelector);
-  const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
-  const quesitonLen = questions.length;
-  const { title, choices } = questions[currentIdx];
-  const progressVal = (100 / quesitonLen) * (currentIdx + 1);
+  const [answer, setAnswer] = useState<Choice[]>([]);
+  const questionLen = questions.length;
+  const { title, choices } =
+    questions[currentIdx] != undefined ? questions[currentIdx] : questions[0];
+  const questionNum = currentIdx + 1 < 10 ? '0' + (currentIdx + 1).toString() : currentIdx + 1;
+  const progressVal = (100 / questionLen) * (currentIdx + 1);
+  const isLoading = useMemo(() => (currentIdx >= questionLen ? true : false), [currentIdx]);
 
-  const handleCardClick = () => {
-    if (currentIdx < quesitonLen - 1) {
-      setCurrentIdx(currentIdx + 1);
-    } else {
-      history.push('/persona/result');
-    }
+  const getChoice = (index: number) => choices[index];
+
+  const handleCardClick = (index: number) => {
+    setAnswer(() => [...answer, getChoice(index)]);
+    setCurrentIdx(currentIdx + 1);
   };
 
-  const renderCardList = choices.map((item: Choice) => {
+  const handleBackButtonClick = () => {
+    setAnswer(() => answer.splice(answer.length - 1, 1));
+    setCurrentIdx(currentIdx - 1);
+  };
+
+  const cardList = choices.map((item: Choice, index: number) => {
     return (
-      <Card key={item.uid} uid={item.uid} contents={item.contents} onClick={handleCardClick}></Card>
+      <Card
+        key={index}
+        uid={index}
+        contents={item.contents}
+        index={index}
+        onClick={() => handleCardClick(index)}></Card>
     );
   });
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <S.Container>
-      <S.BackButton>-</S.BackButton>
-      <S.QuestionID>{`${currentIdx + 1}/${quesitonLen}`}</S.QuestionID>
-      <S.Title>{title}</S.Title>
-      <S.CardDiv>{renderCardList}</S.CardDiv>
-      <S.Container>PersonaQuestionPage</S.Container>;
+      <S.BackButton onClick={handleBackButtonClick}>
+        <Icon name='NAVIGATION_BACKWARD' size='16' />
+      </S.BackButton>
+
+      <S.TitleDiv>
+        {questionNum}
+        <br />
+        {title}
+      </S.TitleDiv>
+      <S.CardDiv>{cardList}</S.CardDiv>
       <S.ProgressContainer>
         <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
       </S.ProgressContainer>

@@ -13,8 +13,8 @@ export interface PersonaQuestion {
 }
 
 export interface Choice {
-  uid: number,
-  question_id: number,
+  uid: number;
+  question_id: number;
   contents: string;
   category: number;
 }
