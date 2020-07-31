@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 
 import * as S from './styled';
 
-enum STATUS {
-  SEEKING = '방보는중',
-  BEFORE_CONTRACT = '방계약전',
-  MOVING = '이사중',
-}
+const STATUS = {
+  SEEKING: '방보는중',
+  BEFORE_CONTRACT: '방계약전',
+  MOVING: '이사중',
+};
 
 export default function MenuBar() {
   const [visible, setVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(STATUS.SEEKING);
-  const dropdownItems = [STATUS.SEEKING, STATUS.BEFORE_CONTRACT, STATUS.MOVING].map(text => {
+  const dropdownItems = Object.values(STATUS).map(text => {
 
     return (
       <S.DropdownItem key={`key-${text}`}>
@@ -25,7 +25,7 @@ export default function MenuBar() {
   });
 
   const handleDropdownButtonClick = () => setVisible(!visible);
-  const handleDropdownItemClick = (text: STATUS) => setSelectedItem(text);
+  const handleDropdownItemClick = (text: string) => setSelectedItem(text);
 
   return (
     <S.MenuBarContainer>
