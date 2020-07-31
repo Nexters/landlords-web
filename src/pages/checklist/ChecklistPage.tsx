@@ -1,10 +1,13 @@
-import { CheckLayout, Icon, RoomCard, SelectLayout } from 'components';
+import { Icon } from 'components';
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
+import CheckLayout from './check-layout';
 import mock from './ChecklistPage.mock';
+import RoomCard from './room-card';
+import SelectLayout from './select-layout';
 import * as S from './styled';
 
 const CONTENT_LABEL = {
