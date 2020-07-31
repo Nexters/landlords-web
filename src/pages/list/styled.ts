@@ -61,6 +61,45 @@ const RoomBox = styled.div`
   background-color: ${color.basicWhite};
 `;
 
+const DropdownBox = styled.div<{visible: boolean}>`
+  display: ${({ visible }) => visible ? 'grid' : 'none'};
+  grid-template-rows: auto auto auto;
+  position: absolute;
+  right: 150px;
+  top: 94px;
+  left: 89px;
+  height: 140px;
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+  color: black;
+  background-color: ${color.basicWhite}
+`;
+
+const DropdownItem = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0 8px;
+`;
+
+const DropdownText = styled.span`
+  font-family: SpoqaHanSans;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.3;
+  color: ${color.grayscale29};
+`;
+
+const DropdownRadioButton = styled.div<{selected: boolean}>`
+  width: 13px;
+  height: 13px;
+  border-radius: 7px;
+  border: solid 2px ${color.grayscale29};
+  background-color: ${({ selected }) => selected ? color.primaryYellow : color.basicWhite};
+`;
+
 
 
 export {
@@ -72,4 +111,8 @@ export {
   MenuBarDropdownButtonText,
   CreateBox,
   RoomBox,
+  DropdownBox,
+  DropdownItem,
+  DropdownText,
+  DropdownRadioButton,
 };
