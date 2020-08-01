@@ -1,6 +1,7 @@
 import Icon from 'components/icon';
 import { Choice } from 'entity/persona';
 import React, { ReactElement, useMemo, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Card from './card';
 import Loading from './loading';
@@ -8,6 +9,7 @@ import questions from './questions';
 import * as S from './styled';
 
 export default function PersonaQuestionPage(): ReactElement {
+  const history = useHistory();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answer, setAnswer] = useState<Choice[]>([]);
   const questionLen = questions.length;
@@ -25,6 +27,9 @@ export default function PersonaQuestionPage(): ReactElement {
   };
 
   const handleBackButtonClick = () => {
+    if (currentIdx == 0) {
+      history.push('/persona');
+    }
     setAnswer(() => answer.splice(answer.length - 1, 1));
     setCurrentIdx(currentIdx - 1);
   };
