@@ -1,8 +1,9 @@
+import { useOAuth } from 'api/useOAuth';
 import React from 'react';
-import { Redirect, Route,RouteComponentProps } from 'react-router-dom';
+import { Route, RouteComponentProps } from 'react-router-dom';
 
-import { useOAuth } from '../../api/useOAuth';
 import { LOGIN_STATE } from '../../constants';;
+import { apiBaseURL } from 'api/constants';
 
 interface PrivateRouteProps {
   component: any;
@@ -19,7 +20,9 @@ export default function PrivateRoute({
       return <div>Loading...</div>;
     }
     if (loginState === LOGIN_STATE.ERROR) {
-      return <Redirect to='/oauth/google'/>;
+      console.log(apiBaseURL);
+      window.location.href = `${apiBaseURL}/oauth/google`;
+      return <></>;
     }
     return <Component {...props} />;
   };
