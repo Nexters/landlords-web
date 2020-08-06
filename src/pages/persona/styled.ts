@@ -9,17 +9,6 @@ const Container = styled.div`
   background-color: ${color.primaryYellow};
 `;
 
-const ResultContainer = styled(Container)`
-  background-color: ${color.grayscalef9};
-`;
-
-const UserName = styled.h1`
-  margin-top: 18px;
-  font-size: 26px;
-  font-weight: bold;
-  line-height: 35px;
-`;
-
 const Title = styled.h1`
   margin-top: 64px;
   font-size: 26px;
@@ -32,6 +21,21 @@ const Description = styled.p`
   font-size: 14px;
   font-weight: 500;
   line-height: 18.5px;
+`;
+
+const ResultContainer = styled(Container)`
+  background-color: ${color.grayscalef9};
+`;
+
+const TitleDiv = styled.div`
+  padding: 24px 0 16px 0;
+  font-size: 16px;
+`;
+
+const UserPersona = styled.h1`
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 35px;
 `;
 
 const PersonaDescription = styled.p`
@@ -61,9 +65,29 @@ const GoChecklistButton = styled(Button)`
   background-color: ${color.primaryYellow};
 `;
 
-const ShareButton = styled(Button)`
-  margin-top: 0.5rem;
-  background-color: transparent;
+const ShareButtonDiv = styled.div`
+  display: flex;
+  flex-direction: rows;
+  justify-content: center;
+  margin-top: 22px;
+`;
+const ShareButton = styled.button`
+  width: 50px;
+  height: 50px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: ${color.primaryDullPurple};
+`;
+
+const RetestButton = styled.div`
+  margin-top: 18px;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-position: under;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 15.5px;
 `;
 
 const CounterDescription = styled.button`
@@ -103,8 +127,9 @@ const CloseButton = styled.button`
 export {
   Container,
   ResultContainer,
+  TitleDiv,
   Title,
-  UserName,
+  UserPersona,
   Description,
   PersonaDescription,
   CloseButton,
@@ -113,5 +138,7 @@ export {
   StartButton,
   BackButton,
   GoChecklistButton,
+  ShareButtonDiv,
   ShareButton,
+  RetestButton,
 };
