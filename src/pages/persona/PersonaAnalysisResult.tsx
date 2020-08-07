@@ -1,3 +1,4 @@
+import kakaoShare from 'api/kakaoShare';
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
       <S.ShareButtonDiv>
         <S.ShareButton>페북</S.ShareButton>
-        <S.ShareButton>카카오</S.ShareButton>
+        <S.ShareButton onClick={kakaoShare}>카카오</S.ShareButton>
         <S.ShareButton>url</S.ShareButton>
       </S.ShareButtonDiv>
 
