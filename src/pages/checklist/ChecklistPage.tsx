@@ -57,7 +57,7 @@ export default function ChecklistPage(): ReactElement {
         {rooms.map((room, index) => (
           <RoomCard key={index} room={room} onClick={handleRoomSelect(index)} />
         ))}
-        <RoomCard isEmpty={true} />
+        <S.EmtpyRoomCard>+</S.EmtpyRoomCard>
       </S.RoomCardList>
       <S.RoomContentWrapper>
         <S.RoomContent>
