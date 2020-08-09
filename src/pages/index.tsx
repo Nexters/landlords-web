@@ -1,3 +1,4 @@
+import PrivateRoute from 'components/private-route';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -22,10 +23,10 @@ export default function EntryRoute() {
           <Route path='/persona/result' component={PersonaAnalysisResultPage} />
           <Route path='/persona/question' component={PersonaQuestionPage} />
           <Route path='/persona' component={PersonaAnalysisPage} />
-          <Route path='/checklist' component={ChecklistPage} />
-          <Route path='/comparison' component={RoomComparisonPage} />
-          <Route path='/auth' component={Login} />
-          <Route path='/rooms' component={RoomListPage} />
+          <PrivateRoute path='/checklist' component={ChecklistPage} />
+          <PrivateRoute path='/comparison' component={RoomComparisonPage} />
+          <PrivateRoute path='/auth' component={Login} />
+          <PrivateRoute path='/rooms' component={RoomListPage} />
           <Route path='/' component={MainPage} />
         </Switch>
       </BrowserRouter>
