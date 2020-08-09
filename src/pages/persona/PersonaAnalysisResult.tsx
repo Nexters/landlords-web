@@ -26,10 +26,10 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   return (
     <S.ResultContainer>
-      <S.TitleDiv>
+      <S.TitleWrapper>
         당신의 자취 유형은
         <S.UserPersona>{persona ? persona.title : ''}!</S.UserPersona>
-      </S.TitleDiv>
+      </S.TitleWrapper>
       <S.PersonaDescription>{persona ? persona.description : ''}</S.PersonaDescription>
 
       <S.ShareButtonDiv>
