@@ -1,11 +1,10 @@
+import { apiBaseURL } from 'api/constants';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Response } from 'entity/response';
-
-const { REACT_APP_SERVER_URL } = process.env;
+import { Response } from 'entity/response';;
 
 type AxiosCallback<T extends Response> = () => Promise<AxiosResponse<T>>;
 
-axios.defaults.baseURL = `${REACT_APP_SERVER_URL}/v1/`;
+axios.defaults.baseURL = `${apiBaseURL}/v1/`;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 const execute = async <T extends Response>(callback: AxiosCallback<T>): Promise<T> => {
