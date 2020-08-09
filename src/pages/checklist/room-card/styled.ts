@@ -43,19 +43,4 @@ const ActiveBar = styled.span`
   background-color: #ffc856;
 `;
 
-const EmptyContainer = styled.div`
-  span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: dotted 2px #c9c9c9;
-    background-color: #f9f9f9;
-    width: 56px;
-    height: 56px;
-    font-size: 30px;
-    color: #c9c9c9;
-  }
-`;
-
-export { Container, Thumbnail, ActiveBar, EmptyContainer };
+export { Container, Thumbnail, ActiveBar };

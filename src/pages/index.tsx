@@ -11,7 +11,7 @@ import MainPage from './main/MainPage';
 import PersonaAnalysisPage from './persona/PersonaAnalysis';
 import PersonaAnalysisResultPage from './persona/PersonaAnalysisResult';
 import PersonaQuestionPage from './question/PersonaQuestion';
-import RoomList from './rooms/RoomList';;
+import RoomListPage from './rooms/RoomListPage';
 
 export default function EntryRoute() {
   const store = createStore();
@@ -26,7 +26,7 @@ export default function EntryRoute() {
           <PrivateRoute path='/checklist' component={ChecklistPage} />
           <PrivateRoute path='/comparison' component={RoomComparisonPage} />
           <PrivateRoute path='/auth' component={Login} />
-          <PrivateRoute path='/rooms' component={RoomList} />
+          <PrivateRoute path='/rooms' component={RoomListPage} />
           <Route path='/' component={MainPage} />
         </Switch>
       </BrowserRouter>

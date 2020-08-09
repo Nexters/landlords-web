@@ -1,12 +1,11 @@
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 
-const Container = styled.span<{ iconLayoutStyle?: FlattenSimpleInterpolation; size: string }>`
+const Container = styled.span<{ iconLayoutStyle?: FlattenSimpleInterpolation; size?: string }>`
   display: inline-block;
   vertical-align: middle;
   img {
     display: block;
-    width: ${({ size }) => size}px;
-    height: ${({ size }) => size}px;
+    ${({ size }) => size && `width: ${size}px; height: ${size}px;`}
     fill: currentColor;
     flex-shrink: 0;
     user-select: none;
