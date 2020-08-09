@@ -7,6 +7,7 @@ import HUMAN_NORMAL from './svg/human-normal.svg';
 import NAVIGATION_BACKWARD from './svg/navigation-backward.svg';
 import NAVIGATION_OPEN_DOWN from './svg/navigation-open-down.svg';
 import TEMP_LOGO from './svg/temp-logo.svg';
+import TITLE_LOGO from './svg/title-logo.svg';
 import UNCHECKED_BOX from './svg/unchecked-box.svg';
 
 const Icons = {
@@ -16,6 +17,7 @@ const Icons = {
   NAVIGATION_OPEN_DOWN,
   HUMAN_NORMAL,
   TEMP_LOGO,
+  TITLE_LOGO,
 };
 
 type IconName = keyof typeof Icons;
@@ -25,7 +27,7 @@ interface IconProps {
   label?: string;
   iconLayoutStyle?: FlattenSimpleInterpolation;
   className?: string;
-  size: string;
+  size?: string;
 }
 
 export default function Icon({
