@@ -1,7 +1,8 @@
 import { decodeTokenWithJWK } from 'api/auth';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { LOGIN_STATE } from '../constants';
+import { setAuthorization } from './request';
 
 const defaultUserState = {
   email: '',
@@ -32,6 +33,7 @@ export const useOAuth = () => {
       const user = await decodeTokenWithJWK(token);
       setUser(user);
       setLoginState(LOGIN_STATE.SUCCESS);
+      setAuthorization(token);
     } catch {
       setLoginState(LOGIN_STATE.ERROR);
     }

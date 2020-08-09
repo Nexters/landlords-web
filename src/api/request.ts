@@ -1,15 +1,19 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const { REACT_APP_DEVELOPMENT_API_URL, REACT_APP_AUTHORIZATION_TOKEN } = process.env;
+import { apiBaseURL } from './constants';
 
 const axiosInstance = axios.create({
-  baseURL: `${REACT_APP_DEVELOPMENT_API_URL}/v1`,
+  baseURL: `${apiBaseURL}/v1`,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json; charset=utf-8',
-    Authorization: REACT_APP_AUTHORIZATION_TOKEN,
+    Authorization: sessionStorage.getItem('accessToken'),
   },
 });
+
+export const setAuthorization = (token: string) => {
+  axiosInstance.defaults.headers['Authorization'] = token;
+};
 
 const execute = async <T>(callback: () => Promise<AxiosResponse<T>>): Promise<T> => {
   try {
