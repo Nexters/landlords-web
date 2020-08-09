@@ -10,7 +10,7 @@ import MainPage from './main/MainPage';
 import PersonaAnalysisPage from './persona/PersonaAnalysis';
 import PersonaAnalysisResultPage from './persona/PersonaAnalysisResult';
 import PersonaQuestionPage from './question/PersonaQuestion';
-import RoomList from './rooms/RoomList';
+import RoomListPage from './rooms/RoomListPage';
 
 export default function EntryRoute() {
   const store = createStore();
@@ -25,7 +25,7 @@ export default function EntryRoute() {
           <Route path='/checklist' component={ChecklistPage} />
           <Route path='/comparison' component={RoomComparisonPage} />
           <Route path='/auth' component={Login} />
-          <Route path='/rooms' component={RoomList} />
+          <Route path='/rooms' component={RoomListPage} />
           <Route path='/' component={MainPage} />
         </Switch>
       </BrowserRouter>
