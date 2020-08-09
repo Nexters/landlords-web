@@ -18,3 +18,8 @@ export interface Choice {
   contents: string;
   category: number;
 }
+
+export interface Persona {
+  title: string;
+  description: string;
+}
