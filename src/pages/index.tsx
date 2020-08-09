@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStore } from 'store';
 
 import AddRoom from './add-room';
+import Manual from './add-room/manual';
 import Login from './auth/Login';
 import ChecklistPage from './checklist/ChecklistPage';
 import RoomComparisonPage from './comparison/RoomComparison';
@@ -28,6 +29,7 @@ export default function EntryRoute() {
           <PrivateRoute path='/comparison' component={RoomComparisonPage} />
           <PrivateRoute path='/auth' component={Login} />
           <PrivateRoute path='/rooms' component={RoomList} />
+          <Route path='/add-room/manual' component={Manual} />
           <Route path='/add-room' component={AddRoom} />
           <Route path='/' component={MainPage} />
         </Switch>

@@ -20,7 +20,7 @@ const Icons = {
   CANCEL,
 };
 
-type IconName = keyof typeof Icons;
+export type IconName = keyof typeof Icons;
 
 interface IconProps {
   name: IconName;

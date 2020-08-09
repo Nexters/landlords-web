@@ -7,6 +7,7 @@ interface ButtonProps {
 }
 const Button = styled.button<ButtonProps>`
   display: inline-flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
   background-color: ${({ bgColor }) => bgColor ? bgColor : 'none'};

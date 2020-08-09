@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 import color from 'styles/color';
 
-const InputField = styled.input`
+interface InputFieldProps {
+  fontSize: string;
+  fontWeight: string;
+  height: string;
+}
+
+const InputField = styled.input<InputFieldProps>`
   width: 100%;
-  height: 43px;
+  height: ${({ height }) => height};
   border-radius: 2px;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.03);
   background-color: rgba(133, 131, 146, 0.08);
   border: none;
   font-family: SpoqaHanSans;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: ${({ fontSize }) => fontSize};;
+  font-weight: ${({ fontWeight }) => fontWeight};;
   line-height: 1.3;
   color: ${color.grayscale29};
   padding: 12px 16px;

@@ -5,6 +5,7 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  padding: 0 24px;
   background: ${color.grayscalef9};
 `;
 
@@ -13,7 +14,6 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 24px 0;
 `;
 
 const InputGuideText = styled.p`
@@ -25,7 +25,6 @@ const InputGuideText = styled.p`
 `;
 
 const ButtonContainer = styled.div`
-  padding: 0 24px;
   display: grid;
   grid-gap: 8px;
 `;
