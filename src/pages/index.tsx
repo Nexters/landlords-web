@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStore } from 'store';
 
+import AddRoom from './add-room';
 import Login from './auth/Login';
 import ChecklistPage from './checklist/ChecklistPage';
 import RoomComparisonPage from './comparison/RoomComparison';
@@ -27,6 +28,7 @@ export default function EntryRoute() {
           <PrivateRoute path='/comparison' component={RoomComparisonPage} />
           <PrivateRoute path='/auth' component={Login} />
           <PrivateRoute path='/rooms' component={RoomList} />
+          <Route path='/add-room' component={AddRoom} />
           <Route path='/' component={MainPage} />
         </Switch>
       </BrowserRouter>
