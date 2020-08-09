@@ -1,6 +1,6 @@
 import { apiBaseURL } from 'api/constants';
 import jwt from 'jsonwebtoken';
-import jwksClient from 'jwks-rsa';;
+import jwksClient from 'jwks-rsa';
 
 export const decodeTokenWithJWK = async (token: string) => {
   const client = jwksClient({
@@ -25,7 +25,8 @@ export const decodeTokenWithJWK = async (token: string) => {
     try {
       jwt.verify(token, getJWK, (err: any, decoded: any) => err ? reject(err) : resolve(decoded));
     } catch(e) {
-      throw(e);
+    // TODO: 에러 발생시 사용자 alert
+      console.log(e);
     }
   });
 

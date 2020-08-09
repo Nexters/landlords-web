@@ -1,9 +1,9 @@
+import { apiBaseURL } from 'api/constants';
 import { useOAuth } from 'api/useOAuth';
 import React from 'react';
 import { Route, RouteComponentProps } from 'react-router-dom';
 
-import { LOGIN_STATE } from '../../constants';;
-import { apiBaseURL } from 'api/constants';
+import { LOGIN_STATE } from '../../constants';
 
 interface PrivateRouteProps {
   component: any;
