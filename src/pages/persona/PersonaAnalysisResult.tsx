@@ -1,6 +1,8 @@
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
-import React, { ReactElement } from 'react';
+import request from 'api/request';
+import { Persona } from 'entity/persona';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import * as S from './styled';
@@ -11,16 +13,23 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisResultPage(): ReactElement {
-  const userPersona = '꼼꼼한 집순이';
-  const PersonaDescription = '설명 임시 데이터';
+  const [persona, setPersona] = useState<Persona>();
+  const fetchPersona = async () => {
+    const data = await request.get<Persona>('/persona');
+    setPersona(data);
+  };
+
+  useEffect(() => {
+    fetchPersona();
+  }, []);
 
   return (
     <S.ResultContainer>
       <S.TitleDiv>
         당신의 자취 유형은
-        <S.UserPersona>{userPersona}!</S.UserPersona>
+        <S.UserPersona>{persona ? persona.title : ''}!</S.UserPersona>
       </S.TitleDiv>
-      <S.PersonaDescription>{PersonaDescription}</S.PersonaDescription>
+      <S.PersonaDescription>{persona ? persona.description : ''}</S.PersonaDescription>
 
       <S.ShareButtonDiv>
         <S.ShareButton onClick={facebookShare}>페북</S.ShareButton>

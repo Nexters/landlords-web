@@ -1,4 +1,4 @@
-import { Room } from 'entity/checklist';
+import { Room } from 'entity/rooms';
 import React, { MouseEvent, ReactElement } from 'react';
 
 import * as S from './styled';
@@ -14,13 +14,11 @@ export default function RoomCard({
   room,
   onClick = () => {},
 }: RoomCardProps): ReactElement {
-  const { name, active } = room;
+  const { image, deposit, monthly_rent } = room;
   return (
     <S.Container className={className} onClick={onClick}>
-      <S.Thumbnail active={active}>
-        <span>{name}</span>
-      </S.Thumbnail>
-      {active && <S.ActiveBar />}
+      <S.Thumbnail src={image} />
+      <S.Title>{monthly_rent > 0 ? `월세 ${deposit}/${monthly_rent}` : `전세 ${deposit}`}</S.Title>
     </S.Container>
   );
 }

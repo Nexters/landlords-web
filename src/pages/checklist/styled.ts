@@ -126,6 +126,20 @@ const DeleteButton = styled.div`
   border-bottom-right-radius: 5px;
 `;
 
+const EmtpyRoomCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: dotted 2px ${color.grayscalec9};
+  border-radius: 2px;
+  background-color: ${color.grayscalef9};
+  width: 56px;
+  height: 56px;
+  font-size: 30px;
+  color: ${color.grayscalec9};
+`;
+
 export {
   Container,
   BackButton,
@@ -140,4 +154,5 @@ export {
   RoomDetailTitle,
   RoomDetailRow,
   DeleteButton,
+  EmtpyRoomCard,
 };
