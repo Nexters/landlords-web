@@ -1,4 +1,4 @@
-import { request } from 'api';
+import request from 'api/request';
 import { Icon } from 'components';
 import { Room, RoomsResponse } from 'entity/rooms';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +14,6 @@ export default function RoomListPage() {
 
   const fetchRooms = async () => {
     const { rooms } = await request.get<RoomsResponse>('/rooms');
-    console.log(rooms);
     setRooms(rooms);
   };
 
