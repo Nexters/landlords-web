@@ -28,7 +28,7 @@ const ResultContainer = styled(Container)`
 `;
 
 const TitleDiv = styled.div`
-  padding: 24px 0 16px 0;
+  padding: 24px 0 16px;
   font-size: 16px;
 `;
 
