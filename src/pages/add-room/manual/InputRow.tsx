@@ -4,6 +4,7 @@ import React from 'react';
 import * as S from './styled';
 
 interface InputRowProps {
+  name?: string;
   label: string;
   placeholder: string;
   suffix?: string;
@@ -12,6 +13,7 @@ interface InputRowProps {
 }
 
 export default function InputRow({
+  name = '',  
   label,
   placeholder,
   suffix,
@@ -21,7 +23,8 @@ export default function InputRow({
   return (
     <S.Row>
       <S.Label>{label}</S.Label>
-      <Input 
+      <Input
+        name={name}
         value={value}
         placeholder={placeholder}
         onChange={onChange}
