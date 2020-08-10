@@ -3,6 +3,7 @@ import React from 'react';
 import * as S from './styled';
 
 interface InputProps {
+  name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   value: string;
   placeholder: string;
@@ -12,6 +13,7 @@ interface InputProps {
 }
 
 export default function Input({
+  name = '',
   onChange,
   value,
   placeholder,
@@ -21,7 +23,8 @@ export default function Input({
 }: InputProps) {
 
   return (
-    <S.InputField 
+    <S.InputField
+      name={name}
       onChange={onChange}
       value={value}
       placeholder={placeholder}

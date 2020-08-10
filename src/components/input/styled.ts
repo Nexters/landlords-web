@@ -5,6 +5,7 @@ interface InputFieldProps {
   fontSize: string;
   fontWeight: string;
   height: string;
+  name: string;
 }
 
 const InputField = styled.input<InputFieldProps>`
