@@ -10,7 +10,3 @@ export interface Room {
   building_type: number;
   user_id: number;
 }
-
-export interface RoomsResponse {
-  rooms: Room[];
-}
