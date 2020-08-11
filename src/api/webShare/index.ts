@@ -1,10 +1,10 @@
-export default function webShare() {
+export default function webShare(title: string, url: string) {
   const navi: any = window.navigator;
   if (navi.share) {
     navi
       .share({
-        title: 'WebShare',
-        url: 'http://google.com',
+        title,
+        url,
       })
       .then(() => {
         console.log('url share!');
