@@ -71,29 +71,31 @@ export default function Manual() {
             value={state[INPUT_NAME.ADDRESS]}
             name={INPUT_NAME.ADDRESS}
             label='주소'
-            placeholder='600 / 50'
+            placeholder='서울특별시 관악구 신림동'
             onChange={handleInput}
           />
           <InputRow
             value={state[INPUT_NAME.TYPE]}
             name={INPUT_NAME.TYPE}
             label='주거형태'
-            placeholder='600 / 50'
+            placeholder='원룸(주방 분리형(1.5룸))'
             onChange={handleInput}
           />
           <InputRow
+            type='number'
             value={state[INPUT_NAME.FLOOR_AREA]}
             name={INPUT_NAME.FLOOR_AREA}
             label='전용면적'
-            placeholder='600 / 50'
+            placeholder='26.14'
             onChange={handleInput}
             suffix='㎡'
           />
-          <InputRow 
+          <InputRow
+            type='number'
             value={state[INPUT_NAME.NUMBER_OF_FLOORS]}
             name={INPUT_NAME.NUMBER_OF_FLOORS}
             label='층/건물층수'
-            placeholder='600 / 50'
+            placeholder='ex) 3/8'
             onChange={handleInput}
             suffix='층'
           />
@@ -103,10 +105,11 @@ export default function Manual() {
             <Button {...getButtonStyleProps(!hasElevator)} onClick={() => setHasElevator(false)}/>
           </S.Row>
           <InputRow
+            type='number'
             value={state[INPUT_NAME.MAINTENANCE]}
             name={INPUT_NAME.MAINTENANCE}
             label='관리비'
-            placeholder='600 / 50'
+            placeholder='ex) 5'
             onChange={handleInput}
             suffix='만원'
           />

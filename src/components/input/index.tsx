@@ -10,6 +10,7 @@ interface InputProps {
   fontSize?: string;
   fontWeight?: string;
   height?: string;
+  type?:string;
 }
 
 export default function Input({
@@ -20,10 +21,12 @@ export default function Input({
   fontSize = '14px',
   fontWeight = 'bold',
   height = '43px',
+  type = 'text',
 }: InputProps) {
 
   return (
     <S.InputField
+      type={type}
       name={name}
       onChange={onChange}
       value={value}

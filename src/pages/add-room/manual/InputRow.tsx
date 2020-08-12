@@ -9,6 +9,7 @@ interface InputRowProps {
   placeholder: string;
   suffix?: string;
   value?: string;
+  type?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -19,11 +20,13 @@ export default function InputRow({
   suffix,
   onChange,
   value = '',
+  type,
 }: InputRowProps) {
   return (
     <S.Row>
       <S.Label>{label}</S.Label>
       <Input
+        type={type}
         name={name}
         value={value}
         placeholder={placeholder}
