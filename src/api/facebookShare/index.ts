@@ -4,7 +4,7 @@ declare global {
   }
 }
 
-export default function facebookShare() {
+export default function facebookShare(url: string) {
   window.FB.init({
     appId: process.env.REACT_APP_FACEBOOKE_APP_ID,
     status: true,
@@ -15,6 +15,6 @@ export default function facebookShare() {
 
   window.FB.ui({
     method: 'share',
-    href: 'https://developers.facebook.com/docs/',
+    href: url,
   });
 }

@@ -1,6 +1,7 @@
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import request from 'api/request';
+import webShare from 'api/webShare';
 import { Persona } from 'entity/persona';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -13,8 +14,8 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisResultPage(): ReactElement {
+  const shareUrl = 'https://checkhaebang.web.app/';
   const [persona, setPersona] = useState<Persona>();
-  const PersonaDescription = '설명 임시 데이터';
   const fetchPersona = async () => {
     const data = await request.get<Persona>('/persona');
     setPersona(data);
@@ -33,9 +34,9 @@ export default function PersonaAnalysisResultPage(): ReactElement {
       <S.PersonaDescription>{persona ? persona.description : ''}</S.PersonaDescription>
 
       <S.ShareButtonDiv>
-        <S.ShareButton onClick={facebookShare}>페북</S.ShareButton>
-        <S.ShareButton onClick={kakaoShare}>카카오</S.ShareButton>
-        <S.ShareButton>url</S.ShareButton>
+        <S.ShareButton onClick={() => facebookShare(shareUrl)}>페북</S.ShareButton>
+        <S.ShareButton onClick={() => kakaoShare(shareUrl)}>카카오</S.ShareButton>
+        <S.ShareButton onClick={() => webShare('title', shareUrl)}>url</S.ShareButton>
       </S.ShareButtonDiv>
 
       <Link to='/checklist'>
