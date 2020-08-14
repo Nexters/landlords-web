@@ -7,10 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { match as Match, useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
+import CheckboxLayout from './checkbox-layout';
 import mock from './ChecklistPage.mock';
-import MultiCheckLayout from './multi-check-layout';
 import RoomCard from './room-card';
-import SingleCheckLayout from './single-check-layout';
 import * as S from './styled';
 
 interface ChecklistPageProps {
@@ -20,7 +19,7 @@ interface ChecklistPageProps {
 export type RoomContentProps = keyof typeof ROOM_CONTENTS_LABEL;
 
 export default function ChecklistPage({ match }: ChecklistPageProps): ReactElement {
-  const { rooms, roomMap } = useSelector(roomsSelector);
+  const { rooms, roomMap, singleCheckQuestions, multiCheckQuestions } = useSelector(roomsSelector);
   const { setRooms, setQuestions, setAnswers, checkQuestions } = roomsAction;
   const { params } = match;
   const history = useHistory();
@@ -74,8 +73,8 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
               ))}
             </S.RoomDetail>
           )}
-          <SingleCheckLayout />
-          <MultiCheckLayout />
+          <CheckboxLayout questions={singleCheckQuestions} />
+          <CheckboxLayout questions={multiCheckQuestions} />
           <S.DeleteButton>방 삭제하기</S.DeleteButton>
         </S.RoomContent>
       </S.RoomContentWrapper>

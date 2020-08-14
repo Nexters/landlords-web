@@ -10,7 +10,7 @@ const LabelWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(133, 131, 146, 0.35);
+  border-bottom: 1px solid ${color.primaryDullPurple};
   span {
     font-size: 16px;
     font-weight: 600;
@@ -20,6 +20,7 @@ const LabelWrapper = styled.div`
 const CheckboxGroupWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 18px;
   margin: 0 2px;
   span {
@@ -34,4 +35,4 @@ const CheckboxGroup = styled.div`
   gap: 1rem;
 `;
 
-export { Container, CheckboxGroupWrapper, CheckboxGroup, LabelWrapper };
+export { Container, CheckboxGroupWrapper, LabelWrapper, CheckboxGroup };
