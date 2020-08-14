@@ -1,96 +1,124 @@
-import { Room } from 'entity/checklist';
+import { CheckItem, Question } from 'entity/checklist';
 
-const rooms: Room[] = [
+const questions: Question[] = [
   {
-    name: '1번째 방이름',
-    cost: '월세 500/55',
-    location: '서울특별시 관악구 봉천동',
-    form: '원룸(주방 분리형(1.5룸))',
-    size: '26.4㎡',
-    floor: '3층 / 5층',
-    elevator: '있음',
-    expenses: '5만 원',
-    active: true,
-    checklist: [
-      { type: 'check', label: '건물/방 상태', description: '연식이 5년 이하인가요?', value: true },
+    uid: 0,
+    title: '연식이 5년 이하인가요?',
+    type_: 'SingleChoice',
+    label: '건물/방 상태',
+    category: 'Normal',
+    state: 'Looking',
+    checks: [
       {
-        type: 'check',
-        label: '건물/방 상태',
-        description: '벽 모퉁이에 곰팡이가 없나요?',
-        value: true,
-      },
-      {
-        type: 'check',
-        label: '옵션',
-        description: '옵션의 상태, 파손은 없었나요?',
-        value: true,
-      },
-      {
-        type: 'check',
-        label: '옵션',
-        description: '도배를 새로 해주나요?',
-        value: true,
-      },
-      {
-        type: 'select',
-        label: '방 정보',
-        description: '관리비 포함 내역',
-        value: [
-          { name: '가스', checked: true },
-          { name: '전기', checked: false },
-          { name: '수도', checked: true },
-          { name: '청소', checked: false },
-          { name: '인터넷', checked: true },
-          { name: 'TV', checked: false },
-        ],
+        uid: 1000,
+        question_id: 0,
+        contents: '',
       },
     ],
   },
   {
-    name: '2번째 방이름',
-    cost: '월세 1000/65',
-    location: '경기도 분당구 서현동',
-    form: '원룸(주방 분리형(1.5룸))',
-    size: '26.4㎡',
-    floor: '3층 / 5층',
-    elevator: '있음',
-    expenses: '5만 원',
-    active: false,
-    checklist: [
-      { type: 'check', label: '건물/방 상태', description: '연식이 5년 이하인가요?', value: false },
+    uid: 1,
+    title: '벽 모퉁이에 곰팡이가 없나요?',
+    type_: 'SingleChoice',
+    label: '건물/방 상태',
+    category: 'Normal',
+    state: 'Looking',
+    checks: [
       {
-        type: 'check',
-        label: '옵션',
-        description: '벽 모퉁이에 곰팡이가 없나요?',
-        value: false,
+        uid: 1001,
+        question_id: 1,
+        contents: '',
+      },
+    ],
+  },
+  {
+    uid: 2,
+    title: '도배를 새로 해주나요?',
+    type_: 'SingleChoice',
+    label: '옵션',
+    category: 'Normal',
+    state: 'Looking',
+    checks: [
+      {
+        uid: 1002,
+        question_id: 2,
+        contents: '',
+      },
+    ],
+  },
+  {
+    uid: 3,
+    title: '관리비 포함 내역',
+    type_: 'MultipleChoice',
+    label: '방 정보',
+    category: 'Normal',
+    state: 'Looking',
+    checks: [
+      {
+        uid: 1003,
+        question_id: 3,
+        contents: '가스',
       },
       {
-        type: 'check',
-        label: '옵션',
-        description: '옵션의 상태, 파손은 없었나요?',
-        value: false,
+        uid: 1004,
+        question_id: 3,
+        contents: '인터넷',
       },
       {
-        type: 'check',
-        label: '옵션',
-        description: '도배를 새로 해주나요?',
-        value: false,
+        uid: 1005,
+        question_id: 3,
+        contents: '청소비',
       },
       {
-        type: 'select',
-        label: '방 정보',
-        description: '관리비 포함 내역',
-        value: [
-          { name: '가스', checked: true },
-          { name: '전기', checked: true },
-          { name: '수도', checked: true },
-          { name: '청소', checked: true },
-          { name: '인터넷', checked: true },
-          { name: 'TV', checked: true },
-        ],
+        uid: 1006,
+        question_id: 3,
+        contents: '수도',
       },
     ],
   },
 ];
 
-export default rooms;
+const answersMap: { [id: string]: CheckItem[] } = {
+  'Dabang::5f2a68c16644370946a0e10e': [
+    {
+      uid: 1001,
+      question_id: 1,
+      contents: '',
+    },
+    {
+      uid: 1004,
+      question_id: 3,
+      contents: '인터넷',
+    },
+    {
+      uid: 1005,
+      question_id: 3,
+      contents: '청소비',
+    },
+  ],
+  'Dabang::5f348a71aeafad219a2314e9': [
+    {
+      uid: 1000,
+      question_id: 0,
+      contents: '',
+    },
+    {
+      uid: 1004,
+      question_id: 3,
+      contents: '인터넷',
+    },
+    {
+      uid: 1005,
+      question_id: 3,
+      contents: '청소비',
+    },
+    {
+      uid: 1006,
+      question_id: 3,
+      contents: '수도',
+    },
+  ],
+  'Zigbang::23037327': [],
+};
+
+export default { questions, answersMap };
