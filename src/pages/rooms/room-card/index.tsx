@@ -1,4 +1,4 @@
-import { Room } from 'entity/rooms';
+import { ConvertedRoom } from 'entity/rooms';
 import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ import * as S from './styled';
 
 interface RoomCardProps {
   className?: string;
-  room: Room;
+  room: ConvertedRoom;
 }
 
 export default function RoomCard({ className, room }: RoomCardProps): ReactElement {
@@ -14,7 +14,7 @@ export default function RoomCard({ className, room }: RoomCardProps): ReactEleme
   const handleClick = () => history.push(`/rooms/${room.uid}`);
   return (
     <S.Container className={className} onClick={handleClick}>
-      <S.Thumbnail src={room.image} />
+      <S.Thumbnail src={room.imageUrl} />
       <S.Title>{room.name}</S.Title>
     </S.Container>
   );
