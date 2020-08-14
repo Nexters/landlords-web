@@ -5,7 +5,7 @@ const Container = styled.div`
   padding: 1rem 1.5rem;
 `;
 
-const TitleLayer = styled.div`
+const LabelWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +17,7 @@ const TitleLayer = styled.div`
   }
 `;
 
-const CheckItemWrapper = styled.div`
+const CheckboxGroupWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,4 +28,4 @@ const CheckItemWrapper = styled.div`
   }
 `;
 
-export { Container, CheckItemWrapper, TitleLayer };
+export { Container, CheckboxGroupWrapper, LabelWrapper };
