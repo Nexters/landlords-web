@@ -1,4 +1,3 @@
-import { current } from '@reduxjs/toolkit';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHECKLIST_STATE, roomsAction, roomsSelector } from 'store/roomsSlice';
