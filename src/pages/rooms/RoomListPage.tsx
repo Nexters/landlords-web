@@ -1,23 +1,31 @@
 import request from 'api/request';
 import { Icon } from 'components';
-import { Room, RoomsResponse } from 'entity/rooms';
-import React, { useEffect, useState } from 'react';
+import { RoomsResponse } from 'entity/response';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import MenuBar from './menu-bar';
-import { CATEGORIES } from './menu-bar';
 import RoomCard from './room-card';
 import * as S from './styled';
 
 export default function RoomListPage() {
-  const [rooms, setRooms] = useState<Room[]>([]);
-  const [category, setCategory] = useState(CATEGORIES.SEEKING);
-
-  const fetchRooms = async () => {
-    const { rooms } = await request.get<RoomsResponse>('/rooms');
-    setRooms(rooms);
-  };
+  const { rooms } = useSelector(roomsSelector);
+  const { setRooms } = roomsAction;
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    const fetchRooms = async () => {
+      const {
+        data: { rooms },
+        error,
+      } = await request.get<RoomsResponse>('/rooms');
+      if (error) {
+        alert('방 데이터 로드 실패');
+        return;
+      }
+      dispatch(setRooms(rooms));
+    };
     fetchRooms();
   }, []);
 
@@ -30,7 +38,7 @@ export default function RoomListPage() {
         </span>
         <Icon name='HUMAN_NORMAL' size='17' />
       </S.Header>
-      <MenuBar currentCategory={category} onSelect={setCategory} />
+      <MenuBar />
       <S.RoomContainer>
         {rooms.map((room, idx) => (
           <RoomCard key={idx} room={room} />
