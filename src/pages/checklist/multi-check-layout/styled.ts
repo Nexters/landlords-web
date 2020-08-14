@@ -5,7 +5,7 @@ const Container = styled.div`
   padding: 1rem 1.5rem;
 `;
 
-const TitleLayer = styled.div`
+const LabelWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,13 +17,13 @@ const TitleLayer = styled.div`
   }
 `;
 
-const CheckItemWrapper = styled.div`
+const CheckboxGroupWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 18px;
   margin: 0 2px;
   span {
-    color: ${color.grayscalebb};
+    color: ${color.grayscale29};
     font-size: 14px;
   }
 `;
@@ -34,4 +34,4 @@ const CheckboxGroup = styled.div`
   gap: 1rem;
 `;
 
-export { Container, CheckItemWrapper, CheckboxGroup, TitleLayer };
+export { Container, CheckboxGroupWrapper, CheckboxGroup, LabelWrapper };
