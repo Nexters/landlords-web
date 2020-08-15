@@ -48,7 +48,9 @@ export default function PersonaAnalysisPage(): ReactElement {
       <Link to='/persona/question'>
         <S.StartButton>{TEXT.START}</S.StartButton>
       </Link>
-      <S.BackButton onClick={handleBackButton}>{TEXT.BACK}</S.BackButton>
+      <Link to='/auth'>
+        <S.BackButton>{TEXT.BACK}</S.BackButton>
+      </Link>
     </S.Container>
   );
 }
