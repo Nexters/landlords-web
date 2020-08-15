@@ -1,37 +1,78 @@
+import request from 'api/request';
 import Icon from 'components/icon';
-import { Choice } from 'entity/persona';
-import React, { ReactElement, useMemo, useState } from 'react';
+import { Choice, PersonaQuestion, Questions } from 'entity/persona';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Card from './card';
 import Loading from './loading';
-import questions from './questions';
 import * as S from './styled';
+
+interface State {
+  currentIdx: number;
+  answer: number[];
+  isLoading: boolean;
+}
+
+interface Choices {
+  title: string;
+  choices: Choice[];
+}
 
 export default function PersonaQuestionPage(): ReactElement {
   const history = useHistory();
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [answer, setAnswer] = useState<Choice[]>([]);
-  const questionLen = questions.length;
-  const { title, choices } =
-    questions[currentIdx] != undefined ? questions[currentIdx] : questions[0];
-  const questionNum = currentIdx + 1 < 10 ? '0' + (currentIdx + 1).toString() : currentIdx + 1;
-  const progressVal = (100 / questionLen) * (currentIdx + 1);
-  const isLoading = useMemo(() => (currentIdx >= questionLen ? true : false), [currentIdx]);
 
-  const getChoice = (index: number) => choices[index];
+  const [question, setQuestion] = useState<PersonaQuestion[]>([]);
+  const fetchQuestion = async () => {
+    const { data } = await request.get<Questions>('/persona/questions');
+    setQuestion(data.questions);
+  };
+
+  useEffect(() => {
+    fetchQuestion();
+  }, []);
+
+  const [state, setState] = useState<State>({ currentIdx: 0, answer: [], isLoading: false });
+  useEffect(() => {
+    if (state.isLoading) {
+      // fetchAnswer();
+    }
+  }, [state]);
+
+  const { title, choices }: Choices = question[state.currentIdx]
+    ? question[state.currentIdx]
+    : { title: '', choices: [{ uid: 0, question_id: 0, contents: '', category: 0 }] };
+
+  const questionNum =
+    state.currentIdx + 1 < 10 ? '0' + (state.currentIdx + 1).toString() : state.currentIdx + 1;
+  const progressVal = (100 / question.length) * (state.currentIdx + 1);
 
   const handleCardClick = (index: number) => {
-    setAnswer(() => [...answer, getChoice(index)]);
-    setCurrentIdx(currentIdx + 1);
+    if (state.currentIdx == question.length - 1) {
+      setState({
+        currentIdx: state.currentIdx + 1,
+        answer: [...state.answer, choices[index].uid],
+        isLoading: true,
+      });
+    } else {
+      setState({
+        currentIdx: state.currentIdx + 1,
+        answer: [...state.answer, choices[index].uid],
+        isLoading: false,
+      });
+    }
   };
 
   const handleBackButtonClick = () => {
-    if (currentIdx == 0) {
+    if (state.currentIdx == 0) {
       history.push('/persona');
+    } else {
+      setState({
+        currentIdx: state.currentIdx - 1,
+        answer: state.answer.splice(state.answer.length - 1, 1),
+        isLoading: false,
+      });
     }
-    setAnswer(() => answer.splice(answer.length - 1, 1));
-    setCurrentIdx(currentIdx - 1);
   };
 
   const cardList = choices.map((item: Choice, index: number) => {
@@ -45,7 +86,7 @@ export default function PersonaQuestionPage(): ReactElement {
     );
   });
 
-  if (isLoading) {
+  if (state.isLoading) {
     return <Loading />;
   }
   return (
