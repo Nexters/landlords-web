@@ -57,6 +57,10 @@ const reducers = {
     state.answers = state.answers.filter(({ uid }) => uid !== payload.uid);
     reducers.checkQuestions(state);
   },
+  removeRoom: (state: RoomsState, { payload }: PayloadAction<ConvertedRoom>) => {
+    state.rooms = state.rooms.filter(({ uid }) => uid !== payload.uid);
+    delete state.roomMap[payload.uid];
+  },
 };
 
 const slice = createSlice({
