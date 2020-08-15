@@ -3,12 +3,13 @@ import { BUILDING_TYPE_MATHCER, SELLING_TYPE_MATCHER } from 'entity/rooms';
 
 const getRoomPrice = ({ selling_type, monthly_rent, deposit }: Room) => {
   const sellingExpression = SELLING_TYPE_MATCHER[selling_type];
-  return selling_type > 0
-    ? `${sellingExpression} ${deposit}`
-    : `${sellingExpression} ${deposit}/${monthly_rent}`;
+  const isWolse = selling_type === 'MonthlyRent';
+  return isWolse
+    ? `${sellingExpression} ${deposit}/${monthly_rent}`
+    : `${sellingExpression} ${deposit}`;
 };
 
-const getElevatorStatus = (hasElevator?: boolean): string =>
+const getElevatorStatus = (hasElevator?: boolean | null): string =>
   hasElevator === null ? '' : hasElevator ? '있음' : '없음';
 
 export const createRoomMap = (rooms: ConvertedRoom[]) =>
