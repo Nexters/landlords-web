@@ -1,20 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CHECKLIST_STATE, roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import * as S from './styled';
 
-export const CATEGORIES = {
-  SEEKING: '방보는중',
-  BEFORE_CONTRACT: '방계약전',
-  MOVING: '이사중',
-};
-
-interface MenuBarProps {
-  currentCategory: string;
-  onSelect: (category: string) => void;
-}
-
-export default function MenuBar({ currentCategory, onSelect }: MenuBarProps) {
+export default function MenuBar() {
   const [visible, setVisible] = useState(false);
+  const { currentChecklistState } = useSelector(roomsSelector);
+  const { setCurrentStatus } = roomsAction;
+  const dispatch = useDispatch();
   const dropdownWrapperRef = useRef<HTMLDivElement>(null);
 
   const handleOutsideClick = (e: any) => {
@@ -30,10 +24,10 @@ export default function MenuBar({ currentCategory, onSelect }: MenuBarProps) {
     };
   }, []);
 
-  const dropdownItems = Object.values(CATEGORIES).map((category) => (
-    <S.DropdownItem key={category} onClick={() => onSelect(category)}>
-      <S.DropdownText>{category}</S.DropdownText>
-      <S.DropdownRadioButton selected={category === currentCategory} />
+  const dropdownItems = Object.values(CHECKLIST_STATE).map((status) => (
+    <S.DropdownItem key={status} onClick={() => dispatch(setCurrentStatus(status))}>
+      <S.DropdownText>{status}</S.DropdownText>
+      <S.DropdownRadioButton selected={currentChecklistState === status} />
     </S.DropdownItem>
   ));
 
@@ -43,7 +37,7 @@ export default function MenuBar({ currentCategory, onSelect }: MenuBarProps) {
       <div ref={dropdownWrapperRef}>
         <S.DropdownButton onClick={() => setVisible(!visible)}>
           <S.CurrrentLabel>
-            {currentCategory}
+            {currentChecklistState}
             {visible ? <S.Triangle direction='UP' /> : <S.Triangle direction='DOWN' />}
           </S.CurrrentLabel>
         </S.DropdownButton>

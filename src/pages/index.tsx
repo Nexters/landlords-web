@@ -23,9 +23,9 @@ export default function EntryRoute() {
           <Route path='/persona/result' component={PersonaAnalysisResultPage} />
           <Route path='/persona/question' component={PersonaQuestionPage} />
           <Route path='/persona' component={PersonaAnalysisPage} />
-          <PrivateRoute path='/checklist' component={ChecklistPage} />
           <PrivateRoute path='/comparison' component={RoomComparisonPage} />
           <PrivateRoute path='/auth' component={Login} />
+          <PrivateRoute path='/rooms/:id' component={ChecklistPage} />
           <PrivateRoute path='/rooms' component={RoomListPage} />
           <Route path='/' component={MainPage} />
         </Switch>

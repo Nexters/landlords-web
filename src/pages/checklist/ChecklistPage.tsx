@@ -1,77 +1,77 @@
+import request from 'api/request';
 import { Icon } from 'components';
+import { RoomsResponse } from 'entity/response';
+import { ROOM_CONTENTS_LABEL } from 'entity/rooms';
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { match as Match, useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
-import CheckLayout from './check-layout';
+import CheckboxLayout from './checkbox-layout';
 import mock from './ChecklistPage.mock';
 import RoomCard from './room-card';
-import SelectLayout from './select-layout';
 import * as S from './styled';
 
-const CONTENT_LABEL = {
-  location: '주소',
-  form: '주거형태',
-  size: '전용면적',
-  floor: '층/건물층수',
-  elevator: '엘리베이터',
-  expenses: '관리비',
-};
+interface ChecklistPageProps {
+  match: Match<{ id: string }>;
+}
 
-type ContentLabelType = keyof typeof CONTENT_LABEL;
+export type RoomContentProps = keyof typeof ROOM_CONTENTS_LABEL;
 
-export default function ChecklistPage(): ReactElement {
-  const { rooms, activeRoom } = useSelector(roomsSelector);
-  const { setRooms } = roomsAction;
+export default function ChecklistPage({ match }: ChecklistPageProps): ReactElement {
+  const { rooms, roomMap, singleCheckQuestions, multiCheckQuestions } = useSelector(roomsSelector);
+  const { setRooms, setQuestions, setAnswers, checkQuestions } = roomsAction;
+  const { params } = match;
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const handleRoomSelect = (index: number) => () => {
-    const nextRooms = rooms.map((room) => ({ ...room, active: false }));
-    nextRooms[index].active = true;
-    dispatch(setRooms(nextRooms));
-  };
+  const selectedRoom = roomMap[params.id];
 
   useEffect(() => {
-    dispatch(setRooms(mock));
+    if (!rooms.length) {
+      const fetchRooms = async () => {
+        const { data, error } = await request.get<RoomsResponse>('/rooms');
+        if (error) {
+          alert('방 데이터 로드 실패');
+          return;
+        }
+        dispatch(setRooms(data.rooms));
+      };
+      fetchRooms();
+    }
+    dispatch(setQuestions(mock.questions));
+    dispatch(setAnswers(mock.answersMap[params.id]));
+    dispatch(checkQuestions());
   }, []);
 
-  return rooms.length === 0 ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <S.Container>
       <S.CategoryHeader>
-        <div>
-          <S.BackButton>
-            <Icon name='NAVIGATION_BACKWARD' size='16' />
-          </S.BackButton>
-          <S.CategoryTitle>자취방 체크리스트</S.CategoryTitle>
-        </div>
+        <S.BackButton onClick={() => history.push('/rooms')}>
+          <Icon name='NAVIGATION_BACKWARD' size='16' />
+        </S.BackButton>
+        <S.CategoryTitle>자취방 체크리스트</S.CategoryTitle>
       </S.CategoryHeader>
-      <S.ComparisonLayer>
-        <span>체크한 방을 비교해보세요.</span>
-        <S.ComparisonButton onClick={() => history.push('/')}>비교하기</S.ComparisonButton>
-      </S.ComparisonLayer>
       <S.RoomCardList>
         {rooms.map((room, index) => (
-          <RoomCard key={index} room={room} onClick={handleRoomSelect(index)} />
+          <RoomCard key={index} room={room} />
         ))}
         <S.EmtpyRoomCard>+</S.EmtpyRoomCard>
       </S.RoomCardList>
       <S.RoomContentWrapper>
         <S.RoomContent>
-          <S.RoomDetail>
-            <S.RoomDetailTitle>{activeRoom.cost}</S.RoomDetailTitle>
-            {Object.keys(CONTENT_LABEL).map((key) => (
-              <S.RoomDetailRow key={key}>
-                <span>{CONTENT_LABEL[key as ContentLabelType]}</span>
-                <span>{activeRoom[key as ContentLabelType]}</span>
-              </S.RoomDetailRow>
-            ))}
-          </S.RoomDetail>
-          <CheckLayout />
-          <SelectLayout />
+          {selectedRoom && (
+            <S.RoomDetail>
+              <S.RoomName>{selectedRoom.name}</S.RoomName>
+              {Object.keys(ROOM_CONTENTS_LABEL).map((key) => (
+                <S.RoomDescRow key={key}>
+                  <span>{ROOM_CONTENTS_LABEL[key as RoomContentProps]}</span>
+                  <span>{selectedRoom[key as RoomContentProps]}</span>
+                </S.RoomDescRow>
+              ))}
+            </S.RoomDetail>
+          )}
+          <CheckboxLayout questions={singleCheckQuestions} />
+          <CheckboxLayout questions={multiCheckQuestions} />
           <S.DeleteButton>방 삭제하기</S.DeleteButton>
         </S.RoomContent>
       </S.RoomContentWrapper>

@@ -17,7 +17,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
   const shareUrl = 'https://checkhaebang.web.app/';
   const [persona, setPersona] = useState<Persona>();
   const fetchPersona = async () => {
-    const data = await request.get<Persona>('/persona');
+    const { data } = await request.get<Persona>('/persona');
     setPersona(data);
   };
 

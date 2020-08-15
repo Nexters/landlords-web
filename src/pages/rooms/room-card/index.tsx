@@ -1,24 +1,21 @@
-import { Room } from 'entity/rooms';
-import React, { MouseEvent, ReactElement } from 'react';
+import { ConvertedRoom } from 'entity/rooms';
+import React, { ReactElement } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
 interface RoomCardProps {
   className?: string;
-  room: Room;
-  onClick?: (e: MouseEvent<HTMLInputElement>) => void;
+  room: ConvertedRoom;
 }
 
-export default function RoomCard({
-  className,
-  room,
-  onClick = () => {},
-}: RoomCardProps): ReactElement {
-  const { image, deposit, monthly_rent } = room;
+export default function RoomCard({ className, room }: RoomCardProps): ReactElement {
+  const history = useHistory();
+  const handleClick = () => history.push(`/rooms/${room.uid}`);
   return (
-    <S.Container className={className} onClick={onClick}>
-      <S.Thumbnail src={image} />
-      <S.Title>{monthly_rent > 0 ? `월세 ${deposit}/${monthly_rent}` : `전세 ${deposit}`}</S.Title>
+    <S.Container className={className} onClick={handleClick}>
+      <S.Thumbnail src={room.imageUrl} />
+      <S.Title>{room.name}</S.Title>
     </S.Container>
   );
 }

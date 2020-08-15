@@ -13,10 +13,8 @@ const CategoryHeader = styled.header`
   padding: 1rem;
   height: 52px;
   background-color: ${color.grayscalef9};
-  div {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
 `;
 
 const CategoryTitle = styled.span`
@@ -43,32 +41,6 @@ const RoomCardList = styled.div`
   }
 `;
 
-const ComparisonLayer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 38px;
-  font-size: 12px;
-  background-color: #f0f0f0;
-  padding: 0 24px;
-  span {
-    color: ${color.grayscalebb};
-    margin: 11px 0;
-  }
-`;
-
-const ComparisonButton = styled.button`
-  width: 61px;
-  height: 26px;
-  border-radius: 2px;
-  background-color: ${color.primaryDullPurple};
-  font-size: 12px;
-  font-weight: bold;
-  color: ${color.basicWhite};
-  border: 0;
-`;
-
 const RoomContentWrapper = styled.div`
   padding-top: 0.5rem;
   padding-bottom: 2rem;
@@ -89,7 +61,7 @@ const RoomDetail = styled.div`
   margin: 1.5rem 1.5rem 0.5rem 1.5rem;
 `;
 
-const RoomDetailTitle = styled.div`
+const RoomName = styled.div`
   font-size: 22px;
   font-weight: bold;
   color: ${color.grayscale29};
@@ -98,13 +70,13 @@ const RoomDetailTitle = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const RoomDetailRow = styled.div`
+const RoomDescRow = styled.div`
   font-size: 12px;
-  font-weight: bold;
   padding-top: 0.5rem;
   border-bottom: 1px solid ${color.grayscalef9};
   span:nth-child(1) {
     display: inline-block;
+    font-weight: bold;
     width: 80px;
     color: ${color.grayscalebb};
   }
@@ -146,13 +118,11 @@ export {
   CategoryHeader,
   CategoryTitle,
   RoomCardList,
-  ComparisonLayer,
-  ComparisonButton,
   RoomContentWrapper,
   RoomContent,
   RoomDetail,
-  RoomDetailTitle,
-  RoomDetailRow,
+  RoomName,
+  RoomDescRow,
   DeleteButton,
   EmtpyRoomCard,
 };
