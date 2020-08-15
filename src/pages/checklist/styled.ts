@@ -9,15 +9,15 @@ const Container = styled.div`
   letter-spacing: normal;
 `;
 
-const CategoryHeader = styled.header`
+const StateHeader = styled.header`
+  display: flex;
+  align-items: center;
   padding: 1rem;
   height: 52px;
   background-color: ${color.grayscalef9};
-  display: flex;
-  align-items: center;
 `;
 
-const CategoryTitle = styled.span`
+const StateTitle = styled.span`
   font-size: 22px;
   font-weight: bold;
 `;
@@ -115,8 +115,8 @@ const EmtpyRoomCard = styled.div`
 export {
   Container,
   BackButton,
-  CategoryHeader,
-  CategoryTitle,
+  StateHeader,
+  StateTitle,
   RoomCardList,
   RoomContentWrapper,
   RoomContent,

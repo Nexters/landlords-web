@@ -20,7 +20,13 @@ interface ChecklistPageProps {
 export type RoomContentProps = keyof typeof ROOM_CONTENTS_LABEL;
 
 export default function ChecklistPage({ match }: ChecklistPageProps): ReactElement {
-  const { rooms, roomMap, singleCheckQuestions, multiCheckQuestions } = useSelector(roomsSelector);
+  const {
+    rooms,
+    roomMap,
+    singleCheckQuestions,
+    multiCheckQuestions,
+    currentChecklistState,
+  } = useSelector(roomsSelector);
   const { setRooms, setQuestions, setAnswers, checkQuestions } = roomsAction;
   const { params } = match;
   const history = useHistory();
@@ -48,12 +54,12 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
 
   return (
     <S.Container>
-      <S.CategoryHeader>
+      <S.StateHeader>
         <S.BackButton onClick={() => history.push('/rooms')}>
           <Icon name='NAVIGATION_BACKWARD' size='16' />
         </S.BackButton>
-        <S.CategoryTitle>자취방 체크리스트</S.CategoryTitle>
-      </S.CategoryHeader>
+        <S.StateTitle>{currentChecklistState} 체크리스트</S.StateTitle>
+      </S.StateHeader>
       <S.RoomCardList>
         {rooms.map((room, index) => (
           <RoomCard key={index} room={room} />
