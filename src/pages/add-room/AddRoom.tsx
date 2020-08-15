@@ -23,7 +23,8 @@ const INITIAL_STATE = {
   [INPUT_NAME.MAINTENANCE]: '',
 };
 
-export default function Manual() {
+export default function AddRoom(props: any) {
+  console.log(props);
   const [hasElevator, setHasElevator] = useState(true);
   const [state, setState] = useState(INITIAL_STATE);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
