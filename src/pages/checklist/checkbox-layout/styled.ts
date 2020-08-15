@@ -20,7 +20,7 @@ const LabelWrapper = styled.div`
 const CheckboxGroupWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 18px;
   margin: 0 2px;
   span {
