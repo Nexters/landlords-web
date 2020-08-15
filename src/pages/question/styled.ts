@@ -22,12 +22,13 @@ const TitleDiv = styled.div`
 `;
 
 const CardDiv = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 16px 16px;
-  height: 352px;
-  margin-top: 16px;
+  height: 272px;
+  margin-top: 6px;
+  padding: 40px 0 46px;
 `;
 
 const ProgressContainer = styled.div`
