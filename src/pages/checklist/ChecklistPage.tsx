@@ -2,7 +2,7 @@ import request from 'api/request';
 import { Icon } from 'components';
 import { RoomsResponse } from 'entity/response';
 import { ROOM_CONTENTS_LABEL } from 'entity/rooms';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { match as Match, useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
@@ -10,6 +10,7 @@ import { roomsAction, roomsSelector } from 'store/roomsSlice';
 import CheckboxLayout from './checkbox-layout';
 import mock from './ChecklistPage.mock';
 import RoomCard from './room-card';
+import RoomDeleteModal from './room-delete-modal';
 import * as S from './styled';
 
 interface ChecklistPageProps {
@@ -25,6 +26,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
   const history = useHistory();
   const dispatch = useDispatch();
   const selectedRoom = roomMap[params.id];
+  const [isOpenRoomDeleteModal, setOpenRoomDeleteModal] = useState(false);
 
   useEffect(() => {
     if (!rooms.length) {
@@ -72,9 +74,14 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
           )}
           <CheckboxLayout questions={singleCheckQuestions} />
           <CheckboxLayout questions={multiCheckQuestions} />
-          <S.DeleteButton>방 삭제하기</S.DeleteButton>
+          <S.DeleteButton onClick={() => setOpenRoomDeleteModal(true)}>방 삭제하기</S.DeleteButton>
         </S.RoomContent>
       </S.RoomContentWrapper>
+      <RoomDeleteModal
+        isOpen={isOpenRoomDeleteModal}
+        onClose={() => setOpenRoomDeleteModal(false)}
+        target={selectedRoom}
+      />
     </S.Container>
   );
 }

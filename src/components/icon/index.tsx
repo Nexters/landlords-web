@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { FlattenSimpleInterpolation } from 'styled-components';
 
 import * as S from './styled';
+import CANCEL_DARK from './svg/cancel-dark.svg';
 import CHECKED_BOX from './svg/checked-box.svg';
 import HUMAN_NORMAL from './svg/human-normal.svg';
 import NAVIGATION_BACKWARD from './svg/navigation-backward.svg';
@@ -18,6 +19,7 @@ const Icons = {
   HUMAN_NORMAL,
   TEMP_LOGO,
   TITLE_LOGO,
+  CANCEL_DARK,
 };
 
 type IconName = keyof typeof Icons;
