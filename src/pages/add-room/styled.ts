@@ -8,8 +8,9 @@ export const Container = styled.div`
   padding: 16px 24px 0;
 `;
 
-export const Image = styled.div`
-  background-color: ${color.basicWhite};
+export const Image = styled.div<{src: string}>`
+  background: url(${({ src }) => src}) no-repeat;
+  background-size: cover;
   margin-bottom: 24px;
   width: 100%;
   height: 202px;

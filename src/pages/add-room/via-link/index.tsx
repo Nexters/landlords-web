@@ -6,8 +6,13 @@ import {
   Icon,
   Input,
 } from 'components';
+import { Room } from 'entity/rooms';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { roomAction } from 'store/roomSlice';
 import color from 'styles/color';
+import { convertRoomForDisplay } from 'utils/room';
 
 import * as S from './styled';
 
@@ -17,22 +22,28 @@ export default function AddRoomViaLink() {
   const { user } = useOAuth();
   console.log('user', user);
   const token = sessionStorage.getItem('accessToken');
+  const history = useHistory();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRoomURL(e.target.value);
   };
+  const dispatch = useDispatch();
 
   const handleClick = async () => {
-    console.log(roomURL);
+    // console.log(roomURL);
     let target = roomURL.replace(/[^0-9]/g, '');
     const suffix = '?crawling_target=Zigbang';
-    console.log(target + suffix);
-    const res = await api.put('rooms/' + target + suffix, {}, {
+    // console.log(target + suffix);
+    const { data, error } = await api.put<Room>('rooms/' + target + suffix, {}, {
       headers: { Authorization: token },
     });
-    console.log(res);
-
+    
+    const { setRoom } = roomAction;
     // add-room으로 이동
+
+    dispatch(setRoom(convertRoomForDisplay(data)));
+    history.push('/add-room');
+
   };
 
   return (

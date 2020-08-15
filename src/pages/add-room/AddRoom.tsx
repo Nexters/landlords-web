@@ -1,6 +1,10 @@
+import api from 'api/request';
 import { Button,Header } from 'components';
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
+import { useDispatch,useSelector } from 'react-redux';
+import { roomAction,roomSelector } from 'store/roomSlice';
 import color from 'styles/color';
+import { convertRoomForBackend } from 'utils/room';
 
 import InputRow from './InputRow';
 import * as S from './styled';
@@ -8,25 +12,55 @@ import * as S from './styled';
 enum INPUT_NAME {
   NAME = 'name',
   ADDRESS = 'address',
-  TYPE = 'type',
-  FLOOR_AREA = 'floor_area',
-  NUMBER_OF_FLOORS = 'number_of_floors',
-  MAINTENANCE = 'maintenance',
+  BUILDING_TYPE = 'buildingType',
+  ROOM_SIZE = 'size',
+  NUMBER_OF_FLOORS = 'floor',
+  MAINTENANCE = 'admionistrationCost',
 }
 
 const INITIAL_STATE = {
   [INPUT_NAME.NAME]: '',
   [INPUT_NAME.ADDRESS]: '',
-  [INPUT_NAME.TYPE]: '',
-  [INPUT_NAME.FLOOR_AREA]: '',
+  [INPUT_NAME.BUILDING_TYPE]: '',
+  [INPUT_NAME.ROOM_SIZE]: '',
   [INPUT_NAME.NUMBER_OF_FLOORS]: '',
   [INPUT_NAME.MAINTENANCE]: '',
+  elevator: '없음',
+  imageUrl: '',
 };
 
 export default function AddRoom(props: any) {
-  console.log(props);
-  const [hasElevator, setHasElevator] = useState(true);
   const [state, setState] = useState(INITIAL_STATE);
+  const { room } = useSelector(roomSelector);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (room) {
+      const {
+        name,
+        address,
+        buildingType,
+        size,
+        floor,
+        elevator,
+        admionistrationCost,
+        imageUrl,
+      } = room;
+
+      
+      setState({
+        name,
+        address,
+        admionistrationCost,
+        size,
+        buildingType,
+        floor,
+        imageUrl,
+        elevator,
+      });
+    }
+  }, []);
+  console.log(state);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
@@ -34,10 +68,28 @@ export default function AddRoom(props: any) {
     });
   };
 
+  const handleSubmit = async () => {
+    const {
+      name,
+      address,
+      buildingType,
+      floor,
+      size,
+    } = state;
+    if(name && address && size && buildingType && floor) {
+      const req = convertRoomForBackend({ ...state, ...room });
+      const res = await api.post('/rooms', req, {
+        headers: {
+          Authorization: sessionStorage.getItem('accessToken'),
+        },
+      });
+      console.log(res);
+    }
+  };
+
   const getButtonStyleProps = (active: boolean) => {
     return active
       ? {
-        title: '있음',
         height: '32px',
         fontSize: '14px',
         bgColor: color.primaryDullPurple,
@@ -45,11 +97,12 @@ export default function AddRoom(props: any) {
       }
       : 
       {
-        title: '없음',
         height: '32px',
         fontSize: '14px',
       };
   };
+
+  const hasElevator = state.elevator === '있음';
   
   return (
     <>
@@ -59,7 +112,7 @@ export default function AddRoom(props: any) {
         leftIconSize='16'
       />
       <S.Container>
-        <S.Image />
+        <S.Image src={state.imageUrl} />
         <S.InputContainer>
           <InputRow
             value={state[INPUT_NAME.NAME]}
@@ -76,23 +129,21 @@ export default function AddRoom(props: any) {
             onChange={handleInput}
           />
           <InputRow
-            value={state[INPUT_NAME.TYPE]}
-            name={INPUT_NAME.TYPE}
+            value={state[INPUT_NAME.BUILDING_TYPE]}
+            name={INPUT_NAME.BUILDING_TYPE}
             label='주거형태'
             placeholder='원룸(주방 분리형(1.5룸))'
             onChange={handleInput}
           />
           <InputRow
-            type='number'
-            value={state[INPUT_NAME.FLOOR_AREA]}
-            name={INPUT_NAME.FLOOR_AREA}
-            label='전용면적'
+            value={state[INPUT_NAME.ROOM_SIZE]}
+            name={INPUT_NAME.ROOM_SIZE}
+            label='평형정보'
             placeholder='26.14'
             onChange={handleInput}
-            suffix='㎡'
+            suffix='평'
           />
           <InputRow
-            type='number'
             value={state[INPUT_NAME.NUMBER_OF_FLOORS]}
             name={INPUT_NAME.NUMBER_OF_FLOORS}
             label='층/건물층수'
@@ -102,11 +153,18 @@ export default function AddRoom(props: any) {
           />
           <S.Row>
             <S.Label>엘리베이터</S.Label>
-            <Button {...getButtonStyleProps(hasElevator)} onClick={() => setHasElevator(true)}/>
-            <Button {...getButtonStyleProps(!hasElevator)} onClick={() => setHasElevator(false)}/>
+            <Button
+              title="있음"
+              {...getButtonStyleProps(hasElevator)} 
+              onClick={() => setState({ ...state, elevator: '있음' })}
+            />
+            <Button
+              title='없음'
+              {...getButtonStyleProps(!hasElevator)} 
+              onClick={() => setState({ ...state, elevator: '없음' })}
+            />
           </S.Row>
           <InputRow
-            type='number'
             value={state[INPUT_NAME.MAINTENANCE]}
             name={INPUT_NAME.MAINTENANCE}
             label='관리비'
@@ -116,7 +174,10 @@ export default function AddRoom(props: any) {
           />
         </S.InputContainer>
         <S.ButtonContainer>
-          <Button title='방 추가하기' bgColor={color.primaryYellow}/>
+          <Button
+            title='방 추가하기' bgColor={color.primaryYellow}
+            onClick={handleSubmit}
+          />
         </S.ButtonContainer>
       </S.Container>
     </>

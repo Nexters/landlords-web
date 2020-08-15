@@ -9,12 +9,12 @@ export const ROOM_CONTENTS_LABEL = {
 };
 
 export const BUILDING_TYPE_MATHCER = {
-  0: '원룸',
-  1: '투룸',
-  2: '쓰리룸',
-  3: '오피스텔',
-  4: '아파트',
-  5: '빌라',
+  OneRoom: '원룸',
+  TwoRoom: '투룸',
+  ThreeRoom: '쓰리룸',
+  Officetel: '오피스텔',
+  Apartment: '아파트',
+  Villa: '빌라',
 };
 
 export enum SELLING_TYPE {
