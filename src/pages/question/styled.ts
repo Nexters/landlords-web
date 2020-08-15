@@ -23,7 +23,7 @@ const TitleDiv = styled.div`
 
 const CardDiv = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   align-items: center;
   gap: 16px 16px;
   height: 352px;

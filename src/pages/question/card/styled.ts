@@ -8,14 +8,14 @@ const CardWrapper = styled.div`
   align-items: center;
   padding: 16px;
   height: 178px;
-  border: none;
-  border-radius: 6px;
-  background-color: ${color.primaryDullPurple};
+  border: 4px solid ${color.basicBlack};
+  background-color: ${color.basicWhite};
+  box-shadow: 10px 5px 0 ${color.basicBlack};
 `;
 const CardContent = styled.p`
   font-size: 16px;
   line-height: 21px;
-  color: ${color.basicWhite};
+  color: ${color.basicBlack};
 `;
 
 export { CardWrapper, CardContent };
