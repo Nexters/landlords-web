@@ -40,6 +40,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
       };
       fetchRooms();
     }
+    if (rooms.length && !roomMap.hasOwnProperty(params.id)) history.goBack();
     dispatch(setQuestions(mock.questions));
     dispatch(setAnswers(mock.answersMap[params.id]));
     dispatch(checkQuestions());
@@ -59,29 +60,33 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
         ))}
         <S.EmtpyRoomCard>+</S.EmtpyRoomCard>
       </S.RoomCardList>
-      <S.RoomContentWrapper>
-        <S.RoomContent>
-          {selectedRoom && (
-            <S.RoomDetail>
-              <S.RoomName>{selectedRoom.name}</S.RoomName>
-              {Object.keys(ROOM_CONTENTS_LABEL).map((key) => (
-                <S.RoomDescRow key={key}>
-                  <span>{ROOM_CONTENTS_LABEL[key as RoomContentProps]}</span>
-                  <span>{selectedRoom[key as RoomContentProps]}</span>
-                </S.RoomDescRow>
-              ))}
-            </S.RoomDetail>
-          )}
-          <CheckboxLayout questions={singleCheckQuestions} />
-          <CheckboxLayout questions={multiCheckQuestions} />
-          <S.DeleteButton onClick={() => setOpenRoomDeleteModal(true)}>방 삭제하기</S.DeleteButton>
-        </S.RoomContent>
-      </S.RoomContentWrapper>
-      <RoomDeleteModal
-        isOpen={isOpenRoomDeleteModal}
-        onClose={() => setOpenRoomDeleteModal(false)}
-        target={selectedRoom}
-      />
+      {selectedRoom && (
+        <>
+          <S.RoomContentWrapper>
+            <S.RoomContent>
+              <S.RoomDetail>
+                <S.RoomName>{selectedRoom.name}</S.RoomName>
+                {Object.keys(ROOM_CONTENTS_LABEL).map((key) => (
+                  <S.RoomDescRow key={key}>
+                    <span>{ROOM_CONTENTS_LABEL[key as RoomContentProps]}</span>
+                    <span>{selectedRoom[key as RoomContentProps]}</span>
+                  </S.RoomDescRow>
+                ))}
+              </S.RoomDetail>
+              <CheckboxLayout questions={singleCheckQuestions} />
+              <CheckboxLayout questions={multiCheckQuestions} />
+              <S.DeleteButton onClick={() => setOpenRoomDeleteModal(true)}>
+                방 삭제하기
+              </S.DeleteButton>
+            </S.RoomContent>
+          </S.RoomContentWrapper>
+          <RoomDeleteModal
+            isOpen={isOpenRoomDeleteModal}
+            onClose={() => setOpenRoomDeleteModal(false)}
+            target={selectedRoom}
+          />
+        </>
+      )}
     </S.Container>
   );
 }
