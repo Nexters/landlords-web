@@ -1,53 +1,47 @@
+import { Icon } from 'components';
 import React, { SyntheticEvent, useEffect } from 'react';
 
-import CloseButton from './CloseButton';
 import * as S from './styled';
 
 interface ModalProps {
   className?: string;
   onClose: () => void;
   maskClosable: boolean;
-  closable: boolean;
+  hasCloseButton: boolean;
   visible: boolean;
   children: React.ReactNode;
   modalWidth?: string;
 }
 
 export default function Modal({
-  className = 'modal-class',
+  className,
   onClose,
   maskClosable,
-  closable,
+  hasCloseButton,
   visible,
   children,
   modalWidth = '160px',
 }: ModalProps) {
-  const onMaskClick = (e: SyntheticEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
-  const close = () => {
-    onClose();
+  const handleMaskClick = (e: SyntheticEvent) => {
+    if (!maskClosable) return;
+    if (e.target === e.currentTarget) onClose();
   };
 
   return (
-    <div className={ className }>
-      <S.ModalOverlay visible={ visible } />
-      <S.ModalWrapper
-        onClick={ maskClosable ? onMaskClick : () => null }
-        tabIndex={ -1 }
-        visible={ visible }>
-        <S.ModalInner tabIndex={ 0 } className='modal-inner' modalWidth={ modalWidth }>
-          { closable && (
-            <S.ModalCloseButton>
-              <CloseButton onClick={ close } />
-            </S.ModalCloseButton>
-          ) }
-          { children }
+    <S.Container className={className} visible={visible}>
+      <S.ModalOverlay />
+      <S.ModalWrapper onClick={handleMaskClick}>
+        <S.ModalInner modalWidth={modalWidth}>
+          {hasCloseButton && (
+            <S.CloseButtonWrapper>
+              <S.CloseButton onClick={onClose}>
+                <Icon name='CANCEL_DARK' size='16' />
+              </S.CloseButton>
+            </S.CloseButtonWrapper>
+          )}
+          {children}
         </S.ModalInner>
       </S.ModalWrapper>
-    </div>
+    </S.Container>
   );
 }

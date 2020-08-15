@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
-const ModalWrapper = styled.div<{ visible: boolean }>`
-  box-sizing: border-box;
+const Container = styled.div<{ visible: boolean }>`
   display: ${({ visible }) => (visible ? 'block' : 'none')};
+`;
+
+const ModalWrapper = styled.div`
+  box-sizing: border-box;
   position: fixed;
   top: 0;
   right: 0;
@@ -13,9 +16,8 @@ const ModalWrapper = styled.div<{ visible: boolean }>`
   outline: 0;
 `;
 
-const ModalOverlay = styled.div<{ visible: boolean }>`
+const ModalOverlay = styled.div`
   box-sizing: border-box;
-  display: ${({ visible }) => (visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -40,10 +42,17 @@ const ModalInner = styled.div<{ modalWidth: string }>`
   padding: 20px 20px 40px;
 `;
 
-const ModalCloseButton = styled.div`
+const CloseButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 0.5rem;
 `;
 
-export { ModalInner, ModalWrapper, ModalOverlay, ModalCloseButton };
+const CloseButton = styled.button`
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+`;
+
+export { Container, ModalInner, ModalWrapper, ModalOverlay, CloseButtonWrapper, CloseButton };
