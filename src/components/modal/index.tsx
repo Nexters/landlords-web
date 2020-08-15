@@ -10,7 +10,7 @@ interface ModalProps {
   hasCloseButton: boolean;
   visible: boolean;
   children: React.ReactNode;
-  modalWidth?: string;
+  width?: string;
 }
 
 export default function Modal({
@@ -20,7 +20,7 @@ export default function Modal({
   hasCloseButton,
   visible,
   children,
-  modalWidth = '160px',
+  width = '160px',
 }: ModalProps) {
   const handleMaskClick = (e: SyntheticEvent) => {
     if (!maskClosable) return;
@@ -31,7 +31,7 @@ export default function Modal({
     <S.Container className={className} visible={visible}>
       <S.ModalOverlay />
       <S.ModalWrapper onClick={handleMaskClick}>
-        <S.ModalInner modalWidth={modalWidth}>
+        <S.ModalInner width={width}>
           {hasCloseButton && (
             <S.CloseButtonWrapper>
               <S.CloseButton onClick={onClose}>

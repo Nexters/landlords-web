@@ -28,18 +28,18 @@ const ModalOverlay = styled.div`
   transition: background-color 1s ease;
 `;
 
-const ModalInner = styled.div<{ modalWidth: string }>`
+const ModalInner = styled.div<{ width: string }>`
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: ${({ modalWidth }) => modalWidth};
+  width: ${({ width }) => width};
   max-width: 100vw;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 20px 20px 40px;
+  padding: 1rem;
 `;
 
 const CloseButtonWrapper = styled.div`
