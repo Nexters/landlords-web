@@ -1,6 +1,11 @@
+import { Room } from './rooms';
+
 export interface Response<T = object> {
-  code: string;
-  message: string;
-  isSuccess?: boolean;
   data: T;
+  error: boolean;
+  message?: string;
+}
+
+export interface RoomsResponse {
+  rooms: Room[];
 }

@@ -9,36 +9,39 @@ const Container = styled.div`
   background-color: ${color.primaryYellow};
 `;
 
-const ResultContainer = styled(Container)`
-  background-color: ${color.grayscalef9};
-`;
-
-const UserName = styled.h1`
-  margin-top: 18px;
-  font-size: 26px;
-  font-weight: bold;
-  line-height: 35px;
-`;
-
 const Title = styled.h1`
   margin-top: 64px;
   font-size: 26px;
   font-weight: bold;
-  line-height: 34.5px;
+  line-height: 34px;
 `;
 
 const Description = styled.p`
   margin-top: 16px;
   font-size: 14px;
   font-weight: 500;
-  line-height: 18.5px;
+  line-height: 18px;
+`;
+
+const ResultContainer = styled(Container)`
+  background-color: ${color.grayscalef9};
+`;
+
+const TitleWrapper = styled.div`
+  padding: 24px 0 16px;
+  font-size: 16px;
+`;
+
+const UserPersona = styled.h1`
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 35px;
 `;
 
 const PersonaDescription = styled.p`
   margin-top: 14rem;
   font-size: 0.8rem;
   font-weight: normal;
-  line-height: 1.5;
 `;
 
 const Button = styled.button`
@@ -49,7 +52,7 @@ const Button = styled.button`
   background-color: ${color.basicWhite};
   font-size: 16px;
   font-weight: bold;
-  line-height: 21.5px;
+  line-height: 21px;
 `;
 
 const StartButton = styled(Button)`
@@ -61,9 +64,29 @@ const GoChecklistButton = styled(Button)`
   background-color: ${color.primaryYellow};
 `;
 
-const ShareButton = styled(Button)`
-  margin-top: 0.5rem;
-  background-color: transparent;
+const ShareButtonDiv = styled.div`
+  display: flex;
+  flex-direction: rows;
+  justify-content: center;
+  margin-top: 22px;
+`;
+const ShareButton = styled.button`
+  width: 50px;
+  height: 50px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: ${color.primaryDullPurple};
+`;
+
+const RetestButton = styled.div`
+  margin-top: 18px;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-position: under;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 15px;
 `;
 
 const CounterDescription = styled.button`
@@ -71,7 +94,7 @@ const CounterDescription = styled.button`
   height: 31px;
   text-align: center;
   font-size: 12px;
-  line-height: 15.5px;
+  line-height: 15px;
   color: ${color.basicWhite};
   background-color: rgba(41, 41, 44, 0.8);
   border: none;
@@ -91,20 +114,21 @@ const BackButton = styled.a`
   text-underline-position: under;
   font-size: 12px;
   font-weight: bold;
-  line-height: 15.5px;
+  line-height: 15px;
 `;
 
 const CloseButton = styled.button`
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-top: 2.8rem;
+  width: 24px;
+  height: 24px;
+  margin-top: 44rem;
 `;
 
 export {
   Container,
   ResultContainer,
+  TitleWrapper,
   Title,
-  UserName,
+  UserPersona,
   Description,
   PersonaDescription,
   CloseButton,
@@ -113,5 +137,7 @@ export {
   StartButton,
   BackButton,
   GoChecklistButton,
+  ShareButtonDiv,
   ShareButton,
+  RetestButton,
 };

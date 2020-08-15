@@ -1,4 +1,4 @@
-import api from 'api';
+import api from 'api/request';
 import { useOAuth } from 'api/useOAuth';
 import {
   Button,

@@ -9,6 +9,7 @@ import NAVIGATION_BACKWARD from './svg/navigation-backward.svg';
 import NAVIGATION_OPEN_DOWN from './svg/navigation-open-down.svg';
 import TEMP_LOGO from './svg/temp-logo.svg';
 import UNCHECKED_BOX from './svg/unchecked-box.svg';;
+import TITLE_LOGO from './svg/title-logo.svg';
 
 const Icons = {
   CHECKED_BOX,
@@ -18,6 +19,7 @@ const Icons = {
   HUMAN_NORMAL,
   TEMP_LOGO,
   CANCEL,
+  TITLE_LOGO,
 };
 
 export type IconName = keyof typeof Icons;
@@ -27,7 +29,7 @@ interface IconProps {
   label?: string;
   iconLayoutStyle?: FlattenSimpleInterpolation;
   className?: string;
-  size: string;
+  size?: string;
 }
 
 export default function Icon({
