@@ -67,19 +67,12 @@ export default function PersonaQuestionPage(): ReactElement {
   const progressVal = (100 / questions.length) * (questionsState.currentIdx + 1);
 
   const handleCardClick = (index: number) => {
-    if (questionsState.currentIdx == questions.length - 1) {
-      setQuestionsState({
-        currentIdx: questionsState.currentIdx + 1,
-        answer: [...questionsState.answer, choices[index].uid],
-        isLoading: true,
-      });
-    } else {
-      setQuestionsState({
-        currentIdx: questionsState.currentIdx + 1,
-        answer: [...questionsState.answer, choices[index].uid],
-        isLoading: false,
-      });
-    }
+    const loadingFlag = questionsState.currentIdx == questions.length - 1 ? true : false;
+    setQuestionsState({
+      currentIdx: questionsState.currentIdx + 1,
+      answer: [...questionsState.answer, choices[index].uid],
+      isLoading: loadingFlag,
+    });
   };
 
   const handleBackButtonClick = () => {
