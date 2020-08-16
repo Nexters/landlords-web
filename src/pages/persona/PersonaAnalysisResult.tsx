@@ -1,9 +1,7 @@
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
-import request from 'api/request';
 import webShare from 'api/webShare';
-import { Persona } from 'entity/persona';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
 import * as S from './styled';
@@ -15,23 +13,16 @@ enum TEXT {
 
 export default function PersonaAnalysisResultPage(): ReactElement {
   const shareUrl = 'https://checkhaebang.web.app/';
-  const [persona, setPersona] = useState<Persona>();
-  const fetchPersona = async () => {
-    const { data } = await request.get<Persona>('/persona');
-    setPersona(data);
-  };
-
-  useEffect(() => {
-    fetchPersona();
-  }, []);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
 
   return (
     <S.ResultContainer>
       <S.TitleWrapper>
         당신의 자취 유형은
-        <S.UserPersona>{persona ? persona.title : ''}!</S.UserPersona>
+        <S.UserPersona>{urlParams.get('title')}!</S.UserPersona>
       </S.TitleWrapper>
-      <S.PersonaDescription>{persona ? persona.description : ''}</S.PersonaDescription>
+      <S.PersonaDescription>{urlParams.get('description')}</S.PersonaDescription>
 
       <S.ShareButtonDiv>
         <S.ShareButton onClick={() => facebookShare(shareUrl)}>페북</S.ShareButton>

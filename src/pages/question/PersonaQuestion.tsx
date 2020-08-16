@@ -1,6 +1,6 @@
 import request from 'api/request';
 import Icon from 'components/icon';
-import { Choice, PersonaQuestion, Questions } from 'entity/persona';
+import { Choice, Persona, PersonaQuestion, Questions } from 'entity/persona';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -33,9 +33,26 @@ export default function PersonaQuestionPage(): ReactElement {
   }, []);
 
   const [state, setState] = useState<State>({ currentIdx: 0, answer: [], isLoading: false });
+
+  const fetchAnswer = async () => {
+    const params = new URLSearchParams();
+    state.answer.forEach((answer: number) => {
+      params.append('check_answers', answer.toString());
+    });
+
+    await request
+      .get<Persona>('/persona', {
+        params: params,
+      })
+      .then((res) => {
+        const data = res.data;
+        history.push(`/persona/result?title=${data.title}&description=${data.description}`);
+      });
+  };
+
   useEffect(() => {
     if (state.isLoading) {
-      // fetchAnswer();
+      fetchAnswer();
     }
   }, [state]);
 
@@ -69,7 +86,7 @@ export default function PersonaQuestionPage(): ReactElement {
     } else {
       setState({
         currentIdx: state.currentIdx - 1,
-        answer: state.answer.splice(state.answer.length - 1, 1),
+        answer: state.answer.slice(0, state.answer.length - 1),
         isLoading: false,
       });
     }
@@ -85,7 +102,6 @@ export default function PersonaQuestionPage(): ReactElement {
         onClick={() => handleCardClick(index)}></Card>
     );
   });
-
   if (state.isLoading) {
     return <Loading />;
   }
