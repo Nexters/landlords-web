@@ -1,5 +1,7 @@
-import React, { ReactElement, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import request from 'api/request';
+import { Viewer } from 'entity/persona';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -11,12 +13,17 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisPage(): ReactElement {
-  const [viewerCount] = useState(0);
-  const history = useHistory();
+  const [viewerCount, setViewerCount] = useState<string>('');
 
-  const handleBackButton = () => {
-    history.goBack();
+  const fetchViewer = async () => {
+    const res = await request.get<Viewer>('/persona/count');
+    const countWithComma = res.data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    setViewerCount(countWithComma);
   };
+
+  useEffect(() => {
+    fetchViewer();
+  }, []);
 
   const sortedTitle = TEXT.TITLE.split('\n').map((line) => {
     return (
