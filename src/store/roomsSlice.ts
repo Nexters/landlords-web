@@ -1,5 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CheckItem, CHECKLIST_STATUS, Question } from 'entity/checklist';
+import { CheckItem, Question, STATUS_MATCHER, StatusType } from 'entity/checklist';
 import { ConvertedRoom, Room } from 'entity/rooms';
 import { RootState } from 'store';
 import { filterQuestionsByStatus, setChecksByAnswers } from 'utils/checklist';
@@ -7,7 +7,7 @@ import { convertRoomForDisplay, createRoomMap } from 'utils/room';
 
 interface RoomsState {
   rooms: ConvertedRoom[];
-  checklistStatus: string;
+  checklistStatus: StatusType;
   roomMap: { [id: string]: ConvertedRoom };
   singleCheckQuestions: Question[];
   multiCheckQuestions: Question[];
@@ -16,7 +16,7 @@ interface RoomsState {
 
 const initialState = {
   rooms: [] as ConvertedRoom[],
-  checklistStatus: CHECKLIST_STATUS.Looking,
+  checklistStatus: Object.keys(STATUS_MATCHER)[0] as StatusType,
   roomMap: {} as { [id: string]: ConvertedRoom },
   singleCheckQuestions: [] as Question[],
   multiCheckQuestions: [] as Question[],
@@ -28,7 +28,7 @@ const reducers = {
     state.rooms = payload.map((room) => convertRoomForDisplay(room));
     state.roomMap = createRoomMap(state.rooms);
   },
-  setChecklistStatus: (state: RoomsState, { payload }: PayloadAction<string>) => {
+  setChecklistStatus: (state: RoomsState, { payload }: PayloadAction<StatusType>) => {
     state.checklistStatus = payload;
   },
   setQuestions: (state: RoomsState, { payload }: PayloadAction<Question[]>) => {

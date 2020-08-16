@@ -1,4 +1,4 @@
-import { CHECKLIST_STATUS } from 'entity/checklist';
+import { STATUS_MATCHER, StatusType } from 'entity/checklist';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
@@ -25,9 +25,9 @@ export default function MenuBar() {
     };
   }, []);
 
-  const dropdownItems = Object.values(CHECKLIST_STATUS).map((status) => (
-    <S.DropdownItem key={status} onClick={() => dispatch(setChecklistStatus(status))}>
-      <S.DropdownText>{status}</S.DropdownText>
+  const dropdownItems = Object.keys(STATUS_MATCHER).map((status) => (
+    <S.DropdownItem key={status} onClick={() => dispatch(setChecklistStatus(status as StatusType))}>
+      <S.DropdownText>{STATUS_MATCHER[status as StatusType]}</S.DropdownText>
       <S.DropdownRadioButton selected={checklistStatus === status} />
     </S.DropdownItem>
   ));
@@ -38,7 +38,7 @@ export default function MenuBar() {
       <div ref={dropdownWrapperRef}>
         <S.DropdownButton onClick={() => setVisible(!visible)}>
           <S.CurrrentLabel>
-            {checklistStatus}
+            {STATUS_MATCHER[checklistStatus]}
             {visible ? <S.Triangle direction='UP' /> : <S.Triangle direction='DOWN' />}
           </S.CurrrentLabel>
         </S.DropdownButton>

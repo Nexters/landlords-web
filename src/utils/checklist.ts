@@ -1,4 +1,4 @@
-import { CheckItem, CHECKLIST_STATUS, Question } from 'entity/checklist';
+import { CheckItem, Question, StatusType } from 'entity/checklist';
 
 export const setChecksByAnswers = (questions: Question[], answers: CheckItem[]): Question[] => {
   const checkedQuestionIds = answers.map(({ uid }) => uid);
@@ -18,8 +18,7 @@ export const extractQuestionsByLabel = (questions: Question[]): { [label: string
     return total;
   }, {});
 
-export const filterQuestionsByStatus = (questions: Question[], currentStatus: string): Question[] =>
-  questions.filter(
-    (question) =>
-      CHECKLIST_STATUS[question.status as keyof typeof CHECKLIST_STATUS] === currentStatus,
-  );
+export const filterQuestionsByStatus = (
+  questions: Question[],
+  currentStatus: StatusType,
+): Question[] => questions.filter((question) => question.status === currentStatus);
