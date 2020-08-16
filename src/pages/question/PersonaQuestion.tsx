@@ -108,7 +108,7 @@ export default function PersonaQuestionPage(): ReactElement {
   return (
     <S.Container>
       <S.Header>
-        <S.BackButton>
+        <S.BackButton onClick={handleBackButtonClick}>
           <Icon name='NAVIGATION_BACKWARD' size='16' />
         </S.BackButton>
         <Icon name='TITLE_LOGO' opacity='0.6' />
