@@ -109,10 +109,10 @@ export default function PersonaQuestionPage(): ReactElement {
         onClick={() => handleCardClick(index)}></Card>
     );
   });
-  if (questionsState.isLoading) {
-    return <Loading />;
-  }
-  return (
+
+  return questionsState.isLoading ? (
+    <Loading />
+  ) : (
     <S.Container>
       <S.Header>
         <S.BackButton onClick={handleBackButtonClick}>
