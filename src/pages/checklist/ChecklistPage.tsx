@@ -25,7 +25,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
     roomMap,
     singleCheckQuestions,
     multiCheckQuestions,
-    currentChecklistState,
+    checklistStatus,
   } = useSelector(roomsSelector);
   const { setRooms, setQuestions, setAnswers, checkQuestions } = roomsAction;
   const { params } = match;
@@ -37,9 +37,9 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
   useEffect(() => {
     if (!rooms.length) {
       const fetchRooms = async () => {
-        const { data, error } = await request.get<RoomsResponse>('/rooms');
+        const { data, error, message } = await request.get<RoomsResponse>('/rooms');
         if (error) {
-          alert('방 데이터 로드 실패');
+          alert(message);
           return;
         }
         dispatch(setRooms(data.rooms));
@@ -58,7 +58,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
         <S.BackButton onClick={() => history.push('/rooms')}>
           <Icon name='NAVIGATION_BACKWARD' size='16' />
         </S.BackButton>
-        <S.StateTitle>{currentChecklistState} 체크리스트</S.StateTitle>
+        <S.StateTitle>{checklistStatus} 체크리스트</S.StateTitle>
       </S.StateHeader>
       <S.RoomCardList>
         {rooms.map((room, index) => (

@@ -16,9 +16,9 @@ export default function RoomListPage() {
 
   useEffect(() => {
     const fetchRooms = async () => {
-      const { data, error } = await request.get<RoomsResponse>('/rooms');
+      const { data, error, message } = await request.get<RoomsResponse>('/rooms');
       if (error) {
-        alert('방 데이터 로드 실패');
+        alert(message);
         return;
       }
       dispatch(setRooms(data.rooms));

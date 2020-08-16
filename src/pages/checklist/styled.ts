@@ -18,8 +18,9 @@ const StateHeader = styled.header`
 `;
 
 const StateTitle = styled.span`
-  font-size: 22px;
+  font-size: 16px;
   font-weight: bold;
+  color: ${color.grayscale29};
 `;
 
 const BackButton = styled.button`

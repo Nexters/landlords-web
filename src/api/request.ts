@@ -19,7 +19,7 @@ export const setAuthorization = (token: string) => {
 const execute = async <T>(callback: () => Promise<AxiosResponse<T>>): Promise<Response<T>> => {
   try {
     const { data } = await callback();
-    return { data, error: false };
+    return { data, error: false, message: 'OK' };
   } catch (err) {
     const { data, statusText } = err.response;
     return { data, error: true, message: statusText };
