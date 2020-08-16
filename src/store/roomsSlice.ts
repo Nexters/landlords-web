@@ -1,19 +1,13 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CheckItem, Question } from 'entity/checklist';
+import { CheckItem, CHECKLIST_STATUS, Question } from 'entity/checklist';
 import { ConvertedRoom, Room } from 'entity/rooms';
 import { RootState } from 'store';
-import { setChecksByAnswers } from 'utils/checklist';
+import { filterQuestionsByStatus, setChecksByAnswers } from 'utils/checklist';
 import { convertRoomForDisplay, createRoomMap } from 'utils/room';
-
-export const CHECKLIST_STATE = {
-  SEEKING: '방보는중',
-  BEFORE_CONTRACT: '방계약전',
-  MOVING: '이사중',
-};
 
 interface RoomsState {
   rooms: ConvertedRoom[];
-  currentChecklistState: string;
+  checklistStatus: string;
   roomMap: { [id: string]: ConvertedRoom };
   singleCheckQuestions: Question[];
   multiCheckQuestions: Question[];
@@ -22,7 +16,7 @@ interface RoomsState {
 
 const initialState = {
   rooms: [] as ConvertedRoom[],
-  currentChecklistState: CHECKLIST_STATE.SEEKING,
+  checklistStatus: CHECKLIST_STATUS.Looking,
   roomMap: {} as { [id: string]: ConvertedRoom },
   singleCheckQuestions: [] as Question[],
   multiCheckQuestions: [] as Question[],
@@ -34,12 +28,13 @@ const reducers = {
     state.rooms = payload.map((room) => convertRoomForDisplay(room));
     state.roomMap = createRoomMap(state.rooms);
   },
-  setCurrentStatus: (state: RoomsState, { payload }: PayloadAction<string>) => {
-    state.currentChecklistState = payload;
+  setChecklistStatus: (state: RoomsState, { payload }: PayloadAction<string>) => {
+    state.checklistStatus = payload;
   },
   setQuestions: (state: RoomsState, { payload }: PayloadAction<Question[]>) => {
-    state.singleCheckQuestions = payload.filter(({ type_ }) => type_ === 'SingleChoice');
-    state.multiCheckQuestions = payload.filter(({ type_ }) => type_ === 'MultipleChoice');
+    const QuestionsByState = filterQuestionsByStatus(payload, state.checklistStatus);
+    state.singleCheckQuestions = QuestionsByState.filter(({ type_ }) => type_ === 'SingleChoice');
+    state.multiCheckQuestions = QuestionsByState.filter(({ type_ }) => type_ === 'MultipleChoice');
   },
   setAnswers: (state: RoomsState, { payload }: PayloadAction<CheckItem[]>) => {
     state.answers = payload;
