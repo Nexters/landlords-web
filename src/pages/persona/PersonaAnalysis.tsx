@@ -1,7 +1,7 @@
 import request from 'api/request';
 import { Viewer } from 'entity/persona';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -43,6 +43,14 @@ export default function PersonaAnalysisPage(): ReactElement {
     );
   });
 
+  const history = useHistory();
+  const handleStartButtonClick = () => {
+    history.push('/persona/question');
+  };
+  const handleBackButtonClick = () => {
+    history.push('/auth');
+  };
+
   return (
     <S.Container>
       <S.Title>{sortedTitle}</S.Title>
@@ -52,12 +60,8 @@ export default function PersonaAnalysisPage(): ReactElement {
         총 <S.Count>{viewerCount}</S.Count>명이 체크해방을 참고했습니다.
       </S.CounterDescription>
 
-      <Link to='/persona/question'>
-        <S.StartButton>{TEXT.START}</S.StartButton>
-      </Link>
-      <Link to='/auth'>
-        <S.BackButton>{TEXT.BACK}</S.BackButton>
-      </Link>
+      <S.StartButton onClick={handleStartButtonClick}>{TEXT.START}</S.StartButton>
+      <S.BackButton onClick={handleBackButtonClick}>{TEXT.BACK}</S.BackButton>
     </S.Container>
   );
 }

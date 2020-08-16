@@ -2,7 +2,7 @@ import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import webShare from 'api/webShare';
 import React, { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -16,6 +16,13 @@ export default function PersonaAnalysisResultPage(): ReactElement {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
+  const history = useHistory();
+  const handleGoChecklistButtonClick = () => {
+    history.push('/checklist');
+  };
+  const handleRetestButtonClick = () => {
+    history.push('/persona');
+  };
   return (
     <S.ResultContainer>
       <S.TitleWrapper>
@@ -30,13 +37,10 @@ export default function PersonaAnalysisResultPage(): ReactElement {
         <S.ShareButton onClick={() => webShare('title', shareUrl)}>url</S.ShareButton>
       </S.ShareButtonDiv>
 
-      <Link to='/checklist'>
-        <S.GoChecklistButton>{TEXT.GO_CHECKLIST}</S.GoChecklistButton>
-      </Link>
-
-      <S.RetestButton>
-        <Link to='/persona'>{TEXT.RETEST}</Link>
-      </S.RetestButton>
+      <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>
+        {TEXT.GO_CHECKLIST}
+      </S.GoChecklistButton>
+      <S.RetestButton onClick={handleRetestButtonClick}>{TEXT.RETEST}</S.RetestButton>
     </S.ResultContainer>
   );
 }
