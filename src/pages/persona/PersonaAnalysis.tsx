@@ -1,6 +1,7 @@
 import request from 'api/request';
 import { Viewer } from 'entity/persona';
-import React, { ReactElement, useEffect, useState } from 'react';
+import { useFetch } from 'hooks';
+import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import * as S from './styled';
@@ -13,16 +14,8 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisPage(): ReactElement {
-  const [viewerCount, setViewerCount] = useState<string>('');
-
-  useEffect(() => {
-    const fetchViewer = async () => {
-      const res = await request.get<Viewer>('/persona/count');
-      const countWithComma = res.data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      setViewerCount(countWithComma);
-    };
-    fetchViewer();
-  }, []);
+  const { data, error, loading } = useFetch<Viewer>('/persona/count');
+  const countWithComma = data ? data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 0;
 
   const sortedTitle = TEXT.TITLE.split('\n').map((line) => {
     return (
@@ -56,7 +49,7 @@ export default function PersonaAnalysisPage(): ReactElement {
       <S.Description> {sortedDesc}</S.Description>
 
       <S.CounterDescription>
-        총 <S.Count>{viewerCount}</S.Count>명이 체크해방을 참고했습니다.
+        총 <S.Count>{countWithComma}</S.Count>명이 체크해방을 참고했습니다.
       </S.CounterDescription>
 
       <S.StartButton onClick={handleStartButtonClick}>{TEXT.START}</S.StartButton>
