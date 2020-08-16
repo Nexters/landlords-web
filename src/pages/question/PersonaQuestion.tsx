@@ -45,14 +45,9 @@ export default function PersonaQuestionPage(): ReactElement {
       params.append('check_answers', answer.toString());
     });
 
-    await request
-      .get<Persona>('/persona', {
-        params: params,
-      })
-      .then((res) => {
-        const data = res.data;
-        history.push(`/persona/result?title=${data.title}&description=${data.description}`);
-      });
+    const res = await request.get<Persona>('/persona', { params: params });
+    const data = res.data;
+    history.push(`/persona/result?title=${data.title}&description=${data.description}`);
   };
 
   useEffect(() => {
