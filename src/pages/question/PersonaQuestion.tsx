@@ -1,6 +1,7 @@
 import request from 'api/request';
 import Icon from 'components/icon';
-import { Choice, Persona, PersonaQuestion, Questions } from 'entity/persona';
+import { Choice, Persona, PersonaQuestion } from 'entity/persona';
+import { QuestionsResponse } from 'entity/response';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ export default function PersonaQuestionPage(): ReactElement {
 
   const [question, setQuestion] = useState<PersonaQuestion[]>([]);
   const fetchQuestion = async () => {
-    const { data } = await request.get<Questions>('/persona/questions');
+    const { data } = await request.get<QuestionsResponse>('/persona/questions');
     setQuestion(data.questions);
   };
 

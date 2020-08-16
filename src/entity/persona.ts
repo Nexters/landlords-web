@@ -5,10 +5,6 @@ export interface PersonaUserChoice {
   choice_id: number;
 }
 
-export interface Questions {
-  questions: PersonaQuestion[];
-}
-
 export interface PersonaQuestion {
   uid: number;
   title: string;
