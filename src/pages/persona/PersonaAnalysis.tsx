@@ -1,4 +1,3 @@
-import request from 'api/request';
 import { Viewer } from 'entity/persona';
 import { useFetch } from 'hooks';
 import React, { ReactElement } from 'react';
@@ -14,7 +13,7 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisPage(): ReactElement {
-  const { data, error, loading } = useFetch<Viewer>('/persona/count');
+  const { data } = useFetch<Viewer>('/persona/count');
   const countWithComma = data ? data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 0;
 
   const sortedTitle = TEXT.TITLE.split('\n').map((line) => {
