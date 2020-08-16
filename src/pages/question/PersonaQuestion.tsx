@@ -9,7 +9,7 @@ import Card from './card';
 import Loading from './loading';
 import * as S from './styled';
 
-interface State {
+interface QuestionsState {
   currentIdx: number;
   answer: number[];
   isLoading: boolean;
@@ -23,21 +23,25 @@ interface Choices {
 export default function PersonaQuestionPage(): ReactElement {
   const history = useHistory();
 
-  const [question, setQuestion] = useState<PersonaQuestion[]>([]);
+  const [questions, setQuestions] = useState<PersonaQuestion[]>([]);
   const fetchQuestion = async () => {
     const { data } = await request.get<QuestionsResponse>('/persona/questions');
-    setQuestion(data.questions);
+    setQuestions(data.questions);
   };
 
   useEffect(() => {
     fetchQuestion();
   }, []);
 
-  const [state, setState] = useState<State>({ currentIdx: 0, answer: [], isLoading: false });
+  const [questionsState, setQuestionsState] = useState<QuestionsState>({
+    currentIdx: 0,
+    answer: [],
+    isLoading: false,
+  });
 
   const fetchAnswer = async () => {
     const params = new URLSearchParams();
-    state.answer.forEach((answer: number) => {
+    questionsState.answer.forEach((answer: number) => {
       params.append('check_answers', answer.toString());
     });
 
@@ -52,42 +56,44 @@ export default function PersonaQuestionPage(): ReactElement {
   };
 
   useEffect(() => {
-    if (state.isLoading) {
+    if (questionsState.isLoading) {
       fetchAnswer();
     }
-  }, [state]);
+  }, [questionsState]);
 
-  const { title, choices }: Choices = question[state.currentIdx]
-    ? question[state.currentIdx]
+  const { title, choices }: Choices = questions[questionsState.currentIdx]
+    ? questions[questionsState.currentIdx]
     : { title: '', choices: [{ uid: 0, question_id: 0, contents: '', category: 0 }] };
 
   const questionNum =
-    state.currentIdx + 1 < 10 ? '0' + (state.currentIdx + 1).toString() : state.currentIdx + 1;
-  const progressVal = (100 / question.length) * (state.currentIdx + 1);
+    questionsState.currentIdx + 1 < 10
+      ? '0' + (questionsState.currentIdx + 1).toString()
+      : questionsState.currentIdx + 1;
+  const progressVal = (100 / questions.length) * (questionsState.currentIdx + 1);
 
   const handleCardClick = (index: number) => {
-    if (state.currentIdx == question.length - 1) {
-      setState({
-        currentIdx: state.currentIdx + 1,
-        answer: [...state.answer, choices[index].uid],
+    if (questionsState.currentIdx == questions.length - 1) {
+      setQuestionsState({
+        currentIdx: questionsState.currentIdx + 1,
+        answer: [...questionsState.answer, choices[index].uid],
         isLoading: true,
       });
     } else {
-      setState({
-        currentIdx: state.currentIdx + 1,
-        answer: [...state.answer, choices[index].uid],
+      setQuestionsState({
+        currentIdx: questionsState.currentIdx + 1,
+        answer: [...questionsState.answer, choices[index].uid],
         isLoading: false,
       });
     }
   };
 
   const handleBackButtonClick = () => {
-    if (state.currentIdx == 0) {
+    if (questionsState.currentIdx == 0) {
       history.push('/persona');
     } else {
-      setState({
-        currentIdx: state.currentIdx - 1,
-        answer: state.answer.slice(0, state.answer.length - 1),
+      setQuestionsState({
+        currentIdx: questionsState.currentIdx - 1,
+        answer: questionsState.answer.slice(0, questionsState.answer.length - 1),
         isLoading: false,
       });
     }
@@ -103,7 +109,7 @@ export default function PersonaQuestionPage(): ReactElement {
         onClick={() => handleCardClick(index)}></Card>
     );
   });
-  if (state.isLoading) {
+  if (questionsState.isLoading) {
     return <Loading />;
   }
   return (
