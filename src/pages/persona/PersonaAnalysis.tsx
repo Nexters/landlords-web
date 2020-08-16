@@ -15,13 +15,12 @@ enum TEXT {
 export default function PersonaAnalysisPage(): ReactElement {
   const [viewerCount, setViewerCount] = useState<string>('');
 
-  const fetchViewer = async () => {
-    const res = await request.get<Viewer>('/persona/count');
-    const countWithComma = res.data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    setViewerCount(countWithComma);
-  };
-
   useEffect(() => {
+    const fetchViewer = async () => {
+      const res = await request.get<Viewer>('/persona/count');
+      const countWithComma = res.data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      setViewerCount(countWithComma);
+    };
     fetchViewer();
   }, []);
 
