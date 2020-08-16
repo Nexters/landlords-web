@@ -126,7 +126,7 @@ export default function PersonaQuestionPage(): ReactElement {
         <br />
         {title}
       </S.TitleDiv>
-      <S.CardDiv>{cardList}</S.CardDiv>
+      <S.CardsWrapper>{cardList}</S.CardsWrapper>
       <S.ProgressContainer>
         <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
       </S.ProgressContainer>

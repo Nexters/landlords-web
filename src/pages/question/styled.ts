@@ -31,7 +31,7 @@ const TitleDiv = styled.div`
   line-height: 29px;
 `;
 
-const CardDiv = styled.div`
+const CardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,4 +60,12 @@ const ProgressComplete = styled.div<{ barWidth: number }>`
   transition: width 0.5s ease-in-out;
 `;
 
-export { Container, Header, BackButton, TitleDiv, CardDiv, ProgressContainer, ProgressComplete };
+export {
+  Container,
+  Header,
+  BackButton,
+  TitleDiv,
+  CardsWrapper,
+  ProgressContainer,
+  ProgressComplete,
+};
