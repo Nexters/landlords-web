@@ -107,9 +107,12 @@ export default function PersonaQuestionPage(): ReactElement {
   }
   return (
     <S.Container>
-      <S.BackButton onClick={handleBackButtonClick}>
-        <Icon name='NAVIGATION_BACKWARD' size='16' />
-      </S.BackButton>
+      <S.Header>
+        <S.BackButton>
+          <Icon name='NAVIGATION_BACKWARD' size='16' />
+        </S.BackButton>
+        <Icon name='TITLE_LOGO' opacity='0.6' />
+      </S.Header>
 
       <S.TitleDiv>
         {questionNum}

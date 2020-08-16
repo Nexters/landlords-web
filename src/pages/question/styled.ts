@@ -9,8 +9,18 @@ const Container = styled.div`
   background-color: ${color.grayscalef9};
 `;
 
+const Header = styled.div`
+  display: flex;
+  flex-directions: column;
+  justify-content: center;
+  align-items: center;
+  height: 46px;
+  padding-top: 15px;
+`;
+
 const BackButton = styled.a`
-  margin-top: 45px;
+  position: absolute;
+  left: 24px;
 `;
 
 const TitleDiv = styled.div`
@@ -50,4 +60,4 @@ const ProgressComplete = styled.div<{ barWidth: number }>`
   transition: width 0.5s ease-in-out;
 `;
 
-export { Container, BackButton, TitleDiv, CardDiv, ProgressContainer, ProgressComplete };
+export { Container, Header, BackButton, TitleDiv, CardDiv, ProgressContainer, ProgressComplete };
