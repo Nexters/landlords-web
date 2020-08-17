@@ -37,10 +37,10 @@ const reducers = {
   ) => {
     const { questions, answers } = payload;
     const QuestionsByState = filterQuestionsByStatus(questions, state.checklistStatus);
-    state.singleCheckQuestions = QuestionsByState.filter(({ type_ }) => type_ === 'SingleChoice');
-    state.multiCheckQuestions = QuestionsByState.filter(({ type_ }) => type_ === 'MultipleChoice');
+    const checkedQuestions = setChecksByAnswers(QuestionsByState, answers);
+    state.singleCheckQuestions = checkedQuestions.filter(({ type_ }) => type_ === 'SingleChoice');
+    state.multiCheckQuestions = checkedQuestions.filter(({ type_ }) => type_ === 'MultipleChoice');
     state.answers = answers;
-    reducers.checkQuestions(state);
   },
   checkQuestions: (state: RoomsState) => {
     const { singleCheckQuestions, multiCheckQuestions, answers } = state;
