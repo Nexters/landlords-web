@@ -16,7 +16,7 @@ enum INPUT_NAME {
   BUILDING_TYPE = 'buildingType',
   ROOM_SIZE = 'size',
   NUMBER_OF_FLOORS = 'floor',
-  MAINTENANCE = 'admionistrationCost',
+  MAINTENANCE = 'administrationCost',
 }
 
 const INITIAL_STATE = {
@@ -45,14 +45,14 @@ export default function AddRoom(props: any) {
         size,
         floor,
         elevator,
-        admionistrationCost,
+        administrationCost,
         imageUrl,
       } = room;
   
       setState({
         name,
         address,
-        admionistrationCost,
+        administrationCost,
         size,
         buildingType,
         floor,

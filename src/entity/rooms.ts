@@ -57,6 +57,6 @@ export interface ConvertedRoom {
   size: string;
   floor: string;
   elevator: string;
-  admionistrationCost: string;
+  administrationCost: string;
   imageUrl: string;
 }

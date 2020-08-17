@@ -29,7 +29,7 @@ export const convertRoomForDisplay = (room: Room): ConvertedRoom => {
     size: Math.round(room.room_size / 3.33).toString(),
     floor: room.floor.replace('/', ' / '),
     elevator: getElevatorStatus(room.has_elevator),
-    admionistrationCost: room.administrative_expenses.toString(),
+    administrationCost: room.administrative_expenses.toString(),
     imageUrl: room.image,
   };
 };
@@ -38,10 +38,10 @@ export const convertRoomForBackend = (room: ConvertedRoom): Partial<Room> => {
   const {
     name,
     address,
-    buildingType,
+    buildingType, // 디자인 확정 후 도입예정
     floor,
     elevator,
-    admionistrationCost,
+    administrationCost,
     imageUrl,
     size,
   } = room;
@@ -67,10 +67,10 @@ export const convertRoomForBackend = (room: ConvertedRoom): Partial<Room> => {
     title: name,
     description: '',
     image: imageUrl,
-    building_type: 'OneRoom', //TODO 디자인 확정되면 셀렉터로 대응
+    building_type: 'OneRoom', //TODO: 디자인 확정되면 셀렉터로 대응
     room_size: Math.round(parseInt(size) * 3.3),
     floor,
     has_elevator: elevator === '있음',
-    administrative_expenses: parseInt(admionistrationCost) ?? 0,
+    administrative_expenses: parseInt(administrationCost) ?? 0,
   };
 };
