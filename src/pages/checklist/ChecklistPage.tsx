@@ -1,6 +1,8 @@
+import { ANSWERS_URL, CHECKLIST_URL } from 'api/constants';
 import request from 'api/request';
 import { Icon } from 'components';
-import { RoomsResponse } from 'entity/response';
+import { STATUS_MATCHER } from 'entity/checklist';
+import { AnswersResponse, QuestionsResponse, RoomsResponse } from 'entity/response';
 import { ROOM_CONTENTS_LABEL } from 'entity/rooms';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +10,6 @@ import { match as Match, useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import CheckboxLayout from './checkbox-layout';
-import mock from './ChecklistPage.mock';
 import RoomCard from './room-card';
 import RoomDeleteModal from './room-delete-modal';
 import * as S from './styled';
@@ -27,7 +28,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
     multiCheckQuestions,
     checklistStatus,
   } = useSelector(roomsSelector);
-  const { setRooms, setQuestions, setAnswers, checkQuestions } = roomsAction;
+  const { setRooms, setQuestoinsAndAnswers } = roomsAction;
   const { params } = match;
   const history = useHistory();
   const dispatch = useDispatch();
@@ -35,21 +36,26 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
   const [isOpenRoomDeleteModal, setOpenRoomDeleteModal] = useState(false);
 
   useEffect(() => {
-    if (!rooms.length) {
-      const fetchRooms = async () => {
-        const { data, error, message } = await request.get<RoomsResponse>('/rooms');
-        if (error) {
-          alert(message);
-          return;
-        }
-        dispatch(setRooms(data.rooms));
-      };
-      fetchRooms();
-    }
-    if (rooms.length && !roomMap.hasOwnProperty(params.id)) history.goBack();
-    dispatch(setQuestions(mock.questions));
-    dispatch(setAnswers(mock.answersMap[params.id]));
-    dispatch(checkQuestions());
+    const fetchRooms = async () => {
+      if (rooms.length > 0) return;
+      const { data, error, message } = await request.get<RoomsResponse>('/rooms');
+      if (error) alert(message);
+      else dispatch(setRooms(data.rooms));
+    };
+    const fetchQuestionsAndAnswers = async () => {
+      const fetchedQuestions = await request.get<QuestionsResponse>(CHECKLIST_URL(checklistStatus));
+      const fetchedAnswers = await request.get<AnswersResponse>(ANSWERS_URL(params.id));
+      if (fetchedQuestions.error) alert(fetchedQuestions.message);
+      else
+        dispatch(
+          setQuestoinsAndAnswers({
+            questions: fetchedQuestions.data.questions,
+            answers: fetchedAnswers.data.check_items || [],
+          }),
+        );
+    };
+    fetchRooms();
+    fetchQuestionsAndAnswers();
   }, []);
 
   return (
@@ -58,7 +64,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
         <S.BackButton onClick={() => history.push('/rooms')}>
           <Icon name='NAVIGATION_BACKWARD' size='16' />
         </S.BackButton>
-        <S.StateTitle>{checklistStatus} 체크리스트</S.StateTitle>
+        <S.StateTitle>{STATUS_MATCHER[checklistStatus]} 체크리스트</S.StateTitle>
       </S.StateHeader>
       <S.RoomCardList>
         {rooms.map((room, index) => (

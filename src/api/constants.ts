@@ -5,4 +5,7 @@ const API = {
 
 const isDevelopment = () => process.env.NODE_ENV === 'development';
 
-export const apiBaseURL =  isDevelopment() ? API.DEV_BASE_URL : API.PROD_BASE_URL;
+export const apiBaseURL = isDevelopment() ? API.DEV_BASE_URL : API.PROD_BASE_URL;
+
+export const CHECKLIST_URL = (status: string) => `/checklist?status=${status}`;
+export const ANSWERS_URL = (id: string) => `/rooms/${id}/answers`;
