@@ -1,5 +1,7 @@
-import React, { ReactElement, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Viewer } from 'entity/persona';
+import { useFetch } from 'hooks';
+import React, { ReactElement } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -11,12 +13,8 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisPage(): ReactElement {
-  const [viewerCount] = useState(0);
-  const history = useHistory();
-
-  const handleBackButton = () => {
-    history.goBack();
-  };
+  const { data } = useFetch<Viewer>('/persona/count');
+  const countWithComma = data ? data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 0;
 
   const sortedTitle = TEXT.TITLE.split('\n').map((line) => {
     return (
@@ -36,19 +34,25 @@ export default function PersonaAnalysisPage(): ReactElement {
     );
   });
 
+  const history = useHistory();
+  const handleStartButtonClick = () => {
+    history.push('/persona/question');
+  };
+  const handleBackButtonClick = () => {
+    history.push('/auth');
+  };
+
   return (
     <S.Container>
       <S.Title>{sortedTitle}</S.Title>
       <S.Description> {sortedDesc}</S.Description>
 
       <S.CounterDescription>
-        총 <S.Count>{viewerCount}</S.Count>명이 체크해방을 참고했습니다.
+        총 <S.Count>{countWithComma}</S.Count>명이 체크해방을 참고했습니다.
       </S.CounterDescription>
 
-      <Link to='/persona/question'>
-        <S.StartButton>{TEXT.START}</S.StartButton>
-      </Link>
-      <S.BackButton onClick={handleBackButton}>{TEXT.BACK}</S.BackButton>
+      <S.StartButton onClick={handleStartButtonClick}>{TEXT.START}</S.StartButton>
+      <S.BackButton onClick={handleBackButtonClick}>{TEXT.BACK}</S.BackButton>
     </S.Container>
   );
 }

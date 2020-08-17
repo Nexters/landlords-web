@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { FlattenSimpleInterpolation } from 'styled-components';
 
 import * as S from './styled';
-import CANCEL from './svg/cancel.svg';
+import CANCEL_DARK from './svg/cancel-dark.svg';
 import CHECKED_BOX from './svg/checked-box.svg';
 import HUMAN_NORMAL from './svg/human-normal.svg';
 import NAVIGATION_BACKWARD from './svg/navigation-backward.svg';
@@ -18,7 +18,7 @@ const Icons = {
   NAVIGATION_OPEN_DOWN,
   HUMAN_NORMAL,
   TEMP_LOGO,
-  CANCEL,
+  CANCEL_DARK,
   TITLE_LOGO,
 };
 
@@ -30,6 +30,7 @@ interface IconProps {
   iconLayoutStyle?: FlattenSimpleInterpolation;
   className?: string;
   size?: string;
+  opacity?: string;
 }
 
 export default function Icon({
@@ -38,9 +39,14 @@ export default function Icon({
   iconLayoutStyle,
   className,
   size,
+  opacity,
 }: IconProps): ReactElement {
   return (
-    <S.Container className={className} iconLayoutStyle={iconLayoutStyle} size={size}>
+    <S.Container
+      className={className}
+      iconLayoutStyle={iconLayoutStyle}
+      size={size}
+      opacity={opacity}>
       {label && <S.IconLabel>{label}</S.IconLabel>}
       <img src={Icons[name]} />
     </S.Container>

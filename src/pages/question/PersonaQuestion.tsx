@@ -1,37 +1,90 @@
+import request from 'api/request';
 import Icon from 'components/icon';
-import { Choice } from 'entity/persona';
-import React, { ReactElement, useMemo, useState } from 'react';
+import { Choice, Persona, PersonaQuestion } from 'entity/persona';
+import { QuestionsResponse } from 'entity/response';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Card from './card';
 import Loading from './loading';
-import questions from './questions';
 import * as S from './styled';
+
+interface QuestionsState {
+  currentIdx: number;
+  answer: number[];
+  isLoading: boolean;
+}
+
+interface Choices {
+  title: string;
+  choices: Choice[];
+}
 
 export default function PersonaQuestionPage(): ReactElement {
   const history = useHistory();
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [answer, setAnswer] = useState<Choice[]>([]);
-  const questionLen = questions.length;
-  const { title, choices } =
-    questions[currentIdx] != undefined ? questions[currentIdx] : questions[0];
-  const questionNum = currentIdx + 1 < 10 ? '0' + (currentIdx + 1).toString() : currentIdx + 1;
-  const progressVal = (100 / questionLen) * (currentIdx + 1);
-  const isLoading = useMemo(() => (currentIdx >= questionLen ? true : false), [currentIdx]);
 
-  const getChoice = (index: number) => choices[index];
+  const [questions, setQuestions] = useState<PersonaQuestion[]>([]);
+  const fetchQuestion = async () => {
+    const { data } = await request.get<QuestionsResponse>('/persona/questions');
+    setQuestions(data.questions);
+  };
+
+  useEffect(() => {
+    fetchQuestion();
+  }, []);
+
+  const [questionsState, setQuestionsState] = useState<QuestionsState>({
+    currentIdx: 0,
+    answer: [],
+    isLoading: false,
+  });
+
+  const fetchAnswer = async () => {
+    const params = new URLSearchParams();
+    questionsState.answer.forEach((answer: number) => {
+      params.append('check_answers', answer.toString());
+    });
+
+    const res = await request.get<Persona>('/persona', { params: params });
+    const data = res.data;
+    history.push(`/persona/result?title=${data.title}&description=${data.description}`);
+  };
+
+  useEffect(() => {
+    if (questionsState.isLoading) {
+      fetchAnswer();
+    }
+  }, [questionsState]);
+
+  const { title, choices }: Choices = questions[questionsState.currentIdx]
+    ? questions[questionsState.currentIdx]
+    : { title: '', choices: [{ uid: 0, question_id: 0, contents: '', category: 0 }] };
+
+  const questionNum =
+    questionsState.currentIdx + 1 < 10
+      ? '0' + (questionsState.currentIdx + 1).toString()
+      : questionsState.currentIdx + 1;
+  const progressVal = (100 / questions.length) * (questionsState.currentIdx + 1);
 
   const handleCardClick = (index: number) => {
-    setAnswer(() => [...answer, getChoice(index)]);
-    setCurrentIdx(currentIdx + 1);
+    const loadingFlag = questionsState.currentIdx == questions.length - 1 ? true : false;
+    setQuestionsState({
+      currentIdx: questionsState.currentIdx + 1,
+      answer: [...questionsState.answer, choices[index].uid],
+      isLoading: loadingFlag,
+    });
   };
 
   const handleBackButtonClick = () => {
-    if (currentIdx == 0) {
+    if (questionsState.currentIdx == 0) {
       history.push('/persona');
+    } else {
+      setQuestionsState({
+        currentIdx: questionsState.currentIdx - 1,
+        answer: questionsState.answer.slice(0, questionsState.answer.length - 1),
+        isLoading: false,
+      });
     }
-    setAnswer(() => answer.splice(answer.length - 1, 1));
-    setCurrentIdx(currentIdx - 1);
   };
 
   const cardList = choices.map((item: Choice, index: number) => {
@@ -45,21 +98,23 @@ export default function PersonaQuestionPage(): ReactElement {
     );
   });
 
-  if (isLoading) {
-    return <Loading />;
-  }
-  return (
+  return questionsState.isLoading ? (
+    <Loading />
+  ) : (
     <S.Container>
-      <S.BackButton onClick={handleBackButtonClick}>
-        <Icon name='NAVIGATION_BACKWARD' size='16' />
-      </S.BackButton>
+      <S.Header>
+        <S.BackButton onClick={handleBackButtonClick}>
+          <Icon name='NAVIGATION_BACKWARD' size='16' />
+        </S.BackButton>
+        <Icon name='TITLE_LOGO' opacity='0.6' />
+      </S.Header>
 
       <S.TitleDiv>
         {questionNum}
         <br />
         {title}
       </S.TitleDiv>
-      <S.CardDiv>{cardList}</S.CardDiv>
+      <S.CardsWrapper>{cardList}</S.CardsWrapper>
       <S.ProgressContainer>
         <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
       </S.ProgressContainer>
