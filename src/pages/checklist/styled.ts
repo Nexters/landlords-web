@@ -9,7 +9,7 @@ const Container = styled.div`
   letter-spacing: normal;
 `;
 
-const StateHeader = styled.header`
+const StatusHeader = styled.header`
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -17,7 +17,7 @@ const StateHeader = styled.header`
   background-color: ${color.grayscalef9};
 `;
 
-const StateTitle = styled.span`
+const StatusTitle = styled.span`
   font-size: 16px;
   font-weight: bold;
   color: ${color.grayscale29};
@@ -116,8 +116,8 @@ const EmtpyRoomCard = styled.div`
 export {
   Container,
   BackButton,
-  StateHeader,
-  StateTitle,
+  StatusHeader,
+  StatusTitle,
   RoomCardList,
   RoomContentWrapper,
   RoomContent,

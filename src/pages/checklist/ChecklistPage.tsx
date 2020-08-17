@@ -62,12 +62,12 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
 
   return (
     <S.Container>
-      <S.StateHeader>
+      <S.StatusHeader>
         <S.BackButton onClick={() => history.push('/rooms')}>
           <Icon name='NAVIGATION_BACKWARD' size='16' />
         </S.BackButton>
-        <S.StateTitle>{STATUS_MATCHER[checklistStatus]} 체크리스트</S.StateTitle>
-      </S.StateHeader>
+        <S.StatusTitle>{STATUS_MATCHER[checklistStatus]} 체크리스트</S.StatusTitle>
+      </S.StatusHeader>
       <S.RoomCardList>
         {rooms.map((room, index) => (
           <RoomCard key={index} room={room} />
