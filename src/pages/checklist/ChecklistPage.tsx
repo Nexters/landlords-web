@@ -2,7 +2,7 @@ import { ANSWERS_URL, CHECKLIST_URL } from 'api/constants';
 import request from 'api/request';
 import { Icon } from 'components';
 import { STATUS_MATCHER } from 'entity/checklist';
-import { AnswersResponse, QuestionsResponse, RoomsResponse } from 'entity/response';
+import { AnswersResponse, CheckQuestionsResponse, RoomsResponse } from 'entity/response';
 import { ROOM_CONTENTS_LABEL } from 'entity/rooms';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,7 +43,9 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
       else dispatch(setRooms(data.rooms));
     };
     const fetchQuestionsAndAnswers = async () => {
-      const fetchedQuestions = await request.get<QuestionsResponse>(CHECKLIST_URL(checklistStatus));
+      const fetchedQuestions = await request.get<CheckQuestionsResponse>(
+        CHECKLIST_URL(checklistStatus),
+      );
       const fetchedAnswers = await request.get<AnswersResponse>(ANSWERS_URL(params.id));
       if (fetchedQuestions.error) alert(fetchedQuestions.message);
       else

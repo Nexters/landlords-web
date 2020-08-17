@@ -1,6 +1,6 @@
-import { CheckItem, Question } from 'entity/checklist';
+import { CheckItem, CheckQuestion } from 'entity/checklist';
 
-const questions: Question[] = [
+const questions: CheckQuestion[] = [
   {
     uid: 0,
     title: '연식이 5년 이하인가요?',

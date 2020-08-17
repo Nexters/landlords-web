@@ -1,6 +1,9 @@
-import { CheckItem, Question, StatusType } from 'entity/checklist';
+import { CheckItem, CheckQuestion, StatusType } from 'entity/checklist';
 
-export const setChecksByAnswers = (questions: Question[], answers: CheckItem[]): Question[] => {
+export const setChecksByAnswers = (
+  questions: CheckQuestion[],
+  answers: CheckItem[],
+): CheckQuestion[] => {
   const checkedQuestionIds = answers.map(({ uid }) => uid);
   return questions.map((question) => ({
     ...question,
@@ -11,14 +14,16 @@ export const setChecksByAnswers = (questions: Question[], answers: CheckItem[]):
   }));
 };
 
-export const extractQuestionsByLabel = (questions: Question[]): { [label: string]: Question[] } =>
-  questions.reduce((total: { [label: string]: Question[] }, question) => {
+export const extractQuestionsByLabel = (
+  questions: CheckQuestion[],
+): { [label: string]: CheckQuestion[] } =>
+  questions.reduce((total: { [label: string]: CheckQuestion[] }, question) => {
     if (total.hasOwnProperty(question.label)) total[question.label].push(question);
     else total[question.label] = [question];
     return total;
   }, {});
 
 export const filterQuestionsByStatus = (
-  questions: Question[],
+  questions: CheckQuestion[],
   currentStatus: StatusType,
-): Question[] => questions.filter((question) => question.status === currentStatus);
+): CheckQuestion[] => questions.filter((question) => question.status === currentStatus);

@@ -1,7 +1,7 @@
 import { ANSWERS_URL, DELETE_ANSWER_URL } from 'api/constants';
 import request from 'api/request';
 import { Checkbox, Icon } from 'components';
-import { CheckItem, Question } from 'entity/checklist';
+import { CheckItem, CheckQuestion } from 'entity/checklist';
 import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { extractQuestionsByLabel } from 'utils/checklist';
 import * as S from './styled';
 
 interface CheckboxLayoutProps {
-  questions: Question[];
+  questions: CheckQuestion[];
 }
 
 export default function CheckboxLayout({ questions }: CheckboxLayoutProps): ReactElement {
