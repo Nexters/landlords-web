@@ -79,7 +79,7 @@ const ShareButton = styled.button`
   background-color: ${color.primaryDullPurple};
 `;
 
-const RetestButton = styled.div`
+const RetestButton = styled.button`
   margin-top: 18px;
   text-align: center;
   text-decoration: underline;
@@ -87,6 +87,8 @@ const RetestButton = styled.div`
   font-size: 12px;
   font-weight: bold;
   line-height: 15px;
+  border: none;
+  background-color: transparent;
 `;
 
 const CounterDescription = styled.button`
@@ -107,14 +109,17 @@ const Count = styled.span`
   color: ${color.primaryYellow};
 `;
 
-const BackButton = styled.a`
-  margin-top: 18px;
+const BackButton = styled.button`
   text-align: center;
   text-decoration: underline;
   text-underline-position: under;
   font-size: 12px;
   font-weight: bold;
   line-height: 15px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  margin: 14px auto;
 `;
 
 const CloseButton = styled.button`

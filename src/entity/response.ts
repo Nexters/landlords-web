@@ -1,4 +1,5 @@
 import { CheckItem, Question } from './checklist';
+import { PersonaQuestion } from './persona';
 import { Room } from './rooms';
 
 export interface Response<T = object> {
@@ -17,4 +18,8 @@ export interface QuestionsResponse {
 
 export interface AnswersResponse {
   check_items: CheckItem[];
+}
+
+export interface PersonaQuestionsResponse {
+  questions: PersonaQuestion[];
 }
