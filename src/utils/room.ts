@@ -59,10 +59,7 @@ export const convertRoomForBackend = (room: ConvertedRoom): Partial<Room> => {
     ? SELLING_TYPE.MONTHLY_RENT
     : SELLING_TYPE.JEONSE;
 
-  const fakeUID = Math.round(Math.random() * 100000);
-
   return {
-    uid: fakeUID.toString(),
     deposit,
     monthly_rent,
     selling_type: getSellingTypeFromPrice(),

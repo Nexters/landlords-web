@@ -30,20 +30,21 @@ export default function AddRoomViaLink() {
   const dispatch = useDispatch();
 
   const handleClick = async () => {
-    // console.log(roomURL);
     let target = roomURL.replace(/[^0-9]/g, '');
     const suffix = '?crawling_target=Zigbang';
-    // console.log(target + suffix);
-    const { data, error } = await api.put<Room>('rooms/' + target + suffix, {}, {
-      headers: { Authorization: token },
-    });
-    
-    const { setRoom } = roomAction;
-    // add-room으로 이동
+    try {
+      const { data, error } = await api.put<Room>('rooms/' + target + suffix, {}, {
+        headers: { Authorization: token },
+      });
+      if(error) throw new Error('Failed');
+      const { setRoom } = roomAction;
+      // add-room으로 이동
 
-    dispatch(setRoom(convertRoomForDisplay(data)));
-    history.push('/add-room');
-
+      dispatch(setRoom(convertRoomForDisplay(data)));
+      history.push('/add-room');
+    } catch {
+      alert('다시 시도해 주세요');
+    }
   };
 
   return (

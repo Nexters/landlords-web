@@ -2,7 +2,8 @@ import api from 'api/request';
 import { Button,Header } from 'components';
 import React, { useEffect,useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { roomAction,roomSelector } from 'store/roomSlice';
+import { useHistory } from 'react-router-dom';
+import { roomSelector } from 'store/roomSlice';
 import color from 'styles/color';
 import { convertRoomForBackend } from 'utils/room';
 
@@ -33,6 +34,7 @@ export default function AddRoom(props: any) {
   const [state, setState] = useState(INITIAL_STATE);
   const { room } = useSelector(roomSelector);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (room) {
@@ -46,8 +48,7 @@ export default function AddRoom(props: any) {
         admionistrationCost,
         imageUrl,
       } = room;
-
-      
+  
       setState({
         name,
         address,
@@ -78,12 +79,19 @@ export default function AddRoom(props: any) {
     } = state;
     if(name && address && size && buildingType && floor) {
       const req = convertRoomForBackend({ ...state, ...room });
-      const res = await api.post('/rooms', req, {
-        headers: {
-          Authorization: sessionStorage.getItem('accessToken'),
-        },
-      });
-      console.log(res);
+      try {
+        const { error } = await api.post('/rooms', req, {
+          headers: {
+            Authorization: sessionStorage.getItem('accessToken'),
+          },
+        });
+        if (error) throw new Error('Unable to register');
+        alert('성공');
+      } catch {
+        alert('방 등록에 실패했습니다. 다시 시도해 주세요');
+      } finally {
+        history.push('/');
+      }
     }
   };
 
@@ -95,8 +103,7 @@ export default function AddRoom(props: any) {
         bgColor: color.primaryDullPurple,
         textColor: color.basicWhite,
       }
-      : 
-      {
+      : {
         height: '32px',
         fontSize: '14px',
       };
