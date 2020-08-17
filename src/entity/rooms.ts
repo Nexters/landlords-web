@@ -5,7 +5,7 @@ export const ROOM_CONTENTS_LABEL = {
   size: '공급면적',
   floor: '층/건물층수',
   elevator: '엘리베이터',
-  admionistrationCost: '관리비',
+  administrationCost: '관리비',
 };
 
 export const BUILDING_TYPE_MATHCER = {
