@@ -28,7 +28,7 @@ export const convertRoomForDisplay = (room: Room): ConvertedRoom => {
     size: `${Math.round(room.room_size / 3.33)} 평`,
     floor: room.floor.replace('/', ' / '),
     elevator: getElevatorStatus(room.has_elevator),
-    admionistrationCost: `${room.administrative_expenses}만 원`,
+    administrationCost: `${room.administrative_expenses}만 원`,
     imageUrl: room.image,
   };
 };

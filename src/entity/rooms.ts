@@ -5,7 +5,7 @@ export const ROOM_CONTENTS_LABEL = {
   size: '공급면적',
   floor: '층/건물층수',
   elevator: '엘리베이터',
-  admionistrationCost: '관리비',
+  administrationCost: '관리비',
 };
 
 export const BUILDING_TYPE_MATHCER = {
@@ -38,8 +38,6 @@ export interface Room {
   has_elevator: boolean;
   administrative_expenses: number;
   user_id: number;
-  name?: string;
-  price?: string;
 }
 
 export interface ConvertedRoom {
@@ -51,6 +49,6 @@ export interface ConvertedRoom {
   size: string;
   floor: string;
   elevator: string;
-  admionistrationCost: string;
+  administrationCost: string;
   imageUrl: string;
 }
