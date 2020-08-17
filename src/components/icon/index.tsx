@@ -30,6 +30,7 @@ interface IconProps {
   iconLayoutStyle?: FlattenSimpleInterpolation;
   className?: string;
   size?: string;
+  opacity?: string;
 }
 
 export default function Icon({
@@ -38,9 +39,14 @@ export default function Icon({
   iconLayoutStyle,
   className,
   size,
+  opacity,
 }: IconProps): ReactElement {
   return (
-    <S.Container className={className} iconLayoutStyle={iconLayoutStyle} size={size}>
+    <S.Container
+      className={className}
+      iconLayoutStyle={iconLayoutStyle}
+      size={size}
+      opacity={opacity}>
       {label && <S.IconLabel>{label}</S.IconLabel>}
       <img src={Icons[name]} />
     </S.Container>

@@ -1,10 +1,8 @@
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
-import request from 'api/request';
 import webShare from 'api/webShare';
-import { Persona } from 'entity/persona';
-import React, { ReactElement, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { ReactElement } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -15,23 +13,23 @@ enum TEXT {
 
 export default function PersonaAnalysisResultPage(): ReactElement {
   const shareUrl = 'https://checkhaebang.web.app/';
-  const [persona, setPersona] = useState<Persona>();
-  const fetchPersona = async () => {
-    const { data } = await request.get<Persona>('/persona');
-    setPersona(data);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const history = useHistory();
+  const handleGoChecklistButtonClick = () => {
+    history.push('/checklist');
   };
-
-  useEffect(() => {
-    fetchPersona();
-  }, []);
-
+  const handleRetestButtonClick = () => {
+    history.push('/persona');
+  };
   return (
     <S.ResultContainer>
       <S.TitleWrapper>
         당신의 자취 유형은
-        <S.UserPersona>{persona ? persona.title : ''}!</S.UserPersona>
+        <S.UserPersona>{urlParams.get('title')}!</S.UserPersona>
       </S.TitleWrapper>
-      <S.PersonaDescription>{persona ? persona.description : ''}</S.PersonaDescription>
+      <S.PersonaDescription>{urlParams.get('description')}</S.PersonaDescription>
 
       <S.ShareButtonDiv>
         <S.ShareButton onClick={() => facebookShare(shareUrl)}>페북</S.ShareButton>
@@ -39,13 +37,10 @@ export default function PersonaAnalysisResultPage(): ReactElement {
         <S.ShareButton onClick={() => webShare('title', shareUrl)}>url</S.ShareButton>
       </S.ShareButtonDiv>
 
-      <Link to='/checklist'>
-        <S.GoChecklistButton>{TEXT.GO_CHECKLIST}</S.GoChecklistButton>
-      </Link>
-
-      <S.RetestButton>
-        <Link to='/persona'>{TEXT.RETEST}</Link>
-      </S.RetestButton>
+      <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>
+        {TEXT.GO_CHECKLIST}
+      </S.GoChecklistButton>
+      <S.RetestButton onClick={handleRetestButtonClick}>{TEXT.RETEST}</S.RetestButton>
     </S.ResultContainer>
   );
 }

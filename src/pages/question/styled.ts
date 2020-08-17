@@ -9,8 +9,18 @@ const Container = styled.div`
   background-color: ${color.grayscalef9};
 `;
 
+const Header = styled.div`
+  display: flex;
+  flex-directions: column;
+  justify-content: center;
+  align-items: center;
+  height: 46px;
+  padding-top: 15px;
+`;
+
 const BackButton = styled.a`
-  margin-top: 45px;
+  position: absolute;
+  left: 24px;
 `;
 
 const TitleDiv = styled.div`
@@ -21,13 +31,14 @@ const TitleDiv = styled.div`
   line-height: 29px;
 `;
 
-const CardDiv = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+const CardsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 16px 16px;
-  height: 352px;
-  margin-top: 16px;
+  height: 272px;
+  margin-top: 6px;
+  padding: 40px 0 46px;
 `;
 
 const ProgressContainer = styled.div`
@@ -49,4 +60,12 @@ const ProgressComplete = styled.div<{ barWidth: number }>`
   transition: width 0.5s ease-in-out;
 `;
 
-export { Container, BackButton, TitleDiv, CardDiv, ProgressContainer, ProgressComplete };
+export {
+  Container,
+  Header,
+  BackButton,
+  TitleDiv,
+  CardsWrapper,
+  ProgressContainer,
+  ProgressComplete,
+};

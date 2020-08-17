@@ -23,3 +23,7 @@ export interface Persona {
   title: string;
   description: string;
 }
+
+export interface Viewer {
+  count: number;
+}
