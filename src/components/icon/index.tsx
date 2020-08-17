@@ -31,6 +31,7 @@ interface IconProps {
   className?: string;
   size?: string;
   opacity?: string;
+  onClick?: () => void;
 }
 
 export default function Icon({
@@ -40,9 +41,11 @@ export default function Icon({
   className,
   size,
   opacity,
+  onClick,
 }: IconProps): ReactElement {
   return (
     <S.Container
+      onClick={onClick}
       className={className}
       iconLayoutStyle={iconLayoutStyle}
       size={size}

@@ -49,7 +49,9 @@ export default function AddRoomViaLink() {
 
   return (
     <>
-      <Header title='자취방 추가하기'><Icon name='CANCEL' size='16px' /></Header>
+      <Header title='자취방 추가하기'>
+        <Icon name='CANCEL_DARK' size='16' onClick={() => {history.push('/');}}/>
+      </Header>
       <S.Container>
         <S.InputContainer>
           <S.InputGuideText>직방/다방 URL 링크로 방을 불러올 수 있어요.</S.InputGuideText>
