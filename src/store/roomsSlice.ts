@@ -31,13 +31,16 @@ const reducers = {
   setChecklistStatus: (state: RoomsState, { payload }: PayloadAction<StatusType>) => {
     state.checklistStatus = payload;
   },
-  setQuestions: (state: RoomsState, { payload }: PayloadAction<Question[]>) => {
-    const QuestionsByState = filterQuestionsByStatus(payload, state.checklistStatus);
+  setQuestoinsAndAnswers: (
+    state: RoomsState,
+    { payload }: PayloadAction<{ questions: Question[]; answers: CheckItem[] }>,
+  ) => {
+    const { questions, answers } = payload;
+    const QuestionsByState = filterQuestionsByStatus(questions, state.checklistStatus);
     state.singleCheckQuestions = QuestionsByState.filter(({ type_ }) => type_ === 'SingleChoice');
     state.multiCheckQuestions = QuestionsByState.filter(({ type_ }) => type_ === 'MultipleChoice');
-  },
-  setAnswers: (state: RoomsState, { payload }: PayloadAction<CheckItem[]>) => {
-    state.answers = payload;
+    state.answers = answers;
+    reducers.checkQuestions(state);
   },
   checkQuestions: (state: RoomsState) => {
     const { singleCheckQuestions, multiCheckQuestions, answers } = state;
