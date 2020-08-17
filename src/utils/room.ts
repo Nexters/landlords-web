@@ -53,7 +53,6 @@ export const convertRoomForBackend = (room: ConvertedRoom): Partial<Room> => {
 
   const deposit = parseInt(depositstring ?? 0);
   const monthly_rent = parseInt(monthlyRentString ?? 0);
-  console.log(depositstring, monthlyRentString);
 
   const getSellingTypeFromPrice = () => monthly_rent 
     ? SELLING_TYPE.MONTHLY_RENT

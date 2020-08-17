@@ -61,7 +61,6 @@ export default function AddRoom(props: any) {
       });
     }
   }, []);
-  console.log(state);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,

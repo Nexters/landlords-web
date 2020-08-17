@@ -16,8 +16,6 @@ const initialState = {
 const reducers = {
   setRoom: (state: RoomState, { payload }: PayloadAction<ConvertedRoom>) => {
     state.room = payload;
-    console.log('payload', payload);
-    console.log('room', state.room);
   },
 };
 
