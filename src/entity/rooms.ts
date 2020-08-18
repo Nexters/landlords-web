@@ -5,22 +5,28 @@ export const ROOM_CONTENTS_LABEL = {
   size: '공급면적',
   floor: '층/건물층수',
   elevator: '엘리베이터',
-  admionistrationCost: '관리비',
+  administrationCost: '관리비',
 };
 
 export const BUILDING_TYPE_MATHCER = {
-  0: '원룸',
-  1: '투룸',
-  2: '쓰리룸',
-  3: '오피스텔',
-  4: '아파트',
-  5: '빌라',
+  OneRoom: '원룸',
+  TwoRoom: '투룸',
+  ThreeRoom: '쓰리룸',
+  Officetel: '오피스텔',
+  Apartment: '아파트',
+  Villa: '빌라',
 };
 
+export enum SELLING_TYPE {
+  MONTHLY_RENT = 'MonthlyRent',
+  JEONSE = 'Jeonse',
+  SELLING = 'Selling',
+}
+
 export const SELLING_TYPE_MATCHER = {
-  0: '월세',
-  1: '전세',
-  2: '매매',
+  [SELLING_TYPE.MONTHLY_RENT]: '월세',
+  [SELLING_TYPE.JEONSE]: '전세',
+  [SELLING_TYPE.SELLING]: '매매',
 };
 
 export interface Room {
@@ -35,7 +41,7 @@ export interface Room {
   building_type: keyof typeof BUILDING_TYPE_MATHCER;
   room_size: number;
   floor: string;
-  has_elevator: boolean;
+  has_elevator: boolean | null;
   administrative_expenses: number;
   user_id: number;
   name?: string;
@@ -51,6 +57,6 @@ export interface ConvertedRoom {
   size: string;
   floor: string;
   elevator: string;
-  admionistrationCost: string;
+  administrationCost: string;
   imageUrl: string;
 }
