@@ -21,8 +21,9 @@ const execute = async <T>(callback: () => Promise<AxiosResponse<T>>): Promise<Re
     const { data } = await callback();
     return { data, error: false, message: 'OK' };
   } catch (err) {
+    if (!err.response) return { data: err, error: true, message: err.message };
     const { data } = err.response;
-    const message = Array.isArray(data.errors) ? data.errors[0].msg : data.errors;
+    const message = Array.isArray(data.errors) ? data.errors[0].msg || data.errors[0] : data.errors;
     return { data, error: true, message };
   }
 };
