@@ -1,4 +1,4 @@
-import { ROOMS_URL } from 'api/constants';
+import { ROOM_URL } from 'api/constants';
 import request from 'api/request';
 import { Modal } from 'components';
 import { ConvertedRoom } from 'entity/rooms';
@@ -26,7 +26,7 @@ export default function RoomDeleteModal({
   const dispatch = useDispatch();
 
   const handleConfirmClick = async () => {
-    const { error } = await request.delete(ROOMS_URL(target.uid));
+    const { error } = await request.delete(ROOM_URL(target.uid));
     if (error) alert('방 삭제 실패');
     else if (rooms.length === 1) history.push('/rooms');
     else {
