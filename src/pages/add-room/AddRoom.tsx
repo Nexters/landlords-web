@@ -36,7 +36,7 @@ export default function AddRoom(props: any) {
   const { room } = useSelector(roomSelector);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log('apiBaseURL', apiBaseURL);
+  console.log('process.env', process.env);
 
   useEffect(() => {
     if (room) {
