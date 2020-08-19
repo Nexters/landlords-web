@@ -37,11 +37,12 @@ export const useOAuth = () => {
         token = cookie.replace('token=', '');
         sessionStorage.setItem('accessToken', token);
       }
-      const user = await decodeTokenWithJWK(token);
+      const user: any = await decodeTokenWithJWK(token);
       setState({
         user,
         loginState: LOGIN_STATE.SUCCESS,
       });
+      sessionStorage.setItem('userName', user.given_name);
       setAuthorization(token);
     } catch {
       setState({ ...state, loginState: LOGIN_STATE.ERROR });
