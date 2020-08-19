@@ -1,5 +1,5 @@
 import { Icon } from 'components';
-import React, { SyntheticEvent, useEffect } from 'react';
+import React, { SyntheticEvent } from 'react';
 
 import * as S from './styled';
 
