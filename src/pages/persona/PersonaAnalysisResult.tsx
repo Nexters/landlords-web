@@ -20,7 +20,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
-    history.push('/checklist');
+    history.push('/auth');
   };
   const handleRetestButtonClick = () => {
     history.push('/persona');
