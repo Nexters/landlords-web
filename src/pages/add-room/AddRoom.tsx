@@ -1,3 +1,4 @@
+import { apiBaseURL } from 'api/constants';
 import api from 'api/request';
 import { Button,Header } from 'components';
 import React, { useEffect,useState } from 'react';
@@ -35,6 +36,7 @@ export default function AddRoom(props: any) {
   const { room } = useSelector(roomSelector);
   const dispatch = useDispatch();
   const history = useHistory();
+  console.log('apiBaseURL', apiBaseURL);
 
   useEffect(() => {
     if (room) {
