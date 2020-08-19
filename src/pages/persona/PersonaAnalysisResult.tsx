@@ -2,7 +2,7 @@ import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import webShare from 'api/webShare';
 import React, { ReactElement } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -12,8 +12,10 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisResultPage(): ReactElement {
-  const shareUrl = 'https://checkhaebang.web.app/';
-  const queryString = window.location.search;
+  const path = useLocation().pathname;
+  const queryString = useLocation().search;
+  const shareUrl = 'https://checkhaebang.web.app' + path + queryString;
+
   const urlParams = new URLSearchParams(queryString);
 
   const history = useHistory();
