@@ -1,5 +1,5 @@
 import request from 'api/request';
-import { Icon } from 'components';
+import { useOAuth } from 'api/useOAuth';
 import { RoomsResponse } from 'entity/response';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ export default function RoomListPage() {
   const { rooms } = useSelector(roomsSelector);
   const { setRooms } = roomsAction;
   const dispatch = useDispatch();
+  const { user } = useOAuth();
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -26,11 +27,11 @@ export default function RoomListPage() {
   return (
     <S.Container>
       <S.Header>
-        <span>
-          예희&#39;s
+        <S.HeaderTitle>
+          <span> {user.given_name}&#39;s</span>
           <S.LogoIcon name='TITLE_LOGO' />
-        </span>
-        <Icon name='HUMAN_NORMAL' size='17' />
+        </S.HeaderTitle>
+        <S.MypageIcon name='HUMAN_NORMAL' size='17' />
       </S.Header>
       <MenuBar />
       <S.RoomContainer>
