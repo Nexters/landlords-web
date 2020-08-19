@@ -9,6 +9,7 @@ interface HeaderProps {
   leftIconSize?: string;
   title: string;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 export default function Header({
@@ -16,12 +17,12 @@ export default function Header({
   children,
   leftIconName,
   leftIconSize = '16px',
-} : HeaderProps) {
-
+  onClick = () => {},
+}: HeaderProps) {
   return (
     <S.Container>
       <S.TitleLeftContainer>
-        {leftIconName && <Icon name={leftIconName} size={leftIconSize}/>}
+        {leftIconName && <Icon name={leftIconName} size={leftIconSize} onClick={onClick} />}
         <S.Title>{title}</S.Title>
       </S.TitleLeftContainer>
       {children}

@@ -1,13 +1,13 @@
-import { CheckItem, Question } from 'entity/checklist';
+import { CheckItem, CheckQuestion } from 'entity/checklist';
 
-const questions: Question[] = [
+const questions: CheckQuestion[] = [
   {
     uid: 0,
     title: '연식이 5년 이하인가요?',
     type_: 'SingleChoice',
     label: '건물/방 상태',
     category: 'Normal',
-    state: 'Looking',
+    status: 'Looking',
     checks: [
       {
         uid: 1000,
@@ -22,7 +22,7 @@ const questions: Question[] = [
     type_: 'SingleChoice',
     label: '건물/방 상태',
     category: 'Normal',
-    state: 'Looking',
+    status: 'Looking',
     checks: [
       {
         uid: 1001,
@@ -37,7 +37,7 @@ const questions: Question[] = [
     type_: 'SingleChoice',
     label: '옵션',
     category: 'Normal',
-    state: 'Looking',
+    status: 'Looking',
     checks: [
       {
         uid: 1002,
@@ -52,7 +52,7 @@ const questions: Question[] = [
     type_: 'MultipleChoice',
     label: '방 정보',
     category: 'Normal',
-    state: 'Looking',
+    status: 'Looking',
     checks: [
       {
         uid: 1003,
@@ -79,7 +79,7 @@ const questions: Question[] = [
 ];
 
 const answersMap: { [id: string]: CheckItem[] } = {
-  'Dabang::5f2a68c16644370946a0e10e': [
+  'Dabang::5f229e6f3d847c4cedaebc89': [
     {
       uid: 1001,
       question_id: 1,
@@ -96,7 +96,7 @@ const answersMap: { [id: string]: CheckItem[] } = {
       contents: '청소비',
     },
   ],
-  'Dabang::5f348a71aeafad219a2314e9': [
+  'Dabang::5f34ce7c8a68606a1f4f3d07': [
     {
       uid: 1000,
       question_id: 0,
@@ -118,7 +118,7 @@ const answersMap: { [id: string]: CheckItem[] } = {
       contents: '수도',
     },
   ],
-  'Zigbang::23037327': [],
+  'Zigbang::23332495': [],
 };
 
 export default { questions, answersMap };

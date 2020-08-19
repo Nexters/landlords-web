@@ -37,13 +37,17 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
   height: 46px;
   background-color: ${color.primaryYellow};
-  span {
-    font-weight: bold;
-    font-size: 16px;
-  }
+`;
+
+const HeaderTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
 `;
 
 const LogoIcon = styled(Icon)`
@@ -51,4 +55,18 @@ const LogoIcon = styled(Icon)`
   padding-bottom: 4px;
 `;
 
-export { Container, RoomContainer, EmptyRoomCard, RoomBox, Header, LogoIcon };
+const MypageIcon = styled(Icon)`
+  position: absolute;
+  right: 1.5rem;
+`;
+
+export {
+  Container,
+  RoomContainer,
+  EmptyRoomCard,
+  RoomBox,
+  Header,
+  LogoIcon,
+  HeaderTitle,
+  MypageIcon,
+};

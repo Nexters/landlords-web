@@ -1,23 +1,43 @@
+import { ANSWERS_URL, DELETE_ANSWER_URL } from 'api/constants';
+import request from 'api/request';
 import { Checkbox, Icon } from 'components';
-import { CheckItem, Question } from 'entity/checklist';
+import { CheckItem, CheckQuestion } from 'entity/checklist';
 import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { roomsAction } from 'store/roomsSlice';
 import { extractQuestionsByLabel } from 'utils/checklist';
 
 import * as S from './styled';
 
 interface CheckboxLayoutProps {
-  questions: Question[];
+  questions: CheckQuestion[];
 }
 
 export default function CheckboxLayout({ questions }: CheckboxLayoutProps): ReactElement {
   const { addAnswer, removeAnswer } = roomsAction;
   const dispatch = useDispatch();
   const questionsByLabel = extractQuestionsByLabel(questions);
+  const params: { id: string } = useParams();
 
-  const handleClick = (check: CheckItem) => () =>
-    check.checked ? dispatch(removeAnswer(check)) : dispatch(addAnswer(check));
+  const deleteCheckItem = async (check: CheckItem) => {
+    const { error, message } = await request.delete<CheckItem>(
+      DELETE_ANSWER_URL(params.id, check.uid),
+    );
+    if (error) alert(message);
+    else dispatch(removeAnswer(check));
+  };
+
+  const addCheckItem = async (check: CheckItem) => {
+    const { error, message } = await request.post<CheckItem>(ANSWERS_URL(params.id), {
+      check_id: check.uid,
+    });
+    if (error) alert(message);
+    else dispatch(addAnswer(check));
+  };
+
+  const handleCheckboxClick = (check: CheckItem) => () =>
+    check.checked ? deleteCheckItem(check) : addCheckItem(check);
 
   return (
     <>
@@ -37,14 +57,14 @@ export default function CheckboxLayout({ questions }: CheckboxLayoutProps): Reac
                       key={check.uid}
                       label={check.contents}
                       checked={check.checked || false}
-                      onClick={handleClick(check)}
+                      onClick={handleCheckboxClick(check)}
                     />
                   ))}
                 </S.CheckboxGroup>
               ) : (
                 <Checkbox
                   checked={question.checks[0].checked || false}
-                  onClick={handleClick(question.checks[0])}
+                  onClick={handleCheckboxClick(question.checks[0])}
                 />
               )}
             </S.CheckboxGroupWrapper>
