@@ -7,6 +7,7 @@ import { convertRoomForDisplay, createRoomMap } from 'utils/room';
 
 interface RoomsState {
   rooms: ConvertedRoom[];
+  fetchedRoom: Room;
   checklistStatus: StatusType;
   roomMap: { [id: string]: ConvertedRoom };
   singleCheckQuestions: CheckQuestion[];
@@ -16,6 +17,7 @@ interface RoomsState {
 
 const initialState = {
   rooms: [] as ConvertedRoom[],
+  fetchedRoom: {} as Room,
   checklistStatus: Object.keys(STATUS_MATCHER)[0] as StatusType,
   roomMap: {} as { [id: string]: ConvertedRoom },
   singleCheckQuestions: [] as CheckQuestion[],
@@ -62,6 +64,12 @@ const reducers = {
   removeRoom: (state: RoomsState, { payload }: PayloadAction<ConvertedRoom>) => {
     state.rooms = state.rooms.filter(({ uid }) => uid !== payload.uid);
     delete state.roomMap[payload.uid];
+  },
+  setFetchedRoom: (state: RoomsState, { payload }: PayloadAction<Room>) => {
+    state.fetchedRoom = payload;
+  },
+  addRoom: (state: RoomsState, { payload }: PayloadAction<Room>) => {
+    state.rooms.push(convertRoomForDisplay(payload));
   },
 };
 
