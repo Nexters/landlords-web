@@ -2,7 +2,7 @@ import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import webShare from 'api/webShare';
 import React, { ReactElement } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -12,13 +12,15 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisResultPage(): ReactElement {
-  const shareUrl = 'https://checkhaebang.web.app/';
-  const queryString = window.location.search;
+  const path = useLocation().pathname;
+  const queryString = useLocation().search;
+  const shareUrl = 'https://checkhaebang.web.app' + path + queryString;
+
   const urlParams = new URLSearchParams(queryString);
 
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
-    history.push('/checklist');
+    history.push('/auth');
   };
   const handleRetestButtonClick = () => {
     history.push('/persona');
@@ -32,9 +34,11 @@ export default function PersonaAnalysisResultPage(): ReactElement {
       <S.PersonaDescription>{urlParams.get('description')}</S.PersonaDescription>
 
       <S.ShareButtonDiv>
-        <S.ShareButton onClick={() => facebookShare(shareUrl)}>페북</S.ShareButton>
-        <S.ShareButton onClick={() => kakaoShare(shareUrl)}>카카오</S.ShareButton>
-        <S.ShareButton onClick={() => webShare('title', shareUrl)}>url</S.ShareButton>
+        <S.ShareButton onClick={() => facebookShare(shareUrl)} bgColor='#3b5a96'></S.ShareButton>
+        <S.ShareButton onClick={() => kakaoShare(shareUrl)} bgColor='#fedc00'></S.ShareButton>
+        <S.ShareButton
+          onClick={() => webShare('title', shareUrl)}
+          bgColor='#386edb'></S.ShareButton>
       </S.ShareButtonDiv>
 
       <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>

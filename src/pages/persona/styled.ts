@@ -70,13 +70,14 @@ const ShareButtonDiv = styled.div`
   justify-content: center;
   margin-top: 22px;
 `;
-const ShareButton = styled.button`
+
+const ShareButton = styled.button<{ bgColor: string }>`
   width: 50px;
   height: 50px;
   margin: 0 5px;
   border: none;
   border-radius: 50%;
-  background-color: ${color.primaryDullPurple};
+  background-color: ${({ bgColor }) => `${bgColor}`};
 `;
 
 const RetestButton = styled.button`

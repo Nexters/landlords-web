@@ -17,6 +17,12 @@ export const BUILDING_TYPE_MATHCER = {
   Villa: '빌라',
 };
 
+export enum SELLING_TYPE {
+  MONTHLY_RENT = 'MonthlyRent',
+  JEONSE = 'Jeonse',
+  SELLING = 'Selling',
+}
+
 export const SELLING_TYPE_MATCHER = {
   MonthlyRent: '월세',
   Jeonse: '전세',
@@ -35,7 +41,7 @@ export interface Room {
   building_type: keyof typeof BUILDING_TYPE_MATHCER;
   room_size: number;
   floor: string;
-  has_elevator: boolean;
+  has_elevator: boolean | null;
   administrative_expenses: number;
   user_id: number;
 }

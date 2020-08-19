@@ -20,7 +20,6 @@ export default function PrivateRoute({
       return <div>Loading...</div>;
     }
     if (loginState === LOGIN_STATE.ERROR) {
-      console.log(apiBaseURL);
       window.location.href = `${apiBaseURL}/oauth/google`;
       return <></>;
     }
