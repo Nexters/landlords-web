@@ -42,7 +42,7 @@ export default function PersonaQuestionPage(): ReactElement {
   const fetchAnswer = async () => {
     const params = new URLSearchParams();
     questionsState.answer.forEach((answer: number) => {
-      params.append('check_answers', answer.toString());
+      params.append('choice_answers', answer.toString());
     });
 
     const res = await request.get<Persona>('/persona', { params: params });
