@@ -1,6 +1,7 @@
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import webShare from 'api/webShare';
+import { Icon } from 'components';
 import React, { ReactElement } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -33,13 +34,13 @@ export default function PersonaAnalysisResultPage(): ReactElement {
       </S.TitleWrapper>
       <S.PersonaDescription>{urlParams.get('description')}</S.PersonaDescription>
 
-      <S.ShareButtonDiv>
-        <S.ShareButton onClick={() => facebookShare(shareUrl)} bgColor='#3b5a96'></S.ShareButton>
-        <S.ShareButton onClick={() => kakaoShare(shareUrl)} bgColor='#fedc00'></S.ShareButton>
-        <S.ShareButton
-          onClick={() => webShare('title', shareUrl)}
-          bgColor='#386edb'></S.ShareButton>
-      </S.ShareButtonDiv>
+      <S.ShareButtonWrapper>
+        <S.ShareButtons>
+          <Icon name='FACEBOOK_BUTTON' size='42' onClick={() => facebookShare(shareUrl)} />
+          <Icon name='KAKAOTALK_BUTTON' size='42' onClick={() => kakaoShare(shareUrl)} />
+          <Icon name='URL_BUTTON' size='42' onClick={() => webShare('title', shareUrl)} />
+        </S.ShareButtons>
+      </S.ShareButtonWrapper>
 
       <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>
         {TEXT.GO_CHECKLIST}
