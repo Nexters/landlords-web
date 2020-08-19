@@ -27,11 +27,11 @@ export default function EntryRoute() {
           <Route path='/persona' component={PersonaAnalysisPage} />
           <PrivateRoute path='/comparison' component={RoomComparisonPage} />
           <PrivateRoute path='/auth' component={Login} />
-          <Route path='/add-room/via-link' component={AddRoomViaLink} />
-          <Route path='/add-room' component={AddRoom} />
+          <PrivateRoute path='/add-room/via-link' component={AddRoomViaLink} />
+          <PrivateRoute path='/add-room' component={AddRoom} />
           <PrivateRoute path='/rooms/:id' component={ChecklistPage} />
           <PrivateRoute path='/rooms' component={RoomListPage} />
-          <Route path='/' component={MainPage} />
+          <Route path='/' component={PersonaAnalysisPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

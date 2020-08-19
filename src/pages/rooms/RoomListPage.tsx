@@ -2,6 +2,7 @@ import request from 'api/request';
 import { RoomsResponse } from 'entity/response';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import MenuBar from './menu-bar';
@@ -13,6 +14,7 @@ export default function RoomListPage() {
   const { setRooms } = roomsAction;
   const dispatch = useDispatch();
   const userName = sessionStorage.getItem('userName');
+  const history = useHistory();
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -37,7 +39,7 @@ export default function RoomListPage() {
         {rooms.map((room, idx) => (
           <RoomCard key={idx} room={room} />
         ))}
-        <S.EmptyRoomCard>+</S.EmptyRoomCard>
+        <S.EmptyRoomCard onClick={() => history.push('/add-room/via-link')}>+</S.EmptyRoomCard>
       </S.RoomContainer>
     </S.Container>
   );
