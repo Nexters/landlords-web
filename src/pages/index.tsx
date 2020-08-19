@@ -8,7 +8,6 @@ import AddRoom from './add-room/AddRoom';
 import AddRoomViaLink from './add-room/via-link';
 import Login from './auth/Login';
 import ChecklistPage from './checklist/ChecklistPage';
-import RoomComparisonPage from './comparison/RoomComparison';
 import MainPage from './main/MainPage';
 import PersonaAnalysisPage from './persona/PersonaAnalysis';
 import PersonaAnalysisResultPage from './persona/PersonaAnalysisResult';
@@ -25,7 +24,6 @@ export default function EntryRoute() {
           <Route path='/persona/result' component={PersonaAnalysisResultPage} />
           <Route path='/persona/question' component={PersonaQuestionPage} />
           <Route path='/persona' component={PersonaAnalysisPage} />
-          <PrivateRoute path='/comparison' component={RoomComparisonPage} />
           <PrivateRoute path='/auth' component={Login} />
           <Route path='/add-room/via-link' component={AddRoomViaLink} />
           <Route path='/add-room' component={AddRoom} />
