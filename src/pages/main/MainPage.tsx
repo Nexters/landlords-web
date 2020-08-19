@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
-import { StyledWrapper } from './styled';
+import React, { ReactElement, useEffect } from 'react';
 
-type MainPageProps = {};
+import * as S from './styled';
 
-export default function MainPage({}: MainPageProps): ReactElement {
-  return <StyledWrapper>MainPage</StyledWrapper>;
+export default function MainPage(): ReactElement {
+
+  return <S.Container>MainPage</S.Container>;
 }

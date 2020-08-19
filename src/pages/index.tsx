@@ -1,17 +1,39 @@
+import PrivateRoute from 'components/private-route';
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import MainPage from './main/MainPage';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createStore } from 'store';
+
+import AddRoom from './add-room/AddRoom';
+import AddRoomViaLink from './add-room/via-link';
+import Login from './auth/Login';
 import ChecklistPage from './checklist/ChecklistPage';
-import PersonaAnalysisPage from './personaAnalysis/PersonaAnalysis';
-import RoomComparisonPage from './roomComparison/RoomComparison';
+import RoomComparisonPage from './comparison/RoomComparison';
+import MainPage from './main/MainPage';
+import PersonaAnalysisPage from './persona/PersonaAnalysis';
+import PersonaAnalysisResultPage from './persona/PersonaAnalysisResult';
+import PersonaQuestionPage from './question/PersonaQuestion';
+import RoomListPage from './rooms/RoomListPage';
 
-const EntryRoute = () => (
-  <BrowserRouter>
-    <Route path='/' component={MainPage} />
-    <Route path='/checklist' component={ChecklistPage} />
-    <Route path='/personaAnalysis' component={PersonaAnalysisPage} />
-    <Route path='/roomComparison' component={RoomComparisonPage} />
-  </BrowserRouter>
-);
+export default function EntryRoute() {
+  const store = createStore();
 
-export default EntryRoute;
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/persona/result' component={PersonaAnalysisResultPage} />
+          <Route path='/persona/question' component={PersonaQuestionPage} />
+          <Route path='/persona' component={PersonaAnalysisPage} />
+          <PrivateRoute path='/comparison' component={RoomComparisonPage} />
+          <PrivateRoute path='/auth' component={Login} />
+          <Route path='/add-room/via-link' component={AddRoomViaLink} />
+          <Route path='/add-room' component={AddRoom} />
+          <PrivateRoute path='/rooms/:id' component={ChecklistPage} />
+          <PrivateRoute path='/rooms' component={RoomListPage} />
+          <Route path='/' component={MainPage} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+  );
+}

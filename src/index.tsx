@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import EntryRoute from './pages';
-import GlobalStyles from './GlobalStyles';
 import * as serviceWorker from './serviceWorker';
+import GlobalStyles from './styles/GlobalStyles';
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyles />
     <EntryRoute />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
