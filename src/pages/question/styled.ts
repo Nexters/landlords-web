@@ -40,11 +40,18 @@ const CardsWrapper = styled.div`
   margin-top: 6px;
   padding: 40px 0 46px;
 `;
+const ProgressLength = styled.div`
+  text-align: right;
+  margin-top: 115px;
+  font-family: SpoqaHanSans;
+  font-size: 12px;
+  color: ${color.grayscalebb};
+`;
 
 const ProgressContainer = styled.div`
   width: 100%;
   height: 6px;
-  margin-top: 104px;
+  margin-top: 8px;
   border-radius: 2.5px;
   background-color: rgba(41, 41, 44, 0.08);
 `;
@@ -66,6 +73,7 @@ export {
   BackButton,
   TitleDiv,
   CardsWrapper,
+  ProgressLength,
   ProgressContainer,
   ProgressComplete,
 };
