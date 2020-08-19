@@ -34,9 +34,11 @@ export default function PersonaAnalysisResultPage(): ReactElement {
       <S.PersonaDescription>{urlParams.get('description')}</S.PersonaDescription>
 
       <S.ShareButtonDiv>
-        <S.ShareButton onClick={() => facebookShare(shareUrl)}>페북</S.ShareButton>
-        <S.ShareButton onClick={() => kakaoShare(shareUrl)}>카카오</S.ShareButton>
-        <S.ShareButton onClick={() => webShare('title', shareUrl)}>url</S.ShareButton>
+        <S.ShareButton onClick={() => facebookShare(shareUrl)} bgColor='#3b5a96'></S.ShareButton>
+        <S.ShareButton onClick={() => kakaoShare(shareUrl)} bgColor='#fedc00'></S.ShareButton>
+        <S.ShareButton
+          onClick={() => webShare('title', shareUrl)}
+          bgColor='#386edb'></S.ShareButton>
       </S.ShareButtonDiv>
 
       <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>
