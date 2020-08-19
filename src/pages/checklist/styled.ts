@@ -9,7 +9,7 @@ const Container = styled.div`
   letter-spacing: normal;
 `;
 
-const StatusHeader = styled.header`
+const Header = styled.header`
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -17,13 +17,16 @@ const StatusHeader = styled.header`
   background-color: ${color.grayscalef9};
 `;
 
-const StatusTitle = styled.span`
+const HeaderTitle = styled.span`
+  width: 100%;
+  text-align: center;
   font-size: 16px;
   font-weight: bold;
   color: ${color.grayscale29};
 `;
 
 const BackButton = styled.button`
+  position: absolute;
   margin: 0 0.5rem;
   background-color: transparent;
   padding: 0;
@@ -116,8 +119,8 @@ const EmtpyRoomCard = styled.div`
 export {
   Container,
   BackButton,
-  StatusHeader,
-  StatusTitle,
+  Header,
+  HeaderTitle,
   RoomCardList,
   RoomContentWrapper,
   RoomContent,
