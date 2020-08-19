@@ -35,9 +35,33 @@ jobs:
         with:
           name: build
           path: build
+      - name: Variable to Dotenv
+        uses: TickX/var-to-dotenv@v1.1.3
+        with:
+          key: "REACT_APP_PRODUCTION_API_URL"
+          value: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Variable to Dotenv
+        uses: TickX/var-to-dotenv@v1.1.3
+        with:
+          key: "REACT_APP_DEVELOPMENT_API_URL"
+          value: ${{ secrets.REACT_APP_DEVELOPMENT_API_URL }}
+      - name: Variable to Dotenv
+        uses: TickX/var-to-dotenv@v1.1.3
+        with:
+          key: "REACT_APP_KAKAO_APP_KEY"
+          value: ${{ secrets.REACT_APP_KAKAO_APP_KEY }}
+      - name: Variable to Dotenv
+        uses: TickX/var-to-dotenv@v1.1.3
+        with:
+          key: "REACT_APP_FACEBOOKE_APP_ID"
+          value: ${{ secrets.REACT_APP_FACEBOOKE_APP_ID }}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.5.0
         with:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          REACT_APP_PRODUCTION_API_URL: ${{ secrets.REACT_APP_PRODUCTION_API_URL }}
+          REACT_APP_DEVELOPMENT_API_URL: ${{ secrets.REACT_APP_DEVELOPMENT_API_URL }}
+          REACT_APP_KAKAO_APP_KEY: ${{ secrets.REACT_APP_KAKAO_APP_KEY }}
+          REACT_APP_FACEBOOKE_APP_ID: ${{ secrets.REACT_APP_FACEBOOKE_APP_ID }}
