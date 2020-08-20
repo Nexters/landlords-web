@@ -64,20 +64,17 @@ const GoChecklistButton = styled(Button)`
   background-color: ${color.primaryYellow};
 `;
 
-const ShareButtonDiv = styled.div`
+const ShareButtonWrapper = styled.div`
   display: flex;
   flex-direction: rows;
-  justify-content: center;
   margin-top: 22px;
 `;
 
-const ShareButton = styled.button<{ bgColor: string }>`
-  width: 50px;
-  height: 50px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 50%;
-  background-color: ${({ bgColor }) => `${bgColor}`};
+const ShareButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 142px;
+  margin: auto;
 `;
 
 const RetestButton = styled.button`
@@ -143,7 +140,7 @@ export {
   StartButton,
   BackButton,
   GoChecklistButton,
-  ShareButtonDiv,
-  ShareButton,
+  ShareButtonWrapper,
+  ShareButtons,
   RetestButton,
 };

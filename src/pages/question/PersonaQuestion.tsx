@@ -59,11 +59,6 @@ export default function PersonaQuestionPage(): ReactElement {
   const { title, choices }: Choices = questions[questionsState.currentIdx]
     ? questions[questionsState.currentIdx]
     : { title: '', choices: [{ uid: 0, question_id: 0, contents: '', category: 0 }] };
-
-  const questionNum =
-    questionsState.currentIdx + 1 < 10
-      ? '0' + (questionsState.currentIdx + 1).toString()
-      : questionsState.currentIdx + 1;
   const progressVal = (100 / questions.length) * (questionsState.currentIdx + 1);
 
   const handleCardClick = (index: number) => {
@@ -110,11 +105,15 @@ export default function PersonaQuestionPage(): ReactElement {
       </S.Header>
 
       <S.TitleDiv>
-        {questionNum}
+        Q.{questionsState.currentIdx + 1}
         <br />
         {title}
       </S.TitleDiv>
       <S.CardsWrapper>{cardList}</S.CardsWrapper>
+
+      <S.ProgressLength>
+        {questionsState.currentIdx + 1}/{questions.length}
+      </S.ProgressLength>
       <S.ProgressContainer>
         <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
       </S.ProgressContainer>
