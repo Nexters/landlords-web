@@ -47,10 +47,14 @@ export default function PersonaQuestionPage(): ReactElement {
 
     const res = await request.get<Persona>('/persona', { params: params });
     const data = res.data;
+
+    const type = encodeURIComponent(data.type);
+    const description = encodeURIComponent(data.description);
+    const recommended_place = encodeURIComponent(data.recommended_place);
     history.push(
-      `/persona/result?type=${data.type}
-      &description=${data.description}
-      &recommended_place=${data.recommended_place}`,
+      `/persona/result?type=${type}
+      &description=${description}
+      &recommended_place=${recommended_place}`,
     );
   };
 
