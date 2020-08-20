@@ -15,7 +15,7 @@ enum TEXT {
 export default function PersonaAnalysisResultPage(): ReactElement {
   const path = useLocation().pathname;
   const queryString = useLocation().search;
-  const shareUrl = 'https://checkhaebang.web.app' + path + queryString;
+  const shareUrl = process.env.REACT_APP_PRODUCTION_API_URL + path + queryString;
 
   const urlParams = new URLSearchParams(queryString);
 
