@@ -104,11 +104,11 @@ export default function PersonaQuestionPage(): ReactElement {
         <Icon name='TITLE_LOGO' opacity='0.6' />
       </S.Header>
 
-      <S.TitleDiv>
+      <S.TitleWrapper>
         Q.{questionsState.currentIdx + 1}
         <br />
         {title}
-      </S.TitleDiv>
+      </S.TitleWrapper>
       <S.CardsWrapper>{cardList}</S.CardsWrapper>
 
       <S.ProgressLength>
