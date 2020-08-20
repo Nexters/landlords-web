@@ -18,7 +18,7 @@ export default function Card({ uid, contents, index, onClick }: CardProps) {
     const nextHighlight = line.split('</hr>')[1];
     return (
       <>
-        <span key={line}>
+        <span key={highlight}>
           {prevHighlight}
           <S.Highlight>{highlight}</S.Highlight>
           {nextHighlight}

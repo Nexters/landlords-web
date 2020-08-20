@@ -19,6 +19,23 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   const urlParams = new URLSearchParams(queryString);
 
+  const descriptionParams: string = urlParams.get('description')!;
+  const description = descriptionParams.split('<hr>').map((line) => {
+    if (line.includes('</hr>')) {
+      const highlights = line.split('</hr>');
+      const highlight = highlights[0];
+      const nextHighlight = highlights[1];
+      return (
+        <>
+          <S.Highlight key={highlight}>{highlight}</S.Highlight>
+          {nextHighlight}
+        </>
+      );
+    } else {
+      return <span>{line}</span>;
+    }
+  });
+
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
     history.push('/auth');
@@ -30,9 +47,10 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     <S.ResultContainer>
       <S.TitleWrapper>
         당신의 자취 유형은
-        <S.UserPersona>{urlParams.get('title')}!</S.UserPersona>
+        <S.UserPersona>{urlParams.get('type')}!</S.UserPersona>
       </S.TitleWrapper>
-      <S.PersonaDescription>{urlParams.get('description')}</S.PersonaDescription>
+      <S.RecommendedPlace>추천공간 : {urlParams.get('recommended_place')}</S.RecommendedPlace>
+      <S.PersonaDescription>{description}</S.PersonaDescription>
 
       <S.ShareButtonWrapper>
         <S.ShareButtons>

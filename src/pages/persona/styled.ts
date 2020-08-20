@@ -38,10 +38,22 @@ const UserPersona = styled.h1`
   line-height: 35px;
 `;
 
+const RecommendedPlace = styled.h2`
+  margin-top: 280px;
+  font-size: 16px;
+  font-weight: bold;
+  color: ${color.grayscale29};
+`;
+
 const PersonaDescription = styled.p`
-  margin-top: 14rem;
-  font-size: 0.8rem;
+  margin-top: 12px;
+  font-size: 12px;
   font-weight: normal;
+  line-height: 1.46;
+`;
+
+const Highlight = styled.span`
+  background-color: ${color.secondaryYellow};
 `;
 
 const Button = styled.button`
@@ -132,8 +144,10 @@ export {
   TitleWrapper,
   Title,
   UserPersona,
+  RecommendedPlace,
   Description,
   PersonaDescription,
+  Highlight,
   CloseButton,
   CounterDescription,
   Count,
