@@ -28,8 +28,8 @@ export default function RoomDeleteModal({
   const handleConfirmClick = async () => {
     const { error } = await request.delete(ROOM_URL(target.uid));
     if (error) alert('방 삭제 실패');
-    else if (rooms.length === 1) history.push('/rooms');
     else {
+      if (rooms.length === 1) history.push('/rooms');
       dispatch(removeRoom(target));
       onClose();
     }
