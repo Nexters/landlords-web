@@ -1,14 +1,17 @@
-import analyzingImg from 'images/analyzing.png';
 import React from 'react';
 
 import * as S from './styled';
 
-export default function Loading() {
+interface LoadingProps {
+  image: string;
+  text: string;
+}
+export default function Loading({ image, text }: LoadingProps) {
   return (
     <S.Container>
-      <img src={analyzingImg}></img>
+      <img src={image}></img>
       <S.LoadingText>
-        나의 자취 유형 분석중
+        {text}
         <S.Dot />
       </S.LoadingText>
     </S.Container>

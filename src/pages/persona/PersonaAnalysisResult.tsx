@@ -2,13 +2,13 @@ import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import request from 'api/request';
 import webShare from 'api/webShare';
-import { Icon } from 'components';
+import { Icon, Loading } from 'components';
 import { Persona } from 'entity/persona';
+import creatingImg from 'images/creating.png';
 import illust from 'images/illust.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import Loading from './loading';
 import * as S from './styled';
 
 enum TEXT {
@@ -71,7 +71,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     history.push('/persona');
   };
   return isLoading ? (
-    <Loading />
+    <Loading image={creatingImg} text='나만의 체크리스트 생성중' />
   ) : (
     <S.ResultContainer>
       <S.TitleWrapper>
