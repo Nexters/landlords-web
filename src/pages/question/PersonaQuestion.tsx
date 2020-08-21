@@ -43,7 +43,7 @@ export default function PersonaQuestionPage(): ReactElement {
     if (questionsState.isLoading) {
       setTimeout(() => {
         history.push(`/persona/result?answer_id=${questionsState.answer}`);
-      }, 1500);
+      }, 2000);
     }
   }, [questionsState]);
 

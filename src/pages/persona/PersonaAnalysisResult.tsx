@@ -8,6 +8,7 @@ import illust from 'images/illust.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import Loading from './loading';
 import * as S from './styled';
 
 enum TEXT {
@@ -23,6 +24,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     description: '',
     recommended_place: '',
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchAnswer = async () => {
@@ -60,12 +62,17 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
-    history.push('/auth');
+    setIsLoading(true);
+    setTimeout(() => {
+      history.push('/auth');
+    }, 3000);
   };
   const handleRetestButtonClick = () => {
     history.push('/persona');
   };
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <S.ResultContainer>
       <S.TitleWrapper>
         당신의 자취 유형은
