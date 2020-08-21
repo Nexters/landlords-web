@@ -1,3 +1,4 @@
+import { apiBaseURL } from 'api/constants';
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import webShare from 'api/webShare';
@@ -15,9 +16,25 @@ enum TEXT {
 export default function PersonaAnalysisResultPage(): ReactElement {
   const path = useLocation().pathname;
   const queryString = useLocation().search;
-  const shareUrl = 'https://checkhaebang.web.app' + path + queryString;
+  const shareUrl = apiBaseURL + path + queryString;
 
   const urlParams = new URLSearchParams(queryString);
+  const descriptionParams: string = urlParams.get('description')!;
+  const description = descriptionParams.split('<hr>').map((line) => {
+    if (line.includes('</hr>')) {
+      const highlights = line.split('</hr>');
+      const highlight = highlights[0];
+      const nextHighlight = highlights[1];
+      return (
+        <>
+          <S.Highlight key={highlight}>{highlight}</S.Highlight>
+          {nextHighlight}
+        </>
+      );
+    } else {
+      return <span>{line}</span>;
+    }
+  });
 
   const descriptionParams: string = urlParams.get('description')!;
   const description = descriptionParams.split('<hr>').map((line) => {
