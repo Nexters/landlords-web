@@ -17,35 +17,31 @@ export const BUILDING_TYPE_MATHCER = {
   Villa: '빌라',
 };
 
-export enum SELLING_TYPE {
-  MONTHLY_RENT = 'MonthlyRent',
-  JEONSE = 'Jeonse',
-  SELLING = 'Selling',
-}
-
 export const SELLING_TYPE_MATCHER = {
-  [SELLING_TYPE.MONTHLY_RENT]: '월세',
-  [SELLING_TYPE.JEONSE]: '전세',
-  [SELLING_TYPE.SELLING]: '매매',
+  MonthlyRent: '월세',
+  Jeonse: '전세',
+  Selling: '매매',
 };
 
+export type SellingType = keyof typeof SELLING_TYPE_MATCHER;
+export type BuildingType = keyof typeof BUILDING_TYPE_MATHCER;
+
 export interface Room {
-  uid: string;
+  uid?: string;
   deposit: number;
   monthly_rent: number;
-  selling_type: keyof typeof SELLING_TYPE_MATCHER;
+  selling_type: SellingType;
   address: string;
   title: string;
   description: string;
   image: string;
-  building_type: keyof typeof BUILDING_TYPE_MATHCER;
+  building_type: BuildingType;
   room_size: number;
   floor: string;
   has_elevator: boolean | null;
   administrative_expenses: number;
   user_id: number;
   name?: string;
-  price?: string;
 }
 
 export interface ConvertedRoom {

@@ -14,8 +14,8 @@ const Button = styled.button<ButtonProps>`
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: ${({ bgColor }) => bgColor ? bgColor : 'none'};
-  border: ${({ borderColor }) => borderColor ? `1px solid ${borderColor}` : 'none'};
+  background-color: ${({ bgColor }) => (bgColor ? bgColor : 'none')};
+  border: ${({ borderColor }) => (borderColor ? `1px solid ${borderColor}` : 'none')};
   height: ${({ height }) => height};
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);

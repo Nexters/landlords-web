@@ -1,8 +1,8 @@
 import request from 'api/request';
-import { Icon } from 'components';
 import { RoomsResponse } from 'entity/response';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import MenuBar from './menu-bar';
@@ -13,34 +13,35 @@ export default function RoomListPage() {
   const { rooms } = useSelector(roomsSelector);
   const { setRooms } = roomsAction;
   const dispatch = useDispatch();
+  const userName = sessionStorage.getItem('userName');
+  const history = useHistory();
 
   useEffect(() => {
     const fetchRooms = async () => {
-      const { data, error } = await request.get<RoomsResponse>('/rooms');
-      if (error) {
-        alert('방 데이터 로드 실패');
-        return;
-      }
-      dispatch(setRooms(data.rooms));
+      const { data, error, message } = await request.get<RoomsResponse>('/rooms');
+      if (error) alert(message);
+      else dispatch(setRooms(data.rooms));
     };
     fetchRooms();
   }, []);
 
+  console.log(rooms);
+
   return (
     <S.Container>
       <S.Header>
-        <span>
-          예희&#39;s
+        <S.HeaderTitle>
+          <span> {userName || '누군가'}&#39;s</span>
           <S.LogoIcon name='TITLE_LOGO' />
-        </span>
-        <Icon name='HUMAN_NORMAL' size='17' />
+        </S.HeaderTitle>
+        <S.MypageIcon name='HUMAN_NORMAL' size='17' />
       </S.Header>
       <MenuBar />
       <S.RoomContainer>
         {rooms.map((room, idx) => (
           <RoomCard key={idx} room={room} />
         ))}
-        <S.EmptyRoomCard>+</S.EmptyRoomCard>
+        <S.EmptyRoomCard onClick={() => history.push('/add-room/via-link')}>+</S.EmptyRoomCard>
       </S.RoomContainer>
     </S.Container>
   );

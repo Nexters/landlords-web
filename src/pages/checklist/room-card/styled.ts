@@ -4,7 +4,6 @@ import color from 'styles/color';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: normal;
   width: 56px;
   height: 63px;
   margin-right: 0.5rem;
@@ -20,6 +19,15 @@ const Thumbnail = styled.span`
     height: 56px;
     border-radius: 2px;
   }
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: ${color.basicWhite};
 `;
 
 const ThumnailOverlay = styled.span<{ active: boolean }>`
@@ -40,4 +48,4 @@ const ActiveBar = styled.span`
   background-color: #ffc856;
 `;
 
-export { Container, Thumbnail, ThumnailOverlay, ActiveBar };
+export { Container, Thumbnail, IconWrapper, ThumnailOverlay, ActiveBar };

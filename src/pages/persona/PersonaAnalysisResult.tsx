@@ -1,6 +1,7 @@
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import webShare from 'api/webShare';
+import { Icon } from 'components';
 import React, { ReactElement } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -18,6 +19,23 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   const urlParams = new URLSearchParams(queryString);
 
+  const descriptionParams: string = urlParams.get('description')!;
+  const description = descriptionParams.split('<hr>').map((line) => {
+    if (line.includes('</hr>')) {
+      const highlights = line.split('</hr>');
+      const highlight = highlights[0];
+      const nextHighlight = highlights[1];
+      return (
+        <>
+          <S.Highlight key={highlight}>{highlight}</S.Highlight>
+          {nextHighlight}
+        </>
+      );
+    } else {
+      return <span>{line}</span>;
+    }
+  });
+
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
     history.push('/auth');
@@ -29,17 +47,18 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     <S.ResultContainer>
       <S.TitleWrapper>
         당신의 자취 유형은
-        <S.UserPersona>{urlParams.get('title')}!</S.UserPersona>
+        <S.UserPersona>{urlParams.get('type')}!</S.UserPersona>
       </S.TitleWrapper>
-      <S.PersonaDescription>{urlParams.get('description')}</S.PersonaDescription>
+      <S.RecommendedPlace>추천공간 : {urlParams.get('recommended_place')}</S.RecommendedPlace>
+      <S.PersonaDescription>{description}</S.PersonaDescription>
 
-      <S.ShareButtonDiv>
-        <S.ShareButton onClick={() => facebookShare(shareUrl)} bgColor='#3b5a96'></S.ShareButton>
-        <S.ShareButton onClick={() => kakaoShare(shareUrl)} bgColor='#fedc00'></S.ShareButton>
-        <S.ShareButton
-          onClick={() => webShare('title', shareUrl)}
-          bgColor='#386edb'></S.ShareButton>
-      </S.ShareButtonDiv>
+      <S.ShareButtonWrapper>
+        <S.ShareButtons>
+          <Icon name='FACEBOOK_BUTTON' size='42' onClick={() => facebookShare(shareUrl)} />
+          <Icon name='KAKAOTALK_BUTTON' size='42' onClick={() => kakaoShare(shareUrl)} />
+          <Icon name='URL_BUTTON' size='42' onClick={() => webShare('title', shareUrl)} />
+        </S.ShareButtons>
+      </S.ShareButtonWrapper>
 
       <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>
         {TEXT.GO_CHECKLIST}

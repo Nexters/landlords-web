@@ -1,190 +1,182 @@
-import api from 'api/request';
-import { Button,Header } from 'components';
-import React, { useEffect,useState } from 'react';
-import { useDispatch,useSelector } from 'react-redux';
+import request from 'api/request';
+import { Button, Header } from 'components';
+import {
+  BUILDING_TYPE_MATHCER,
+  BuildingType,
+  Room,
+  ROOM_CONTENTS_LABEL,
+  SELLING_TYPE_MATCHER,
+  SellingType,
+} from 'entity/rooms';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { roomSelector } from 'store/roomSlice';
+import { roomsAction } from 'store/roomsSlice';
 import color from 'styles/color';
-import { convertRoomForBackend } from 'utils/room';
 
 import InputRow from './InputRow';
 import * as S from './styled';
 
-enum INPUT_NAME {
-  NAME = 'name',
-  ADDRESS = 'address',
-  BUILDING_TYPE = 'buildingType',
-  ROOM_SIZE = 'size',
-  NUMBER_OF_FLOORS = 'floor',
-  MAINTENANCE = 'administrationCost',
-}
-
-const INITIAL_STATE = {
-  [INPUT_NAME.NAME]: '',
-  [INPUT_NAME.ADDRESS]: '',
-  [INPUT_NAME.BUILDING_TYPE]: '',
-  [INPUT_NAME.ROOM_SIZE]: '',
-  [INPUT_NAME.NUMBER_OF_FLOORS]: '',
-  [INPUT_NAME.MAINTENANCE]: '',
-  elevator: '없음',
-  imageUrl: '',
+const initialRoom = {
+  deposit: 0,
+  monthly_rent: 0,
+  selling_type: 'MonthlyRent' as SellingType,
+  address: '',
+  title: '',
+  description: '',
+  image: '',
+  building_type: 'OneRoom' as BuildingType,
+  room_size: 0,
+  floor: '',
+  has_elevator: null,
+  administrative_expenses: 0,
+  user_id: 0,
+  name: '',
 };
 
-export default function AddRoom(props: any) {
-  const [state, setState] = useState(INITIAL_STATE);
-  const { room } = useSelector(roomSelector);
+export default function AddRoom() {
+  const [room, setRoom] = useState<Room>(initialRoom);
+  const [price, setPrice] = useState('');
+  const { addRoom } = roomsAction;
   const dispatch = useDispatch();
   const history = useHistory();
   console.log('process.env', process.env);
 
-  useEffect(() => {
-    if (room) {
-      const {
-        name,
-        address,
-        buildingType,
-        size,
-        floor,
-        elevator,
-        administrationCost,
-        imageUrl,
-      } = room;
-  
-      setState({
-        name,
-        address,
-        administrationCost,
-        size,
-        buildingType,
-        floor,
-        imageUrl,
-        elevator,
-      });
-    }
-  }, []);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
+    setRoom({
+      ...room,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async () => {
-    const {
-      name,
-      address,
-      buildingType,
-      floor,
-      size,
-    } = state;
-    if(name && address && size && buildingType && floor) {
-      const req = convertRoomForBackend({ ...state, ...room });
-      try {
-        const { error } = await api.post('/rooms', req, {
-          headers: {
-            Authorization: sessionStorage.getItem('accessToken'),
-          },
-        });
-        if (error) throw new Error('Unable to register');
-        alert('성공');
-      } catch {
-        alert('방 등록에 실패했습니다. 다시 시도해 주세요');
-      } finally {
-        history.push('/');
-      }
+    const updatedRoom = setDepositAndMonthlyRent(room);
+    const { error } = await request.post('/rooms', updatedRoom);
+    if (error) alert('방 등록에 실패했습니다.');
+    else {
+      dispatch(addRoom(room));
+      history.push('/rooms');
     }
   };
 
-  const getButtonStyleProps = (active: boolean) => {
-    return active
-      ? {
-        height: '32px',
-        fontSize: '14px',
-        bgColor: color.primaryDullPurple,
-        textColor: color.basicWhite,
-      }
-      : {
-        height: '32px',
-        fontSize: '14px',
-      };
+  const getButtonStyleProps = (hasElevator: boolean | null) => {
+    const base = { height: '32px', fontSize: '14px' };
+    return hasElevator
+      ? { ...base, bgColor: color.primaryDullPurple, textColor: color.basicWhite }
+      : base;
   };
 
-  const hasElevator = state.elevator === '있음';
-  
+  const setDepositAndMonthlyRent = (room: Room) => {
+    const [deposit, monthly_rent] = price.split('/');
+    return {
+      ...room,
+      deposit: +deposit || 0,
+      monthly_rent: +monthly_rent || 0,
+    };
+  };
+
   return (
     <>
-      <Header 
+      <Header
         title='방 직접 입력하기'
         leftIconName='NAVIGATION_BACKWARD'
         leftIconSize='16'
+        onClick={() => history.push('/add-room/via-link')}
       />
       <S.Container>
-        <S.Image src={state.imageUrl} />
+        <S.Image src={room.image} />
         <S.InputContainer>
           <InputRow
-            value={state[INPUT_NAME.NAME]}
-            name={INPUT_NAME.NAME}
+            value={room.name}
+            name='name'
             label='방 제목'
-            placeholder='600 / 50'
+            placeholder='월세 600/50'
             onChange={handleInput}
           />
+          <S.Row>
+            <S.Label></S.Label>
+            <S.BuildingTypeButtonsGrid>
+              {Object.keys(SELLING_TYPE_MATCHER).map((key) => (
+                <S.SelectableButton
+                  name={key}
+                  key={key}
+                  onClick={() => setRoom({ ...room, selling_type: key as SellingType })}
+                  selected={key === room.selling_type}>
+                  {SELLING_TYPE_MATCHER[key as SellingType]}
+                </S.SelectableButton>
+              ))}
+            </S.BuildingTypeButtonsGrid>
+          </S.Row>
           <InputRow
-            value={state[INPUT_NAME.ADDRESS]}
-            name={INPUT_NAME.ADDRESS}
-            label='주소'
+            value={price}
+            name='price'
+            label={ROOM_CONTENTS_LABEL.price}
+            placeholder='600/50'
+            onChange={(e) => setPrice(e.target.value)}
+          />
+          <InputRow
+            value={room.address}
+            name='address'
+            label={ROOM_CONTENTS_LABEL.address}
             placeholder='서울특별시 관악구 신림동'
             onChange={handleInput}
           />
+          <S.GridButtonRow>
+            <S.Label>{ROOM_CONTENTS_LABEL.buildingType}</S.Label>
+            <S.BuildingTypeButtonsGrid>
+              {Object.keys(BUILDING_TYPE_MATHCER).map((key) => (
+                <S.SelectableButton
+                  name={key}
+                  key={key}
+                  onClick={() => setRoom({ ...room, building_type: key as BuildingType })}
+                  selected={key === room.building_type}>
+                  {BUILDING_TYPE_MATHCER[key as BuildingType]}
+                </S.SelectableButton>
+              ))}
+            </S.BuildingTypeButtonsGrid>
+          </S.GridButtonRow>
           <InputRow
-            value={state[INPUT_NAME.BUILDING_TYPE]}
-            name={INPUT_NAME.BUILDING_TYPE}
-            label='주거형태'
-            placeholder='원룸(주방 분리형(1.5룸))'
-            onChange={handleInput}
-          />
-          <InputRow
-            value={state[INPUT_NAME.ROOM_SIZE]}
-            name={INPUT_NAME.ROOM_SIZE}
-            label='평형정보'
-            placeholder='26.14'
+            type='number'
+            value={`${room.room_size}`}
+            name='room_size'
+            label={ROOM_CONTENTS_LABEL.size}
+            placeholder='8'
             onChange={handleInput}
             suffix='평'
           />
           <InputRow
-            value={state[INPUT_NAME.NUMBER_OF_FLOORS]}
-            name={INPUT_NAME.NUMBER_OF_FLOORS}
-            label='층/건물층수'
-            placeholder='ex) 3/8'
+            value={room.floor}
+            name='floor'
+            label={ROOM_CONTENTS_LABEL.floor}
+            placeholder='3/8'
             onChange={handleInput}
             suffix='층'
           />
           <S.Row>
-            <S.Label>엘리베이터</S.Label>
+            <S.Label>{ROOM_CONTENTS_LABEL.elevator}</S.Label>
             <Button
-              title="있음"
-              {...getButtonStyleProps(hasElevator)} 
-              onClick={() => setState({ ...state, elevator: '있음' })}
+              title='있음'
+              {...getButtonStyleProps(room.has_elevator)}
+              onClick={() => setRoom({ ...room, has_elevator: true })}
             />
             <Button
               title='없음'
-              {...getButtonStyleProps(!hasElevator)} 
-              onClick={() => setState({ ...state, elevator: '없음' })}
+              {...getButtonStyleProps(!room.has_elevator)}
+              onClick={() => setRoom({ ...room, has_elevator: false })}
             />
           </S.Row>
           <InputRow
-            value={state[INPUT_NAME.MAINTENANCE]}
-            name={INPUT_NAME.MAINTENANCE}
-            label='관리비'
-            placeholder='ex) 5'
+            type='number'
+            value={`${room.administrative_expenses}`}
+            name='administrative_expenses'
+            label={ROOM_CONTENTS_LABEL.administrationCost}
+            placeholder='5'
             onChange={handleInput}
             suffix='만원'
           />
         </S.InputContainer>
         <S.ButtonContainer>
-          <Button
-            title='방 추가하기' bgColor={color.primaryYellow}
-            onClick={handleSubmit}
-          />
+          <Button title='방 추가하기' bgColor={color.primaryYellow} onClick={handleSubmit} />
         </S.ButtonContainer>
       </S.Container>
     </>

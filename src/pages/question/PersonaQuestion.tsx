@@ -1,7 +1,7 @@
 import request from 'api/request';
 import Icon from 'components/icon';
 import { Choice, Persona, PersonaQuestion } from 'entity/persona';
-import { QuestionsResponse } from 'entity/response';
+import { PersonaQuestionsResponse } from 'entity/response';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ export default function PersonaQuestionPage(): ReactElement {
 
   const [questions, setQuestions] = useState<PersonaQuestion[]>([]);
   const fetchQuestion = async () => {
-    const { data } = await request.get<QuestionsResponse>('/persona/questions');
+    const { data } = await request.get<PersonaQuestionsResponse>('/persona/questions');
     setQuestions(data.questions);
   };
 
@@ -42,12 +42,20 @@ export default function PersonaQuestionPage(): ReactElement {
   const fetchAnswer = async () => {
     const params = new URLSearchParams();
     questionsState.answer.forEach((answer: number) => {
-      params.append('check_answers', answer.toString());
+      params.append('choice_answers', answer.toString());
     });
 
     const res = await request.get<Persona>('/persona', { params: params });
     const data = res.data;
-    history.push(`/persona/result?title=${data.title}&description=${data.description}`);
+
+    const type = encodeURIComponent(data.type);
+    const description = encodeURIComponent(data.description);
+    const recommended_place = encodeURIComponent(data.recommended_place);
+    history.push(
+      `/persona/result?type=${type}
+      &description=${description}
+      &recommended_place=${recommended_place}`,
+    );
   };
 
   useEffect(() => {
@@ -59,11 +67,6 @@ export default function PersonaQuestionPage(): ReactElement {
   const { title, choices }: Choices = questions[questionsState.currentIdx]
     ? questions[questionsState.currentIdx]
     : { title: '', choices: [{ uid: 0, question_id: 0, contents: '', category: 0 }] };
-
-  const questionNum =
-    questionsState.currentIdx + 1 < 10
-      ? '0' + (questionsState.currentIdx + 1).toString()
-      : questionsState.currentIdx + 1;
   const progressVal = (100 / questions.length) * (questionsState.currentIdx + 1);
 
   const handleCardClick = (index: number) => {
@@ -109,12 +112,16 @@ export default function PersonaQuestionPage(): ReactElement {
         <Icon name='TITLE_LOGO' opacity='0.6' />
       </S.Header>
 
-      <S.TitleDiv>
-        {questionNum}
+      <S.TitleWrapper>
+        Q.{questionsState.currentIdx + 1}
         <br />
         {title}
-      </S.TitleDiv>
+      </S.TitleWrapper>
       <S.CardsWrapper>{cardList}</S.CardsWrapper>
+
+      <S.ProgressLength>
+        {questionsState.currentIdx + 1}/{questions.length}
+      </S.ProgressLength>
       <S.ProgressContainer>
         <S.ProgressComplete barWidth={progressVal}></S.ProgressComplete>
       </S.ProgressContainer>

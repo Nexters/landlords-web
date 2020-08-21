@@ -23,7 +23,7 @@ const BackButton = styled.a`
   left: 24px;
 `;
 
-const TitleDiv = styled.div`
+const TitleWrapper = styled.div`
   margin-top: 50px;
   height: 90px;
   font-size: 22px;
@@ -36,15 +36,21 @@ const CardsWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 272px;
+  height: 380px;
   margin-top: 6px;
-  padding: 40px 0 46px;
+`;
+const ProgressLength = styled.div`
+  text-align: right;
+  margin-top: 115px;
+  font-family: SpoqaHanSans;
+  font-size: 12px;
+  color: ${color.grayscalebb};
 `;
 
 const ProgressContainer = styled.div`
   width: 100%;
   height: 6px;
-  margin-top: 104px;
+  margin-top: 8px;
   border-radius: 2.5px;
   background-color: rgba(41, 41, 44, 0.08);
 `;
@@ -64,8 +70,9 @@ export {
   Container,
   Header,
   BackButton,
-  TitleDiv,
+  TitleWrapper,
   CardsWrapper,
+  ProgressLength,
   ProgressContainer,
   ProgressComplete,
 };

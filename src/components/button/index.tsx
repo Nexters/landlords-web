@@ -12,6 +12,8 @@ interface ButtonProps {
   height?: string;
   textColor?: string;
   fontWeight?: string;
+  name?: string;
+  className?: string;
 }
 
 export default function Button({
@@ -23,6 +25,8 @@ export default function Button({
   height = '54px',
   textColor = color.grayscale29,
   fontWeight = 'bold',
+  name = '',
+  className = '',
 }: ButtonProps) {
   return (
     <S.Button
@@ -33,7 +37,8 @@ export default function Button({
       height={height}
       color={textColor}
       fontWeight={fontWeight}
-    >
+      name={name}
+      className={className}>
       {title}
     </S.Button>
   );

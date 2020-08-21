@@ -9,20 +9,24 @@ const Container = styled.div`
   letter-spacing: normal;
 `;
 
-const CategoryHeader = styled.header`
+const Header = styled.header`
+  display: flex;
+  align-items: center;
   padding: 1rem;
   height: 52px;
   background-color: ${color.grayscalef9};
-  display: flex;
-  align-items: center;
 `;
 
-const CategoryTitle = styled.span`
-  font-size: 22px;
+const HeaderTitle = styled.span`
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
   font-weight: bold;
+  color: ${color.grayscale29};
 `;
 
 const BackButton = styled.button`
+  position: absolute;
   margin: 0 0.5rem;
   background-color: transparent;
   padding: 0;
@@ -31,10 +35,8 @@ const BackButton = styled.button`
 
 const RoomCardList = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   padding: 1rem 0 1rem 1.5rem;
-  overflow-x: scroll;
+  overflow-x: auto;
   background-color: ${color.grayscalef9};
   ::-webkit-scrollbar {
     display: none;
@@ -115,8 +117,8 @@ const EmtpyRoomCard = styled.div`
 export {
   Container,
   BackButton,
-  CategoryHeader,
-  CategoryTitle,
+  Header,
+  HeaderTitle,
   RoomCardList,
   RoomContentWrapper,
   RoomContent,

@@ -1,3 +1,4 @@
+import { CheckItem, CheckQuestion } from './checklist';
 import { PersonaQuestion } from './persona';
 import { Room } from './rooms';
 
@@ -11,6 +12,14 @@ export interface RoomsResponse {
   rooms: Room[];
 }
 
-export interface QuestionsResponse {
+export interface CheckQuestionsResponse {
+  questions: CheckQuestion[];
+}
+
+export interface AnswersResponse {
+  check_items: CheckItem[];
+}
+
+export interface PersonaQuestionsResponse {
   questions: PersonaQuestion[];
 }

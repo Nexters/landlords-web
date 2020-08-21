@@ -4,6 +4,11 @@ import { useEffect, useState } from 'react';
 import { LOGIN_STATE } from '../constants';
 import { setAuthorization } from './request';
 
+interface State {
+  user: any;
+  loginState: string;
+}
+
 const defaultUserState = {
   email: '',
   exp: 0,
@@ -16,8 +21,10 @@ const defaultUserState = {
 };
 
 export const useOAuth = () => {
-  const [user, setUser] = useState<any>(defaultUserState);
-  const [loginState, setLoginState] = useState(LOGIN_STATE.LOADING);
+  const [state, setState] = useState<State>({
+    user: defaultUserState,
+    loginState: LOGIN_STATE.LOADING,
+  });
 
   const verifyUser = async () => {
     try {
@@ -30,12 +37,15 @@ export const useOAuth = () => {
         token = cookie.replace('token=', '');
         sessionStorage.setItem('accessToken', token);
       }
-      const user = await decodeTokenWithJWK(token);
-      setUser(user);
-      setLoginState(LOGIN_STATE.SUCCESS);
+      const user: any = await decodeTokenWithJWK(token);
+      setState({
+        user,
+        loginState: LOGIN_STATE.SUCCESS,
+      });
+      sessionStorage.setItem('userName', user.given_name);
       setAuthorization(token);
     } catch {
-      setLoginState(LOGIN_STATE.ERROR);
+      setState({ ...state, loginState: LOGIN_STATE.ERROR });
     }
   };
 
@@ -43,5 +53,5 @@ export const useOAuth = () => {
     verifyUser();
   }, []);
 
-  return { user, loginState };
+  return state;
 };
