@@ -6,7 +6,7 @@ import { AnswersResponse, CheckQuestionsResponse, RoomsResponse } from 'entity/r
 import { ROOM_CONTENTS_LABEL } from 'entity/rooms';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { match as Match, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import CheckboxLayout from './checkbox-layout';
@@ -32,9 +32,8 @@ export default function ChecklistPage(): ReactElement {
   useEffect(() => {
     const fetchRooms = async () => {
       if (rooms.length > 0) return;
-      const { data, error, message } = await request.get<RoomsResponse>('/rooms');
-      if (error) alert(message);
-      else dispatch(setRooms(data.rooms));
+      const { data, error } = await request.get<RoomsResponse>('/rooms');
+      if (!error) dispatch(setRooms(data.rooms));
     };
     const fetchQuestionsAndAnswers = async () => {
       const fetchedQuestions = await request.get<CheckQuestionsResponse>(
@@ -51,7 +50,8 @@ export default function ChecklistPage(): ReactElement {
         );
     };
     fetchRooms();
-    fetchQuestionsAndAnswers();
+    if (rooms.length > 0) fetchQuestionsAndAnswers();
+    else history.push('/rooms');
   }, []);
 
   return (

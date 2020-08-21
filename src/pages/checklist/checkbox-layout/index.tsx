@@ -3,9 +3,9 @@ import request from 'api/request';
 import { Checkbox, Icon } from 'components';
 import { CheckItem, CheckQuestion } from 'entity/checklist';
 import React, { ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { roomsAction } from 'store/roomsSlice';
+import { roomsSelector } from 'store/roomsSlice';
 import { extractQuestionsByLabel } from 'utils/checklist';
 
 import * as S from './styled';
@@ -15,21 +15,21 @@ interface CheckboxLayoutProps {
 }
 
 export default function CheckboxLayout({ questions }: CheckboxLayoutProps): ReactElement {
+  const { selectedRoom } = useSelector(roomsSelector);
   const { addAnswer, removeAnswer } = roomsAction;
   const dispatch = useDispatch();
   const questionsByLabel = extractQuestionsByLabel(questions);
-  const params: { id: string } = useParams();
 
   const deleteCheckItem = async (check: CheckItem) => {
     const { error, message } = await request.delete<CheckItem>(
-      DELETE_ANSWER_URL(params.id, check.uid),
+      DELETE_ANSWER_URL(selectedRoom.uid, check.uid),
     );
     if (error) alert(message);
     else dispatch(removeAnswer(check));
   };
 
   const addCheckItem = async (check: CheckItem) => {
-    const { error, message } = await request.post<CheckItem>(ANSWERS_URL(params.id), {
+    const { error, message } = await request.post<CheckItem>(ANSWERS_URL(selectedRoom.uid), {
       check_id: check.uid,
     });
     if (error) alert(message);
