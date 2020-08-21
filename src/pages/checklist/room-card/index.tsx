@@ -1,3 +1,4 @@
+import { Icon } from 'components';
 import { ConvertedRoom } from 'entity/rooms';
 import React, { ReactElement } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -17,10 +18,17 @@ export default function RoomCard({ className, room }: RoomCardProps): ReactEleme
   };
   return (
     <S.Container className={className} onClick={handleClick}>
-      <S.Thumbnail>
-        <img src={room.imageUrl} />
-        <S.ThumnailOverlay active={room.uid === params.id} />
-      </S.Thumbnail>
+      {room.imageUrl ? (
+        <S.Thumbnail>
+          <img src={room.imageUrl} />
+          <S.ThumnailOverlay active={room.uid === params.id} />
+        </S.Thumbnail>
+      ) : (
+        <S.IconWrapper>
+          <Icon name='NO_IMAGE_ROOM' size='32' />
+          <S.ThumnailOverlay active={room.uid === params.id} />
+        </S.IconWrapper>
+      )}
       {room.uid === params.id && <S.ActiveBar />}
     </S.Container>
   );

@@ -35,10 +35,8 @@ const BackButton = styled.button`
 
 const RoomCardList = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   padding: 1rem 0 1rem 1.5rem;
-  overflow-x: scroll;
+  overflow-x: auto;
   background-color: ${color.grayscalef9};
   ::-webkit-scrollbar {
     display: none;

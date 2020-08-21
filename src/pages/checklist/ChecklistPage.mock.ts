@@ -62,7 +62,7 @@ const questions: CheckQuestion[] = [
       {
         uid: 1004,
         question_id: 3,
-        contents: '인터넷',
+        contents: '인터넷가나다라마바사',
       },
       {
         uid: 1005,
@@ -88,7 +88,7 @@ const answersMap: { [id: string]: CheckItem[] } = {
     {
       uid: 1004,
       question_id: 3,
-      contents: '인터넷',
+      contents: '인터넷가나다라마바사',
     },
     {
       uid: 1005,
@@ -105,7 +105,7 @@ const answersMap: { [id: string]: CheckItem[] } = {
     {
       uid: 1004,
       question_id: 3,
-      contents: '인터넷',
+      contents: '인터넷가나다라마바사',
     },
     {
       uid: 1005,

@@ -19,7 +19,7 @@ export const createRoomMap = (rooms: ConvertedRoom[]) =>
 export const convertRoomForDisplay = (room: Room): ConvertedRoom => {
   const price = getRoomPrice(room);
   return {
-    uid: room.uid,
+    uid: room.uid || '',
     name: room.name || price,
     price,
     address: room.address,

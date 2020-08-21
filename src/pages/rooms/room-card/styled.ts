@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import color from 'styles/color';
 
 const Container = styled.div`
@@ -13,6 +13,16 @@ const Thumbnail = styled.img`
   border-radius: 6px;
 `;
 
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 148px;
+  height: 148px;
+  background-color: ${color.basicWhite};
+  border-radius: 6px;
+`;
+
 const Title = styled.div`
   margin: 4px;
   text-align: center;
@@ -21,4 +31,4 @@ const Title = styled.div`
   color: ${color.grayscale29};
 `;
 
-export { Container, Thumbnail, Title };
+export { Container, Thumbnail, Title, IconWrapper };
