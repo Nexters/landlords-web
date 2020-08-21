@@ -26,6 +26,7 @@ export default function AddRoomViaLink() {
     const { data, error } = await request.put<Room>('/rooms/' + roomId + suffix);
     if (error) alert('방 정보 불러오기 실패');
     else {
+      alert('방 정보 볼러오기 성공');
       dispatch(addRoom(data));
       history.push('/rooms');
     }
@@ -34,7 +35,7 @@ export default function AddRoomViaLink() {
   return (
     <>
       <Header title='자취방 추가하기'>
-        <Icon name='CANCEL_DARK' size='16' onClick={() => history.push('/rooms')} />
+        <Icon name='CANCEL_DARK' size='16' onClick={() => history.goBack()} />
       </Header>
       <S.Container>
         <S.InputContainer>

@@ -7,9 +7,9 @@ import { convertRoomForDisplay, createRoomMap } from 'utils/room';
 
 interface RoomsState {
   rooms: ConvertedRoom[];
+  selectedRoom: ConvertedRoom;
   fetchedRoom: Room;
   checklistStatus: StatusType;
-  roomMap: { [id: string]: ConvertedRoom };
   singleCheckQuestions: CheckQuestion[];
   multiCheckQuestions: CheckQuestion[];
   answers: CheckItem[];
@@ -17,9 +17,9 @@ interface RoomsState {
 
 const initialState = {
   rooms: [] as ConvertedRoom[],
+  selectedRoom: {} as ConvertedRoom,
   fetchedRoom: {} as Room,
   checklistStatus: Object.keys(STATUS_MATCHER)[0] as StatusType,
-  roomMap: {} as { [id: string]: ConvertedRoom },
   singleCheckQuestions: [] as CheckQuestion[],
   multiCheckQuestions: [] as CheckQuestion[],
   answers: [] as CheckItem[],
@@ -28,7 +28,10 @@ const initialState = {
 const reducers = {
   setRooms: (state: RoomsState, { payload }: PayloadAction<Room[]>) => {
     state.rooms = payload.map((room) => convertRoomForDisplay(room));
-    state.roomMap = createRoomMap(state.rooms);
+    state.selectedRoom = state.rooms[0];
+  },
+  setSelectedRoom: (state: RoomsState, { payload }: PayloadAction<ConvertedRoom>) => {
+    state.selectedRoom = payload;
   },
   setChecklistStatus: (state: RoomsState, { payload }: PayloadAction<StatusType>) => {
     state.checklistStatus = payload;
@@ -63,7 +66,7 @@ const reducers = {
   },
   removeRoom: (state: RoomsState, { payload }: PayloadAction<ConvertedRoom>) => {
     state.rooms = state.rooms.filter(({ uid }) => uid !== payload.uid);
-    delete state.roomMap[payload.uid];
+    state.selectedRoom = state.rooms[0];
   },
   setFetchedRoom: (state: RoomsState, { payload }: PayloadAction<Room>) => {
     state.fetchedRoom = payload;

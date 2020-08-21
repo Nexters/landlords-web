@@ -14,25 +14,19 @@ import RoomCard from './room-card';
 import RoomDeleteModal from './room-delete-modal';
 import * as S from './styled';
 
-interface ChecklistPageProps {
-  match: Match<{ id: string }>;
-}
-
 export type RoomContentProps = keyof typeof ROOM_CONTENTS_LABEL;
 
-export default function ChecklistPage({ match }: ChecklistPageProps): ReactElement {
+export default function ChecklistPage(): ReactElement {
   const {
     rooms,
-    roomMap,
+    selectedRoom,
     singleCheckQuestions,
     multiCheckQuestions,
     checklistStatus,
   } = useSelector(roomsSelector);
   const { setRooms, setQuestoinsAndAnswers } = roomsAction;
-  const { params } = match;
   const history = useHistory();
   const dispatch = useDispatch();
-  const selectedRoom = roomMap[params.id];
   const [isOpenRoomDeleteModal, setOpenRoomDeleteModal] = useState(false);
 
   useEffect(() => {
@@ -46,7 +40,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
       const fetchedQuestions = await request.get<CheckQuestionsResponse>(
         CHECKLIST_URL(checklistStatus),
       );
-      const fetchedAnswers = await request.get<AnswersResponse>(ANSWERS_URL(params.id));
+      const fetchedAnswers = await request.get<AnswersResponse>(ANSWERS_URL(selectedRoom.uid));
       if (fetchedQuestions.error) alert(fetchedQuestions.message);
       else
         dispatch(
@@ -72,7 +66,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
         {rooms.map((room, index) => (
           <RoomCard key={index} room={room} />
         ))}
-        <S.EmtpyRoomCard>+</S.EmtpyRoomCard>
+        <S.EmtpyRoomCard onClick={() => history.push('/add-room/via-link')}>+</S.EmtpyRoomCard>
       </S.RoomCardList>
       {selectedRoom && (
         <>
