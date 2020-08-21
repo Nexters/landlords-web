@@ -20,8 +20,9 @@ export interface Choice {
 }
 
 export interface Persona {
-  title: string;
+  type: string;
   description: string;
+  recommended_place: string;
 }
 
 export interface Viewer {

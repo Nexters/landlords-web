@@ -47,7 +47,15 @@ export default function PersonaQuestionPage(): ReactElement {
 
     const res = await request.get<Persona>('/persona', { params: params });
     const data = res.data;
-    history.push(`/persona/result?title=${data.title}&description=${data.description}`);
+
+    const type = encodeURIComponent(data.type);
+    const description = encodeURIComponent(data.description);
+    const recommended_place = encodeURIComponent(data.recommended_place);
+    history.push(
+      `/persona/result?type=${type}
+      &description=${description}
+      &recommended_place=${recommended_place}`,
+    );
   };
 
   useEffect(() => {
@@ -104,11 +112,11 @@ export default function PersonaQuestionPage(): ReactElement {
         <Icon name='TITLE_LOGO' opacity='0.6' />
       </S.Header>
 
-      <S.TitleDiv>
+      <S.TitleWrapper>
         Q.{questionsState.currentIdx + 1}
         <br />
         {title}
-      </S.TitleDiv>
+      </S.TitleWrapper>
       <S.CardsWrapper>{cardList}</S.CardsWrapper>
 
       <S.ProgressLength>

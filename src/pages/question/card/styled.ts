@@ -15,6 +15,7 @@ const CardWrapper = styled.div`
   background-color: ${color.basicWhite};
   box-shadow: 1px 1px 0 2px ${color.grayscale29};
 `;
+
 const CardContent = styled.p`
   font-size: 16px;
   font-weight: bold;
@@ -23,4 +24,8 @@ const CardContent = styled.p`
   text-align: center;
 `;
 
-export { CardWrapper, CardContent };
+const Highlight = styled.span`
+  background-color: ${color.secondaryYellow};
+`;
+
+export { CardWrapper, CardContent, Highlight };
