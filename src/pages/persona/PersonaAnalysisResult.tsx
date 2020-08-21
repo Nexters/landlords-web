@@ -2,8 +2,9 @@ import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import request from 'api/request';
 import webShare from 'api/webShare';
-import { Icon } from 'components';
+import { Icon, Loading } from 'components';
 import { Persona } from 'entity/persona';
+import creatingImg from 'images/creating.png';
 import illust from 'images/illust.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -23,6 +24,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     description: '',
     recommended_place: '',
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchAnswer = async () => {
@@ -60,12 +62,17 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
-    history.push('/auth');
+    setIsLoading(true);
+    setTimeout(() => {
+      history.push('/auth');
+    }, 3000);
   };
   const handleRetestButtonClick = () => {
     history.push('/persona');
   };
-  return (
+  return isLoading ? (
+    <Loading image={creatingImg} text='나만의 체크리스트 생성중' />
+  ) : (
     <S.ResultContainer>
       <S.TitleWrapper>
         당신의 자취 유형은
