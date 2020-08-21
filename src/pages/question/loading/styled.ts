@@ -3,6 +3,7 @@ import color from 'styles/color';
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -10,7 +11,9 @@ const Container = styled.div`
 `;
 
 const LoadingText = styled.h1`
+  margin-top: 16px;
   font-size: 16px;
+  font-weight: bold;
   color: ${color.basicWhite};
 `;
 export { Container, LoadingText };
