@@ -30,10 +30,8 @@ export default function RoomDeleteModal({
     if (error) alert('방 삭제 실패');
     else if (rooms.length === 1) history.push('/rooms');
     else {
-      const lastRoom = rooms[rooms.length - 1];
-      const nextRoomId = lastRoom.uid === target.uid ? rooms[rooms.length - 2].uid : lastRoom.uid;
       dispatch(removeRoom(target));
-      history.push(`/rooms/${nextRoomId}`);
+      onClose();
     }
   };
 
