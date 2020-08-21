@@ -40,7 +40,6 @@ export default function AddRoom() {
   const { addRoom } = roomsAction;
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log('process.env', process.env);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRoom({
