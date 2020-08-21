@@ -39,7 +39,7 @@ const UserPersona = styled.h1`
 `;
 
 const RecommendedPlace = styled.h2`
-  margin-top: 280px;
+  margin-top: 12px;
   font-size: 16px;
   font-weight: bold;
   color: ${color.grayscale29};
