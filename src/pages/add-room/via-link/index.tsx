@@ -27,7 +27,7 @@ export default function AddRoomViaLink() {
     if (error) alert('방 정보 불러오기 실패');
     else {
       dispatch(addRoom(data));
-      history.push('/rooms');
+      history.push('/add-room');
     }
   };
 
