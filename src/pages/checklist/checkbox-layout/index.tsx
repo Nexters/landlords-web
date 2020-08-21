@@ -47,28 +47,32 @@ export default function CheckboxLayout({ questions }: CheckboxLayoutProps): Reac
             <span>{label}</span>
             <Icon name='NAVIGATION_OPEN_DOWN' size='22' />
           </S.LabelWrapper>
-          {questionsByLabel[label].map((question) => (
-            <S.CheckboxGroupWrapper key={question.uid}>
-              <span>{question.title}</span>
-              {question.checks.length > 1 ? (
+          {questionsByLabel[label].map((question) =>
+            question.checks.length > 1 ? (
+              <S.CheckboxGroupWrapper key={question.uid}>
+                <S.CheckboxGroupLabel>{question.title}</S.CheckboxGroupLabel>
                 <S.CheckboxGroup>
                   {question.checks.map((check) => (
-                    <Checkbox
+                    <S.CheckboxForGrid
                       key={check.uid}
                       label={check.contents}
                       checked={check.checked || false}
                       onClick={handleCheckboxClick(check)}
+                      isLong={check.contents.length > 4}
                     />
                   ))}
                 </S.CheckboxGroup>
-              ) : (
+              </S.CheckboxGroupWrapper>
+            ) : (
+              <S.CheckboxWrapper key={question.uid}>
+                <span>{question.title}</span>
                 <Checkbox
                   checked={question.checks[0].checked || false}
                   onClick={handleCheckboxClick(question.checks[0])}
                 />
-              )}
-            </S.CheckboxGroupWrapper>
-          ))}
+              </S.CheckboxWrapper>
+            ),
+          )}
         </S.Container>
       ))}
     </>

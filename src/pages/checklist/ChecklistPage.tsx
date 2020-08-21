@@ -50,8 +50,7 @@ export default function ChecklistPage(): ReactElement {
         );
     };
     fetchRooms();
-    if (rooms.length > 0) fetchQuestionsAndAnswers();
-    else history.push('/rooms');
+    fetchQuestionsAndAnswers();
   }, []);
 
   return (
