@@ -15,7 +15,7 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisResultPage(): ReactElement {
-  const shareUrl = useLocation().pathname;
+  const shareUrl = window.location.href;
   const queryString = useLocation().search;
   const [personaData, setPersonaData] = useState<Persona>({
     type: '',
