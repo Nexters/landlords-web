@@ -1,4 +1,4 @@
-import { apiBaseURL } from 'api/constants';
+import { serverBaseURL } from 'api/constants';
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
 import webShare from 'api/webShare';
@@ -16,7 +16,7 @@ enum TEXT {
 export default function PersonaAnalysisResultPage(): ReactElement {
   const path = useLocation().pathname;
   const queryString = useLocation().search;
-  const shareUrl = apiBaseURL + path + queryString;
+  const shareUrl = serverBaseURL + path + queryString;
 
   const urlParams = new URLSearchParams(queryString);
   const descriptionParams: string = urlParams.get('description')!;
