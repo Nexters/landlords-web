@@ -1,12 +1,21 @@
+import { apiBaseURL } from 'api/constants';
+import { useOAuth } from 'api/useOAuth';
 import { Icon } from 'components';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
-import * as S from './styled';
+import { LOGIN_STATE } from '../../constants';
+import * as S from './styled';;
 
 export default function Login() {
+  const history = useHistory();
+  const { loginState } = useOAuth();
   const handleClick = () => {
-    // TODO redirect to google OAuth
-    alert('clicked');
+    if (loginState === LOGIN_STATE.SUCCESS) {
+      history.push('/rooms');
+    } else {
+      window.location.href = `${apiBaseURL}/oauth/google`;
+    }
   };
   return (
     <S.Container>
