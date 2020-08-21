@@ -36,23 +36,6 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     }
   });
 
-  const descriptionParams: string = urlParams.get('description')!;
-  const description = descriptionParams.split('<hr>').map((line) => {
-    if (line.includes('</hr>')) {
-      const highlights = line.split('</hr>');
-      const highlight = highlights[0];
-      const nextHighlight = highlights[1];
-      return (
-        <>
-          <S.Highlight key={highlight}>{highlight}</S.Highlight>
-          {nextHighlight}
-        </>
-      );
-    } else {
-      return <span>{line}</span>;
-    }
-  });
-
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
     history.push('/auth');
