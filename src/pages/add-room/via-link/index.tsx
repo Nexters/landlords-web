@@ -17,7 +17,7 @@ export default function AddRoomViaLink() {
   const dispatch = useDispatch();
 
   const handleRoomLoadClick = async () => {
-    const roomId = roomURL.split('/').pop();
+    const roomId = roomURL.split('/').pop()?.split('?')[0];
     const host = url.parse(roomURL).host;
     let crawlingTarget = '';
     if (host?.includes('zigbang')) crawlingTarget = 'Zigbang';
