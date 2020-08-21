@@ -72,7 +72,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
         {rooms.map((room, index) => (
           <RoomCard key={index} room={room} />
         ))}
-        <S.EmtpyRoomCard>+</S.EmtpyRoomCard>
+        <S.EmtpyRoomCard onClick={() => history.push('/add-room/via-link')}>+</S.EmtpyRoomCard>
       </S.RoomCardList>
       {selectedRoom && (
         <>
