@@ -89,6 +89,15 @@ const ShareButtons = styled.div`
   margin: auto;
 `;
 
+const ShareButton = styled.button<{ bgColor: string }>`
+  width: 50px;
+  height: 50px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: ${({ bgColor }) => `${bgColor}`};
+`;
+
 const RetestButton = styled.button`
   margin-top: 18px;
   text-align: center;
@@ -156,5 +165,6 @@ export {
   GoChecklistButton,
   ShareButtonWrapper,
   ShareButtons,
+  ShareButton,
   RetestButton,
 };
