@@ -6,7 +6,7 @@ declare global {
 
 export default function facebookShare(url: string) {
   window.FB.init({
-    appId: process.env.REACT_APP_FACEBOOKE_APP_ID,
+    appId: process.env.REACT_APP_FACEBOOK_APP_ID,
     status: true,
     cookie: true,
     xfbml: true,
