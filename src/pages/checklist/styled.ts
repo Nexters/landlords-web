@@ -35,7 +35,7 @@ const BackButton = styled.button`
 
 const RoomCardList = styled.div`
   display: flex;
-  padding: 1rem 0 1rem 1.5rem;
+  padding: 1rem 1.5rem;
   overflow-x: auto;
   background-color: ${color.grayscalef9};
   ::-webkit-scrollbar {
@@ -108,7 +108,7 @@ const EmtpyRoomCard = styled.div`
   border: dotted 2px ${color.grayscalec9};
   border-radius: 2px;
   background-color: ${color.grayscalef9};
-  width: 56px;
+  min-width: 56px;
   height: 56px;
   font-size: 30px;
   color: ${color.grayscalec9};

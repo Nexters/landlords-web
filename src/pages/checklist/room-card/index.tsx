@@ -19,15 +19,9 @@ export default function RoomCard({ className, room }: RoomCardProps): ReactEleme
   return (
     <S.Container className={className} onClick={handleClick}>
       {room.imageUrl ? (
-        <S.Thumbnail>
-          <img src={room.imageUrl} />
-          <S.ThumnailOverlay active={room.uid === params.id} />
-        </S.Thumbnail>
+        <S.Thumbnail src={room.imageUrl} active={room.uid === params.id} />
       ) : (
-        <S.IconWrapper>
-          <Icon name='NO_IMAGE_ROOM' size='32' />
-          <S.ThumnailOverlay active={room.uid === params.id} />
-        </S.IconWrapper>
+        <S.IconWrapper name='NO_IMAGE_ROOM' size='32' active={room.uid === params.id} />
       )}
       {room.uid === params.id && <S.ActiveBar />}
     </S.Container>
