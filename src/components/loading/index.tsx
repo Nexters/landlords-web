@@ -10,10 +10,7 @@ export default function Loading({ image, text }: LoadingProps) {
   return (
     <S.Container>
       <img src={image}></img>
-      <S.LoadingText>
-        {text}
-        <S.Dot />
-      </S.LoadingText>
+      <S.LoadingText>{text}...</S.LoadingText>
     </S.Container>
   );
 }
