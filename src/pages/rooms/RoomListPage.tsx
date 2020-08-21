@@ -25,6 +25,8 @@ export default function RoomListPage() {
     fetchRooms();
   }, []);
 
+  console.log(rooms);
+
   return (
     <S.Container>
       <S.Header>

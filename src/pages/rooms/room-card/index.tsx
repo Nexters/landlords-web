@@ -1,3 +1,4 @@
+import { Icon } from 'components';
 import { ConvertedRoom } from 'entity/rooms';
 import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -14,7 +15,13 @@ export default function RoomCard({ className, room }: RoomCardProps): ReactEleme
   const handleClick = () => history.push(`/rooms/${room.uid}`);
   return (
     <S.Container className={className} onClick={handleClick}>
-      <S.Thumbnail src={room.imageUrl} />
+      {room.imageUrl ? (
+        <S.Thumbnail src={room.imageUrl} />
+      ) : (
+        <S.IconWrapper>
+          <Icon name='NO_IMAGE_ROOM' />
+        </S.IconWrapper>
+      )}
       <S.Title>{room.name}</S.Title>
     </S.Container>
   );

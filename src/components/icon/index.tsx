@@ -14,6 +14,7 @@ import TITLE_LOGO from './svg/title-logo.svg';
 import FACEBOOK_BUTTON from './svg/facebook.svg';
 import KAKAOTALK_BUTTON from './svg/kakaotalk.svg';
 import URL_BUTTON from './svg/url.svg';
+import NO_IMAGE_ROOM from './svg/no-image-room.svg';
 
 const Icons = {
   CHECKED_BOX,
@@ -27,6 +28,7 @@ const Icons = {
   FACEBOOK_BUTTON,
   KAKAOTALK_BUTTON,
   URL_BUTTON,
+  NO_IMAGE_ROOM,
 };
 
 export type IconName = keyof typeof Icons;

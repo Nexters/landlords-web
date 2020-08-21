@@ -12,7 +12,7 @@ import * as S from './styled';
 
 export default function AddRoomViaLink() {
   const [roomURL, setRoomURL] = useState('');
-  const { setFetchedRoom } = roomsAction;
+  const { addRoom } = roomsAction;
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -26,8 +26,8 @@ export default function AddRoomViaLink() {
     const { data, error } = await request.put<Room>('/rooms/' + roomId + suffix);
     if (error) alert('방 정보 불러오기 실패');
     else {
-      dispatch(setFetchedRoom(data));
-      history.push('/add-room');
+      dispatch(addRoom(data));
+      history.push('/rooms');
     }
   };
 
@@ -51,7 +51,11 @@ export default function AddRoomViaLink() {
             bgColor={color.primaryYellow}
             onClick={handleRoomLoadClick}
           />
-          <Button title='직접 입력하기' borderColor={color.grayscalef9} />
+          <Button
+            title='직접 입력하기'
+            borderColor={color.grayscalef9}
+            onClick={() => history.push('/add-room')}
+          />
         </S.ButtonContainer>
       </S.Container>
     </>

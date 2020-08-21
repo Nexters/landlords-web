@@ -5,20 +5,19 @@ import {
   BuildingType,
   Room,
   ROOM_CONTENTS_LABEL,
+  SELLING_TYPE_MATCHER,
   SellingType,
 } from 'entity/rooms';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { roomsAction, roomsSelector } from 'store/roomsSlice';
+import { roomsAction } from 'store/roomsSlice';
 import color from 'styles/color';
-import { getRoomPrice } from 'utils/room';
 
 import InputRow from './InputRow';
 import * as S from './styled';
 
 const initialRoom = {
-  uid: '',
   deposit: 0,
   monthly_rent: 0,
   selling_type: 'MonthlyRent' as SellingType,
@@ -37,11 +36,10 @@ const initialRoom = {
 
 export default function AddRoom() {
   const [room, setRoom] = useState<Room>(initialRoom);
-  const { fetchedRoom } = useSelector(roomsSelector);
+  const [price, setPrice] = useState('');
   const { addRoom } = roomsAction;
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log('process.env', process.env);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRoom({
@@ -51,7 +49,8 @@ export default function AddRoom() {
   };
 
   const handleSubmit = async () => {
-    const { error } = await request.patch(`/rooms/${room.uid}`, room);
+    const updatedRoom = setDepositAndMonthlyRent(room);
+    const { error } = await request.post('/rooms', updatedRoom);
     if (error) alert('방 등록에 실패했습니다.');
     else {
       dispatch(addRoom(room));
@@ -66,18 +65,14 @@ export default function AddRoom() {
       : base;
   };
 
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const [deposit, monthly_rent] = e.target.value.split('/');
-    setRoom({
+  const setDepositAndMonthlyRent = (room: Room) => {
+    const [deposit, monthly_rent] = price.split('/');
+    return {
       ...room,
-      deposit: +deposit,
-      monthly_rent: +monthly_rent,
-    });
+      deposit: +deposit || 0,
+      monthly_rent: +monthly_rent || 0,
+    };
   };
-
-  useEffect(() => {
-    if (fetchedRoom.uid) setRoom(fetchedRoom);
-  }, []);
 
   return (
     <>
@@ -91,18 +86,32 @@ export default function AddRoom() {
         <S.Image src={room.image} />
         <S.InputContainer>
           <InputRow
-            value={getRoomPrice(room)}
+            value={room.name}
             name='name'
             label='방 제목'
             placeholder='월세 600/50'
             onChange={handleInput}
           />
+          <S.Row>
+            <S.Label></S.Label>
+            <S.BuildingTypeButtonsGrid>
+              {Object.keys(SELLING_TYPE_MATCHER).map((key) => (
+                <S.SelectableButton
+                  name={key}
+                  key={key}
+                  onClick={() => setRoom({ ...room, selling_type: key as SellingType })}
+                  selected={key === room.selling_type}>
+                  {SELLING_TYPE_MATCHER[key as SellingType]}
+                </S.SelectableButton>
+              ))}
+            </S.BuildingTypeButtonsGrid>
+          </S.Row>
           <InputRow
-            value={`${room.deposit}/${room.monthly_rent}`}
+            value={price}
             name='price'
             label={ROOM_CONTENTS_LABEL.price}
             placeholder='600/50'
-            onChange={handlePriceChange}
+            onChange={(e) => setPrice(e.target.value)}
           />
           <InputRow
             value={room.address}
@@ -111,14 +120,22 @@ export default function AddRoom() {
             placeholder='서울특별시 관악구 신림동'
             onChange={handleInput}
           />
+          <S.GridButtonRow>
+            <S.Label>{ROOM_CONTENTS_LABEL.buildingType}</S.Label>
+            <S.BuildingTypeButtonsGrid>
+              {Object.keys(BUILDING_TYPE_MATHCER).map((key) => (
+                <S.SelectableButton
+                  name={key}
+                  key={key}
+                  onClick={() => setRoom({ ...room, building_type: key as BuildingType })}
+                  selected={key === room.building_type}>
+                  {BUILDING_TYPE_MATHCER[key as BuildingType]}
+                </S.SelectableButton>
+              ))}
+            </S.BuildingTypeButtonsGrid>
+          </S.GridButtonRow>
           <InputRow
-            value={BUILDING_TYPE_MATHCER[room.building_type]}
-            name='building_type'
-            label={ROOM_CONTENTS_LABEL.buildingType}
-            placeholder={Object.values(BUILDING_TYPE_MATHCER).join('/')}
-            onChange={handleInput}
-          />
-          <InputRow
+            type='number'
             value={`${room.room_size}`}
             name='room_size'
             label={ROOM_CONTENTS_LABEL.size}
@@ -135,7 +152,7 @@ export default function AddRoom() {
             suffix='층'
           />
           <S.Row>
-            <S.Label>엘리베이터</S.Label>
+            <S.Label>{ROOM_CONTENTS_LABEL.elevator}</S.Label>
             <Button
               title='있음'
               {...getButtonStyleProps(room.has_elevator)}
@@ -148,6 +165,7 @@ export default function AddRoom() {
             />
           </S.Row>
           <InputRow
+            type='number'
             value={`${room.administrative_expenses}`}
             name='administrative_expenses'
             label={ROOM_CONTENTS_LABEL.administrationCost}

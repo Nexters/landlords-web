@@ -27,7 +27,7 @@ export type SellingType = keyof typeof SELLING_TYPE_MATCHER;
 export type BuildingType = keyof typeof BUILDING_TYPE_MATHCER;
 
 export interface Room {
-  uid: string;
+  uid?: string;
   deposit: number;
   monthly_rent: number;
   selling_type: SellingType;
