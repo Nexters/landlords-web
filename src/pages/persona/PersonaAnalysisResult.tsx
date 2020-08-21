@@ -4,6 +4,7 @@ import request from 'api/request';
 import webShare from 'api/webShare';
 import { Icon } from 'components';
 import { Persona } from 'entity/persona';
+import illust from 'images/illust.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -70,6 +71,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
         당신의 자취 유형은
         <S.UserPersona>{personaData.type}!</S.UserPersona>
       </S.TitleWrapper>
+      <img src={illust}></img>
       <S.RecommendedPlace>추천공간 : {personaData.recommended_place[0]}</S.RecommendedPlace>
       <S.PersonaDescription>{description}</S.PersonaDescription>
 
