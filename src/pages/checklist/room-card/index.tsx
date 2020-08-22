@@ -1,9 +1,6 @@
-import { Icon } from 'components';
 import { ConvertedRoom } from 'entity/rooms';
 import React, { ReactElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { roomsAction, roomsSelector } from 'store/roomsSlice';
+import { useHistory, useParams } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -13,18 +10,17 @@ interface RoomCardProps {
 }
 
 export default function RoomCard({ className, room }: RoomCardProps): ReactElement {
-  const { selectedRoom } = useSelector(roomsSelector);
-  const { setSelectedRoom } = roomsAction;
-  const dispatch = useDispatch();
+  const params: { id: string } = useParams();
+  const history = useHistory();
 
   return (
-    <S.Container className={className} onClick={() => dispatch(setSelectedRoom(room))}>
+    <S.Container className={className} onClick={() => history.push(`/rooms/${room.uid}`)}>
       {room.imageUrl ? (
-        <S.Thumbnail src={room.imageUrl} active={room.uid === selectedRoom.uid} />
+        <S.Thumbnail src={room.imageUrl} active={room.uid === params.id} />
       ) : (
-        <S.IconWrapper name='NO_IMAGE_ROOM' size='32' active={room.uid === selectedRoom.uid} />
+        <S.IconWrapper name='NO_IMAGE_ROOM' size='32' active={room.uid === params.id} />
       )}
-      {room.uid === selectedRoom.uid && <S.ActiveBar />}
+      {room.uid === params.id && <S.ActiveBar />}
     </S.Container>
   );
 }

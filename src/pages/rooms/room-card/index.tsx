@@ -1,9 +1,7 @@
 import { Icon } from 'components';
 import { ConvertedRoom } from 'entity/rooms';
 import React, { ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { roomsAction } from 'store/roomsSlice';
+import { useHistory, useParams } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -13,13 +11,10 @@ interface RoomCardProps {
 }
 
 export default function RoomCard({ className, room }: RoomCardProps): ReactElement {
-  const { setSelectedRoom } = roomsAction;
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const handleClick = () => {
-    history.push('/checklist');
-    dispatch(setSelectedRoom(room));
+    history.push(`/rooms/${room.uid}`);
   };
 
   return (

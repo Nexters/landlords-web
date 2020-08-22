@@ -6,7 +6,7 @@ import { AnswersResponse, CheckQuestionsResponse, RoomsResponse } from 'entity/r
 import { ROOM_CONTENTS_LABEL } from 'entity/rooms';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { match as Match, useHistory } from 'react-router-dom';
+import { match, useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import CheckboxLayout from './checkbox-layout';
@@ -16,31 +16,36 @@ import * as S from './styled';
 
 export type RoomContentProps = keyof typeof ROOM_CONTENTS_LABEL;
 
-export default function ChecklistPage(): ReactElement {
+interface ChecklistPageProps {
+  match: match<{ id: string }>;
+}
+
+export default function ChecklistPage({ match }: ChecklistPageProps): ReactElement {
   const {
     rooms,
-    selectedRoom,
     singleCheckQuestions,
     multiCheckQuestions,
     checklistStatus,
+    roomMap,
   } = useSelector(roomsSelector);
   const { setRooms, setQuestoinsAndAnswers } = roomsAction;
   const history = useHistory();
   const dispatch = useDispatch();
+  const { params } = match;
   const [isOpenRoomDeleteModal, setOpenRoomDeleteModal] = useState(false);
+  const selectedRoom = roomMap[params.id];
 
   useEffect(() => {
     const fetchRooms = async () => {
       if (rooms.length > 0) return;
-      const { data, error, message } = await request.get<RoomsResponse>('/rooms');
-      if (error) alert(message);
-      else dispatch(setRooms(data.rooms));
+      const { data, error } = await request.get<RoomsResponse>('/rooms');
+      if (!error) dispatch(setRooms(data.rooms));
     };
     const fetchQuestionsAndAnswers = async () => {
       const fetchedQuestions = await request.get<CheckQuestionsResponse>(
         CHECKLIST_URL(checklistStatus),
       );
-      const fetchedAnswers = await request.get<AnswersResponse>(ANSWERS_URL(selectedRoom.uid));
+      const fetchedAnswers = await request.get<AnswersResponse>(ANSWERS_URL(params.id));
       if (fetchedQuestions.error) alert(fetchedQuestions.message);
       else
         dispatch(
