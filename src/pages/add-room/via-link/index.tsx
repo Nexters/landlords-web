@@ -35,7 +35,7 @@ export default function AddRoomViaLink() {
   return (
     <>
       <Header title='자취방 추가하기'>
-        <Icon name='CANCEL_DARK' size='16' onClick={() => history.goBack()} />
+        <Icon name='CANCEL_DARK' size='16' onClick={() => history.push('/rooms')} />
       </Header>
       <S.Container>
         <S.InputContainer>
