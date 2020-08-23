@@ -35,12 +35,13 @@ export default function AddRoomViaLink() {
   const handleRoomLoadClick = async () => {
     const dabang_redirect_host = 'redirect.dabangapp.com';
     const origin_host = url.parse(roomURL).host;
-    const host = (origin_host === dabang_redirect_host) ? await real_host(roomURL) : origin_host;
-    const roomId = host?.split('/').pop()?.split('?')[0];
+    const target_url = (origin_host === dabang_redirect_host) ? await real_host(roomURL) : roomURL;
+    const target_host = url.parse(target_url).host;
+    const roomId = target_url?.split('/').pop()?.split('?')[0];
     
     let crawlingTarget = '';
-    if (host?.includes('zigbang')) crawlingTarget = 'Zigbang';
-    if (host?.includes('dabang')) crawlingTarget = 'Dabang';
+    if (target_host?.includes('zigbang')) crawlingTarget = 'Zigbang';
+    if (target_host?.includes('dabang')) crawlingTarget = 'Dabang';
     const suffix = `?crawling_target=${crawlingTarget}`;
     const { data, error } = await request.put<Room>('/rooms/' + roomId + suffix);
     if (error) alert('방 정보 불러오기 실패');
