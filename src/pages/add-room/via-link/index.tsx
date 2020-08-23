@@ -1,5 +1,6 @@
 import request from 'api/request';
 import { Button, Header, Icon, Input } from 'components';
+import { ProxyRedirectResponse } from 'entity/proxy-redirect';
 import { Room } from 'entity/rooms';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -10,15 +11,33 @@ import url from 'url';
 
 import * as S from './styled';
 
+
+
 export default function AddRoomViaLink() {
   const [roomURL, setRoomURL] = useState('');
   const { addRoom } = roomsAction;
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const real_host = async (redirect_url: string) => {
+    const { data, error } = await request.get<ProxyRedirectResponse>(
+      '/proxy-redirect?url='+redirect_url,
+    );
+    if (error) {
+      alert(error);
+      return redirect_url;
+    }
+    else {
+      return data.url;
+    }
+  };
+
   const handleRoomLoadClick = async () => {
-    const roomId = roomURL.split('/').pop()?.split('?')[0];
-    const host = url.parse(roomURL).host;
+    const dabang_redirect_host = 'redirect.dabangapp.com';
+    const origin_host = url.parse(roomURL).host;
+    const host = (origin_host === dabang_redirect_host) ? await real_host(roomURL) : origin_host;
+    const roomId = host?.split('/').pop()?.split('?')[0];
+    
     let crawlingTarget = '';
     if (host?.includes('zigbang')) crawlingTarget = 'Zigbang';
     if (host?.includes('dabang')) crawlingTarget = 'Dabang';
