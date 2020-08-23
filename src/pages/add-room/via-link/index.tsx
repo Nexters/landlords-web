@@ -20,7 +20,9 @@ export default function AddRoomViaLink() {
   const dispatch = useDispatch();
 
   const real_host = async (redirect_url: string) => {
-    const { data, error } = await request.get<ProxyRedirectResponse>('/proxy-redirect?url='+redirect_url);
+    const { data, error } = await request.get<ProxyRedirectResponse>(
+      '/proxy-redirect?url='+redirect_url
+    );
     if (error) {
       alert(error);
       return redirect_url;
