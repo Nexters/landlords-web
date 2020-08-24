@@ -4,8 +4,11 @@ import color from 'styles/color';
 const Container = styled.section`
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${color.primaryDeepDarkBlue};
 `;
 
 const StatusCodeWrapper = styled.div`
@@ -29,12 +32,15 @@ const StatusCodeSubText = styled.p`
 `;
 
 const Image = styled.img<{src: string}>`
-  padding: 0 62px;
+  margin-top: 88px;
+  width: calc(100vw - 125px);
 `;
 
 const BottomTextWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  grid-gap: 8px;
+  align-items: center;
 `;
 
 const BottomTitle = styled.h2`
