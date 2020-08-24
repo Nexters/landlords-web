@@ -1,11 +1,12 @@
 import { apiBaseURL } from 'api/constants';
 import { useOAuth } from 'api/useOAuth';
 import { Icon } from 'components';
+import Forbidden from 'pages/error-views/Forbidden';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { LOGIN_STATE } from '../../constants';
-import * as S from './styled';;
+import * as S from './styled';
 
 export default function Login() {
   const history = useHistory();
@@ -17,6 +18,14 @@ export default function Login() {
       window.location.href = `${apiBaseURL}/oauth/google`;
     }
   };
+
+  const { browser } = window.eg.agent();
+  const isAvailableBrowser = browser === ('safari' || 'chrome');
+
+  if (!isAvailableBrowser) {
+    return <Forbidden />;
+  }
+
   return (
     <S.Container>
       <S.IconWrapper>
