@@ -1,8 +1,7 @@
 import { Viewer } from 'entity/persona';
 import { useFetch } from 'hooks';
-import Forbidden from 'pages/error-views/Forbidden';
 import React, { ReactElement } from 'react';
-import { Redirect,useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import * as S from './styled';
 
@@ -43,13 +42,6 @@ export default function PersonaAnalysisPage(): ReactElement {
   const handleBackButtonClick = () => {
     history.push('/auth');
   };
-
-  const { browser } = window.eg.agent();
-  const isAvailableBrowser = browser === ('safari' || 'chrome');
-
-  if (!isAvailableBrowser) {
-    return <Forbidden />;
-  }
 
   return (
     <S.Container>
