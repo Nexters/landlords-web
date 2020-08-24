@@ -18,6 +18,11 @@ export default function MenuBar() {
     }
   };
 
+  const handleDropdownItemClick = (status: StatusType) => () => {
+    dispatch(setChecklistStatus(status));
+    setVisible(false);
+  };
+
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
@@ -26,7 +31,7 @@ export default function MenuBar() {
   }, []);
 
   const dropdownItems = Object.keys(STATUS_MATCHER).map((status) => (
-    <S.DropdownItem key={status} onClick={() => dispatch(setChecklistStatus(status as StatusType))}>
+    <S.DropdownItem key={status} onClick={handleDropdownItemClick(status as StatusType)}>
       <S.DropdownText>{STATUS_MATCHER[status as StatusType]}</S.DropdownText>
       <S.DropdownRadioButton selected={checklistStatus === status} />
     </S.DropdownItem>

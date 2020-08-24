@@ -7,9 +7,9 @@ import { convertRoomForDisplay, createRoomMap } from 'utils/room';
 
 interface RoomsState {
   rooms: ConvertedRoom[];
+  roomMap: { [id: string]: ConvertedRoom };
   fetchedRoom: Room;
   checklistStatus: StatusType;
-  roomMap: { [id: string]: ConvertedRoom };
   singleCheckQuestions: CheckQuestion[];
   multiCheckQuestions: CheckQuestion[];
   answers: CheckItem[];
@@ -17,9 +17,9 @@ interface RoomsState {
 
 const initialState = {
   rooms: [] as ConvertedRoom[],
+  roomMap: {} as { [id: string]: ConvertedRoom },
   fetchedRoom: {} as Room,
   checklistStatus: Object.keys(STATUS_MATCHER)[0] as StatusType,
-  roomMap: {} as { [id: string]: ConvertedRoom },
   singleCheckQuestions: [] as CheckQuestion[],
   multiCheckQuestions: [] as CheckQuestion[],
   answers: [] as CheckItem[],
@@ -70,6 +70,7 @@ const reducers = {
   },
   addRoom: (state: RoomsState, { payload }: PayloadAction<Room>) => {
     state.rooms.push(convertRoomForDisplay(payload));
+    state.roomMap = createRoomMap(state.rooms);
   },
 };
 

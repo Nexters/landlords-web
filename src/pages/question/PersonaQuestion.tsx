@@ -1,12 +1,12 @@
 import request from 'api/request';
-import Icon from 'components/icon';
-import { Choice, Persona, PersonaQuestion } from 'entity/persona';
+import { Icon, Loading } from 'components';
+import { Choice, PersonaQuestion } from 'entity/persona';
 import { PersonaQuestionsResponse } from 'entity/response';
+import analyzingImg from 'images/analyzing.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Card from './card';
-import Loading from './loading';
 import * as S from './styled';
 
 interface QuestionsState {
@@ -39,28 +39,11 @@ export default function PersonaQuestionPage(): ReactElement {
     isLoading: false,
   });
 
-  const fetchAnswer = async () => {
-    const params = new URLSearchParams();
-    questionsState.answer.forEach((answer: number) => {
-      params.append('choice_answers', answer.toString());
-    });
-
-    const res = await request.get<Persona>('/persona', { params: params });
-    const data = res.data;
-
-    const type = encodeURIComponent(data.type);
-    const description = encodeURIComponent(data.description);
-    const recommended_place = encodeURIComponent(data.recommended_place);
-    history.push(
-      `/persona/result?type=${type}
-      &description=${description}
-      &recommended_place=${recommended_place}`,
-    );
-  };
-
   useEffect(() => {
     if (questionsState.isLoading) {
-      fetchAnswer();
+      setTimeout(() => {
+        history.push(`/persona/result?answer_id=${questionsState.answer}`);
+      }, 2000);
     }
   }, [questionsState]);
 
@@ -102,7 +85,7 @@ export default function PersonaQuestionPage(): ReactElement {
   });
 
   return questionsState.isLoading ? (
-    <Loading />
+    <Loading image={analyzingImg} text='나의 자취 유형 분석중' />
   ) : (
     <S.Container>
       <S.Header>

@@ -3,9 +3,10 @@ import request from 'api/request';
 import { Checkbox, Icon } from 'components';
 import { CheckItem, CheckQuestion } from 'entity/checklist';
 import React, { ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { roomsAction } from 'store/roomsSlice';
+import { roomsSelector } from 'store/roomsSlice';
 import { extractQuestionsByLabel } from 'utils/checklist';
 
 import * as S from './styled';
@@ -15,10 +16,10 @@ interface CheckboxLayoutProps {
 }
 
 export default function CheckboxLayout({ questions }: CheckboxLayoutProps): ReactElement {
+  const params: { id: string } = useParams();
   const { addAnswer, removeAnswer } = roomsAction;
   const dispatch = useDispatch();
   const questionsByLabel = extractQuestionsByLabel(questions);
-  const params: { id: string } = useParams();
 
   const deleteCheckItem = async (check: CheckItem) => {
     const { error, message } = await request.delete<CheckItem>(
@@ -47,28 +48,32 @@ export default function CheckboxLayout({ questions }: CheckboxLayoutProps): Reac
             <span>{label}</span>
             <Icon name='NAVIGATION_OPEN_DOWN' size='22' />
           </S.LabelWrapper>
-          {questionsByLabel[label].map((question) => (
-            <S.CheckboxGroupWrapper key={question.uid}>
-              <span>{question.title}</span>
-              {question.checks.length > 1 ? (
+          {questionsByLabel[label].map((question) =>
+            question.checks.length > 1 ? (
+              <S.CheckboxGroupWrapper key={question.uid}>
+                <S.CheckboxGroupLabel>{question.title}</S.CheckboxGroupLabel>
                 <S.CheckboxGroup>
                   {question.checks.map((check) => (
-                    <Checkbox
+                    <S.CheckboxForGrid
                       key={check.uid}
                       label={check.contents}
                       checked={check.checked || false}
                       onClick={handleCheckboxClick(check)}
+                      isLong={check.contents.length > 4}
                     />
                   ))}
                 </S.CheckboxGroup>
-              ) : (
+              </S.CheckboxGroupWrapper>
+            ) : (
+              <S.CheckboxWrapper key={question.uid}>
+                <span>{question.title}</span>
                 <Checkbox
                   checked={question.checks[0].checked || false}
                   onClick={handleCheckboxClick(question.checks[0])}
                 />
-              )}
-            </S.CheckboxGroupWrapper>
-          ))}
+              </S.CheckboxWrapper>
+            ),
+          )}
         </S.Container>
       ))}
     </>

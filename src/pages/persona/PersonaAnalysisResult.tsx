@@ -1,9 +1,12 @@
-import { apiBaseURL } from 'api/constants';
 import facebookShare from 'api/facebookShare';
 import kakaoShare from 'api/kakaoShare';
+import request from 'api/request';
 import webShare from 'api/webShare';
-import { Icon } from 'components';
-import React, { ReactElement } from 'react';
+import { Icon, Loading } from 'components';
+import { Persona } from 'entity/persona';
+import creatingImg from 'images/creating.png';
+import illust from 'images/illust.png';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import * as S from './styled';
@@ -14,29 +17,33 @@ enum TEXT {
 }
 
 export default function PersonaAnalysisResultPage(): ReactElement {
-  const path = useLocation().pathname;
+  const shareUrl = window.location.href;
   const queryString = useLocation().search;
-  const shareUrl = apiBaseURL + path + queryString;
-
-  const urlParams = new URLSearchParams(queryString);
-  const descriptionParams: string = urlParams.get('description')!;
-  const description = descriptionParams.split('<hr>').map((line) => {
-    if (line.includes('</hr>')) {
-      const highlights = line.split('</hr>');
-      const highlight = highlights[0];
-      const nextHighlight = highlights[1];
-      return (
-        <>
-          <S.Highlight key={highlight}>{highlight}</S.Highlight>
-          {nextHighlight}
-        </>
-      );
-    } else {
-      return <span>{line}</span>;
-    }
+  const [personaData, setPersonaData] = useState<Persona>({
+    type: '',
+    description: '',
+    recommended_place: '',
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const descriptionParams: string = urlParams.get('description')!;
+  useEffect(() => {
+    const fetchAnswer = async () => {
+      const params = new URLSearchParams(queryString).get('answer_id');
+      const choices = params!.split(',');
+
+      const reqParams = new URLSearchParams();
+      choices.forEach((id: string) => {
+        reqParams.append('choice_answers', id);
+      });
+
+      const res = await request.get<Persona>('/persona', { params: reqParams });
+      const data = res.data;
+      setPersonaData(data);
+    };
+    fetchAnswer();
+  }, []);
+
+  const descriptionParams: string = personaData.description;
   const description = descriptionParams.split('<hr>').map((line) => {
     if (line.includes('</hr>')) {
       const highlights = line.split('</hr>');
@@ -55,18 +62,24 @@ export default function PersonaAnalysisResultPage(): ReactElement {
 
   const history = useHistory();
   const handleGoChecklistButtonClick = () => {
-    history.push('/auth');
+    setIsLoading(true);
+    setTimeout(() => {
+      history.push('/auth');
+    }, 3000);
   };
   const handleRetestButtonClick = () => {
     history.push('/persona');
   };
-  return (
+  return isLoading ? (
+    <Loading image={creatingImg} text='나만의 체크리스트 생성중' />
+  ) : (
     <S.ResultContainer>
       <S.TitleWrapper>
         당신의 자취 유형은
-        <S.UserPersona>{urlParams.get('type')}!</S.UserPersona>
+        <S.UserPersona>{personaData.type}!</S.UserPersona>
       </S.TitleWrapper>
-      <S.RecommendedPlace>추천공간 : {urlParams.get('recommended_place')}</S.RecommendedPlace>
+      <img src={illust}></img>
+      <S.RecommendedPlace>추천공간 : {personaData.recommended_place[0]}</S.RecommendedPlace>
       <S.PersonaDescription>{description}</S.PersonaDescription>
 
       <S.ShareButtonWrapper>
