@@ -8,10 +8,17 @@ import AddRoom from './add-room/AddRoom';
 import AddRoomViaLink from './add-room/via-link';
 import Login from './auth/Login';
 import ChecklistPage from './checklist/ChecklistPage';
+import Forbidden from './error-views/Forbidden';
 import PersonaAnalysisPage from './persona/PersonaAnalysis';
 import PersonaAnalysisResultPage from './persona/PersonaAnalysisResult';
 import PersonaQuestionPage from './question/PersonaQuestion';
 import RoomListPage from './rooms/RoomListPage';
+
+declare global {
+  interface Window {
+    eg: any;
+  }
+}
 
 export default function EntryRoute() {
   const store = createStore();
@@ -28,6 +35,7 @@ export default function EntryRoute() {
           <PrivateRoute path='/add-room' component={AddRoom} />
           <PrivateRoute path='/rooms/:id' component={ChecklistPage} />
           <PrivateRoute path='/rooms' component={RoomListPage} />
+          <Route path='/error-view' component={Forbidden}/>
           <Route path='/' component={PersonaAnalysisPage} />
         </Switch>
       </BrowserRouter>
