@@ -14,9 +14,9 @@ enum TEXT {
 
 export default function PersonaAnalysisPage(): ReactElement {
   const { data } = useFetch<Viewer>('/persona/count');
-  const countWithComma = data ? data.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 0;
+  const countWithComma = data ? data.count.toLocaleString() : '0';
 
-  const sortedTitle = TEXT.TITLE.split(/\r?\n/).map((line) => {
+  const sortedTitle = TEXT.TITLE.split('\n').map((line) => {
     return (
       <span key={line}>
         {line}
@@ -25,7 +25,7 @@ export default function PersonaAnalysisPage(): ReactElement {
     );
   });
 
-  const sortedDesc = TEXT.DESCRIPTION.split(/\r?\n/).map((line) => {
+  const sortedDesc = TEXT.DESCRIPTION.split('\n').map((line) => {
     return (
       <span key={line}>
         {line}
