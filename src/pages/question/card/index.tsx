@@ -10,7 +10,7 @@ interface CardProps {
 }
 
 export default function Card({ uid, contents, index, onClick }: CardProps) {
-  const sortedContents = contents.split(/\\n/).map((line) => {
+  const sortedContents = contents.split('\\n').map((line) => {
     const highlight = line.includes('<hr>')
       ? line.substring(line.lastIndexOf('<hr>') + 4, line.lastIndexOf('</hr>'))
       : '';
