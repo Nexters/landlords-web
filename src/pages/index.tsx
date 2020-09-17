@@ -8,7 +8,6 @@ import AddRoom from './add-room/AddRoom';
 import AddRoomViaLink from './add-room/via-link';
 import Login from './auth/Login';
 import ChecklistPage from './checklist/ChecklistPage';
-import MainPage from './main/MainPage';
 import PersonaAnalysisPage from './persona/PersonaAnalysis';
 import PersonaAnalysisResultPage from './persona/PersonaAnalysisResult';
 import PersonaQuestionPage from './question/PersonaQuestion';

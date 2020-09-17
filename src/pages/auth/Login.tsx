@@ -5,7 +5,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { LOGIN_STATE } from '../../constants';
-import * as S from './styled';;
+import * as S from './styled';
 
 export default function Login() {
   const history = useHistory();
@@ -17,6 +17,7 @@ export default function Login() {
       window.location.href = `${apiBaseURL}/oauth/google`;
     }
   };
+
   return (
     <S.Container>
       <S.IconWrapper>

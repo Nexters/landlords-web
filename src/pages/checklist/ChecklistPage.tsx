@@ -6,7 +6,7 @@ import { AnswersResponse, CheckQuestionsResponse, RoomsResponse } from 'entity/r
 import { ROOM_CONTENTS_LABEL } from 'entity/rooms';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { match as Match, useHistory } from 'react-router-dom';
+import { match, useHistory } from 'react-router-dom';
 import { roomsAction, roomsSelector } from 'store/roomsSlice';
 
 import CheckboxLayout from './checkbox-layout';
@@ -14,33 +14,32 @@ import RoomCard from './room-card';
 import RoomDeleteModal from './room-delete-modal';
 import * as S from './styled';
 
-interface ChecklistPageProps {
-  match: Match<{ id: string }>;
-}
-
 export type RoomContentProps = keyof typeof ROOM_CONTENTS_LABEL;
+
+interface ChecklistPageProps {
+  match: match<{ id: string }>;
+}
 
 export default function ChecklistPage({ match }: ChecklistPageProps): ReactElement {
   const {
     rooms,
-    roomMap,
     singleCheckQuestions,
     multiCheckQuestions,
     checklistStatus,
+    roomMap,
   } = useSelector(roomsSelector);
   const { setRooms, setQuestoinsAndAnswers } = roomsAction;
-  const { params } = match;
   const history = useHistory();
   const dispatch = useDispatch();
-  const selectedRoom = roomMap[params.id];
+  const { params } = match;
   const [isOpenRoomDeleteModal, setOpenRoomDeleteModal] = useState(false);
+  const selectedRoom = roomMap[params.id];
 
   useEffect(() => {
     const fetchRooms = async () => {
       if (rooms.length > 0) return;
-      const { data, error, message } = await request.get<RoomsResponse>('/rooms');
-      if (error) alert(message);
-      else dispatch(setRooms(data.rooms));
+      const { data, error } = await request.get<RoomsResponse>('/rooms');
+      if (!error) dispatch(setRooms(data.rooms));
     };
     const fetchQuestionsAndAnswers = async () => {
       const fetchedQuestions = await request.get<CheckQuestionsResponse>(
@@ -72,7 +71,7 @@ export default function ChecklistPage({ match }: ChecklistPageProps): ReactEleme
         {rooms.map((room, index) => (
           <RoomCard key={index} room={room} />
         ))}
-        <S.EmtpyRoomCard>+</S.EmtpyRoomCard>
+        <S.EmtpyRoomCard onClick={() => history.push('/add-room/via-link')}>+</S.EmtpyRoomCard>
       </S.RoomCardList>
       {selectedRoom && (
         <>
