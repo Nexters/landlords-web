@@ -1,7 +1,10 @@
 ---
 name: Deploy
 on:
-  - push
+  pull_request:
+    types: [closed]
+    branches:
+      - master
 
 jobs:
   build:
@@ -20,7 +23,8 @@ jobs:
           name: build
           path: build
   deploy:
-    name: Deploy Development
+    if: github.event.pull_request.merged == true
+    name: Deploy
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -34,4 +38,4 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.5.0
         with:
-          args: deploy --only hosting:checkhaebang-dev
+          args: deploy --only hosting:checkhaebang
