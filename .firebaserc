@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "checkhaebang"
+  },
+  "targets": {
+    "checkhaebang": {
+      "hosting": {
+        "dev": [
+          "checkhaebang-dev"
+        ],
+        "prod": [
+          "checkhaebang"
+        ]
+      }
+    }
   }
 }
