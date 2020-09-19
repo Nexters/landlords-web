@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
       - name: Build
         run: REACT_APP_PRODUCTION_API_URL=${{ secrets.REACT_APP_PRODUCTION_API_URL }} REACT_APP_DEVELOPMENT_API_URL=${{ secrets.REACT_APP_DEVELOPMENT_API_URL }} REACT_APP_KAKAO_APP_KEY=${{ secrets.REACT_APP_KAKAO_APP_KEY }} REACT_APP_FACEBOOK_APP_ID=${{ secrets.REACT_APP_FACEBOOK_APP_ID }} REACT_APP_FIREBASE_API_KEY=${{ secrets.REACT_APP_FIREBASE_API_KEY }} REACT_APP_FIREBASE_AUTH_DOAMIN=${{ secrets.REACT_APP_FIREBASE_AUTH_DOAMIN}} npm run build
       - name: Archive Production Artifact

@@ -35,12 +35,12 @@
     "eslint-config-react-app": "5.2.1",
     "eslint-loader": "3.0.3",
     "eslint-plugin-flowtype": "4.6.0",
-    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "1.6.1",
     "file-loader": "4.3.0",
-    "firebase": "^7.20.0",
+    "firebase": "7.20.0",
     "fs-extra": "8.1.0",
     "html-webpack-plugin": "4.0.0-beta.11",
     "identity-obj-proxy": "3.0.0",
@@ -110,11 +110,11 @@
     "eslint": "6.6.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-plugin-import": "2.22.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-simple-import-sort": "5.0.3",
     "import-sort-style-module": "6.0.0",
-    "prettier": "^2.0.5",
-    "prettier-eslint": "^11.0.0"
+    "prettier": "2.0.5",
+    "prettier-eslint": "11.0.0"
   },
   "jest": {
     "roots": [
