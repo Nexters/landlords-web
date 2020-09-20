@@ -34,6 +34,7 @@ export default function Login() {
   const getGoogleOAuthResponse = async () => {
     // Google의 타입에 문제가 있어 credential.accessToken이 없다는 에러가 발생하여 any로 취급.
     const { credential } = await firebase.auth().getRedirectResult() as any;
+    console.log('credential', credential);
     if (credential) {
       const requestParam = {
         oauth_type: 'Google',
