@@ -5,11 +5,11 @@
   "targets": {
     "checkhaebang": {
       "hosting": {
-        "dev": [
-          "checkhaebang-dev"
-        ],
         "prod": [
           "checkhaebang"
+        ],
+        "dev": [
+          "checkhaebang-dev"
         ]
       }
     }
