@@ -1,13 +1,12 @@
+import './App.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import EntryRoute from './pages';
 import * as serviceWorker from './serviceWorker';
-import GlobalStyles from './styles/GlobalStyles';
-
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
     <EntryRoute />
   </React.StrictMode>,
   document.getElementById('root'),

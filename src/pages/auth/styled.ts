@@ -4,7 +4,7 @@ import color from 'styles/color';
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: ${color.kakaoYellow};
+  background: ${color.primaryDeepDarkBlue};
 `;
 
 const IconWrapper = styled.div`
@@ -35,7 +35,7 @@ const Button = styled.button`
   border-radius: 4px;
   height: 54px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
-  background-color: ${color.primaryYellow};
+  background-color: ${color.kakaoYellow};
 `;
 
 const ButtonText = styled.span`

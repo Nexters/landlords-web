@@ -9,18 +9,27 @@ const Container = styled.div`
   background-color: ${color.primaryYellow};
 `;
 
-const Title = styled.h1`
+const Title = styled.span`
   margin-top: 64px;
   font-size: 26px;
+  font-family: SpoqaHanSans;
+  font-size: 26px;
   font-weight: bold;
-  line-height: 34px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.3px;
 `;
 
-const Description = styled.p`
-  margin-top: 16px;
+const Description = styled.span`
+  margin: 16px 40px 0 0;
+  font-family: SpoqaHanSans;
   font-size: 14px;
-  font-weight: 500;
-  line-height: 18px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.32;
+  letter-spacing: normal;
 `;
 
 const ResultContainer = styled(Container)`
@@ -56,7 +65,10 @@ const Highlight = styled.span`
   background-color: ${color.secondaryYellow};
 `;
 
-const Button = styled.button`
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 54px;
   border: none;
@@ -68,6 +80,13 @@ const Button = styled.button`
 `;
 
 const StartButton = styled(Button)`
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.34;
+  letter-spacing: normal;
+  text-align: center;
   margin-top: 24px;
 `;
 
@@ -110,12 +129,14 @@ const RetestButton = styled.button`
   background-color: transparent;
 `;
 
-const CounterDescription = styled.button`
-  margin: 277px 29px 0;
-  height: 31px;
+const CounterDescription = styled.div`
+  margin: "8px 42px 8px 42px",
+  height: 32px;
+  width: calc(100% - 36px);
+  align-self: center;
   text-align: center;
   font-size: 12px;
-  line-height: 15px;
+  line-height: 32px;
   color: ${color.basicWhite};
   background-color: rgba(41, 41, 44, 0.8);
   border: none;
@@ -128,10 +149,8 @@ const Count = styled.span`
   color: ${color.primaryYellow};
 `;
 
-const BackButton = styled.button`
+const BackButton = styled.span`
   text-align: center;
-  text-decoration: underline;
-  text-underline-position: under;
   font-size: 12px;
   font-weight: bold;
   line-height: 15px;
@@ -139,9 +158,15 @@ const BackButton = styled.button`
   border: none;
   display: flex;
   margin: 14px auto;
+  object-fit: contain;
+  opacity: 0.5;
+  bottom: 1px;
+  border-width: 0 0 1px;
+  border-style: solid;
+  padding-bottom:3px;
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled.div`
   width: 24px;
   height: 24px;
   margin-top: 44rem;
