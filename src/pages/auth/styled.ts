@@ -4,7 +4,7 @@ import color from 'styles/color';
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: ${color.primaryDeepDarkBlue};
+  background: ${color.kakaoYellow};
 `;
 
 const IconWrapper = styled.div`

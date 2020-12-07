@@ -25,7 +25,7 @@ export default function Login() {
       </S.IconWrapper>
       <S.ButtonWrapper>
         <S.Button onClick={handleClick}>
-          <S.ButtonText>구글계정으로 시작하기</S.ButtonText>
+          <S.ButtonText>카카오 계정으로 시작하기</S.ButtonText>
         </S.Button>
       </S.ButtonWrapper>
     </S.Container>
