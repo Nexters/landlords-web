@@ -25,7 +25,7 @@ const IconWrapper = styled.div<{selected: boolean}>`
 `;
 
 const Text = styled.span`
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: 10px;
   font-weight: normal;
   line-height: 1.3;

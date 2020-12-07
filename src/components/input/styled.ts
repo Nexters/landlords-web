@@ -16,7 +16,7 @@ const InputField = styled.input<InputFieldProps>`
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.03);
   background-color: rgba(133, 131, 146, 0.08);
   border: none;
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: ${({ fontSize }) => fontSize};;
   font-weight: ${({ fontWeight }) => fontWeight};;
   line-height: 1.3;

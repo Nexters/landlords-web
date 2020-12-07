@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import color from 'styles/color';
 
 const Container = styled.div`
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.34;
