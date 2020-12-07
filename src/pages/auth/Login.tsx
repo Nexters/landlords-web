@@ -14,7 +14,7 @@ export default function Login() {
     if (loginState === LOGIN_STATE.SUCCESS) {
       history.push('/rooms');
     } else {
-      window.location.href = `${apiBaseURL}/oauth/google`;
+      window.location.href = `${apiBaseURL}/oauth/kakao`;
     }
   };
 
