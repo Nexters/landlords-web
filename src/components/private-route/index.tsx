@@ -20,7 +20,7 @@ export default function PrivateRoute({
       return <div>Loading...</div>;
     }
     if (loginState === LOGIN_STATE.ERROR) {
-      window.location.href = `${apiBaseURL}/oauth/google`;
+      window.location.href = `${apiBaseURL}/oauth/kakao`;
       return <></>;
     }
     return <Component {...props} />;
