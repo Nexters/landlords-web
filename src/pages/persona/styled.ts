@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import color from 'styles/color';
 
 const Container = styled.div`
+  font-family: Spoqa Han Sans;
   display: flex;
   flex-direction: column;
   padding: 0 24px;
@@ -12,7 +13,7 @@ const Container = styled.div`
 const Title = styled.span`
   margin-top: 64px;
   font-size: 26px;
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: 26px;
   font-weight: bold;
   font-stretch: normal;
@@ -23,7 +24,7 @@ const Title = styled.span`
 
 const Description = styled.span`
   margin: 16px 40px 0 0;
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;

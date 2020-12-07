@@ -18,7 +18,7 @@ const InputContainer = styled.div`
 
 const InputGuideText = styled.p`
   margin: 0 0 16px;
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: 12px;
   line-height: 1.3;
   color: ${color.grayscale29};

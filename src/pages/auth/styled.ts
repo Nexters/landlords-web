@@ -39,7 +39,7 @@ const Button = styled.button`
 `;
 
 const ButtonText = styled.span`
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: 16px;
   font-weight: bold;
   font-style: normal;

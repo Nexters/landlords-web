@@ -42,7 +42,7 @@ const CardsWrapper = styled.div`
 const ProgressLength = styled.div`
   text-align: right;
   margin-top: 115px;
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: 12px;
   color: ${color.grayscalebb};
 `;
