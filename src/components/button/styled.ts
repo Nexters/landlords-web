@@ -19,7 +19,7 @@ const Button = styled.button<ButtonProps>`
   height: ${({ height }) => height};
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
   line-height: 1.3;

@@ -19,7 +19,7 @@ const TitleLeftContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: SpoqaHanSans;
+  font-family: Spoqa Han Sans;
   font-size: 16px;
   font-weight: bold;
   line-height: 1.3;
