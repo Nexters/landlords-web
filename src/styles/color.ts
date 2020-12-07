@@ -2,6 +2,7 @@ const color = {
   basicBlack: '#000000',
   basicWhite: '#ffffff',
   primaryYellow: '#ffc856',
+  kakaoYellow: '#ffeb00',
   primaryDeepDarkBlue: '#29292c',
   primaryDullPurple: '#858392',
   secondaryYellow: '#fff9da',
