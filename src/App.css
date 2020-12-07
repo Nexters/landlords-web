@@ -1,0 +1,19 @@
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+*{
+  box-sizing: border-box;
+  font-family: "Spoqa Han Sans";
+}
+body{
+  background-color: #ffffff;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
