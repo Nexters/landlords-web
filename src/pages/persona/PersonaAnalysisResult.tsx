@@ -6,6 +6,7 @@ import { Icon, Loading } from 'components';
 import { Persona } from 'entity/persona';
 import creatingImg from 'images/creating.png';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import PersonaMapper from './mapper';
@@ -74,6 +75,13 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     <Loading image={creatingImg} text='나만의 체크리스트 생성중' />
   ) : (
     <S.ResultContainer>
+      <Helmet
+        meta={[
+          { property: 'og:title', content: '방 구할 땐? 체크해방!' },
+          { property: 'og:description', content: personaData.type },
+          { property: 'og:image', content: PersonaMapper(personaData.type) },
+        ]}
+      />
       <S.TitleWrapper>
         당신의 자취 유형은
         <S.UserPersona>{personaData.type}!</S.UserPersona>
