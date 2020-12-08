@@ -5,10 +5,10 @@ import webShare from 'api/webShare';
 import { Icon, Loading } from 'components';
 import { Persona } from 'entity/persona';
 import creatingImg from 'images/creating.png';
-import illust from 'images/illust.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import PersonaMapper from './mapper';
 import * as S from './styled';
 
 enum TEXT {
@@ -78,7 +78,9 @@ export default function PersonaAnalysisResultPage(): ReactElement {
         당신의 자취 유형은
         <S.UserPersona>{personaData.type}!</S.UserPersona>
       </S.TitleWrapper>
-      <img src={illust}></img>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img style={{ width: 360, height: 210 }} src={PersonaMapper(personaData.type)}></img>
+      </div>
       <S.RecommendedPlace>추천공간 : {personaData.recommended_place[0]}</S.RecommendedPlace>
       <S.PersonaDescription>{description}</S.PersonaDescription>
 
