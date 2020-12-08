@@ -79,7 +79,10 @@ export default function PersonaAnalysisResultPage(): ReactElement {
         meta={[
           { property: 'og:title', content: '방 구할 땐? 체크해방!' },
           { property: 'og:description', content: personaData.type },
-          { property: 'og:image', content: PersonaMapper(personaData.type) },
+          {
+            property: 'og:image',
+            content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
+          },
         ]}
       />
       <S.TitleWrapper>
