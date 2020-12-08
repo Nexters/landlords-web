@@ -76,13 +76,19 @@ export default function PersonaAnalysisResultPage(): ReactElement {
   ) : (
     <S.ResultContainer>
       <Helmet
+        title={`당신의 자취 유형은 ${personaData.type}!`}
         meta={[
           { property: 'og:title', content: `당신의 자취 유형은 ${personaData.type}!` },
           { property: 'og:description', content: `추천공간 : ${personaData.recommended_place[0]}` },
           {
-            property: 'og:image',
+            property: 'og:image:url',
             content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
           },
+          {
+            property: 'og:image:secure_url',
+            content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
+          },
+          { property: 'og:image:type', content: 'image/png' },
           { property: 'og:image:width', content: '360' },
           { property: 'og:image:height', content: '210' },
         ]}
