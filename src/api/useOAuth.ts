@@ -42,7 +42,7 @@ export const useOAuth = () => {
         user,
         loginState: LOGIN_STATE.SUCCESS,
       });
-      sessionStorage.setItem('userName', user.given_name);
+      sessionStorage.setItem('userName', user.name);
       setAuthorization(token);
     } catch {
       setState({ ...state, loginState: LOGIN_STATE.ERROR });
