@@ -77,9 +77,14 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     <S.ResultContainer>
       <Helmet
         meta={[
-          { property: 'og:title', content: '방 구할 땐? 체크해방!' },
-          { property: 'og:description', content: personaData.type },
-          { property: 'og:image', content: PersonaMapper(personaData.type) },
+          { property: 'og:title', content: `당신의 자취 유형은 ${personaData.type}!` },
+          { property: 'og:description', content: `추천공간 : ${personaData.recommended_place[0]}` },
+          {
+            property: 'og:image',
+            content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
+          },
+          { property: 'og:image:width', content: '360' },
+          { property: 'og:image:height', content: '210' },
         ]}
       />
       <S.TitleWrapper>
