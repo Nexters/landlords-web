@@ -1,9 +1,9 @@
 import { decodeTokenWithJWK } from 'api/auth';
 import { useEffect, useState } from 'react';
+import cookie from 'react-cookies';
 
 import { LOGIN_STATE } from '../constants';
 import { setAuthorization } from './request';
-
 interface State {
   user: any;
   loginState: string;
@@ -27,24 +27,18 @@ export const useOAuth = () => {
   });
 
   const verifyUser = async () => {
-    try {
-      let token = sessionStorage.getItem('accessToken');
-      if (!token) {
-        const cookie = document.cookie;
-        if (!cookie) {
-          throw new Error('Authentication required');
-        }
-        token = cookie.replace('token=', '');
-        sessionStorage.setItem('accessToken', token);
-      }
+    const token = sessionStorage.getItem('accessToken') || cookie.load('token');
+    if (token) {
       const user: any = await decodeTokenWithJWK(token);
       setState({
         user,
         loginState: LOGIN_STATE.SUCCESS,
       });
       sessionStorage.setItem('userName', user.name);
+      sessionStorage.setItem('accessToken', token);
       setAuthorization(token);
-    } catch {
+    } else {
+      sessionStorage.clear();
       setState({ ...state, loginState: LOGIN_STATE.ERROR });
     }
   };
