@@ -63,6 +63,7 @@
     "postcss-safe-parser": "4.0.1",
     "react": "16.13.1",
     "react-app-polyfill": "1.0.6",
+    "react-cookies": "^0.1.1",
     "react-dev-utils": "10.2.1",
     "react-dom": "16.13.1",
     "react-helmet": "^6.1.0",
@@ -106,6 +107,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-cookies": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "3.5.0",
     "@typescript-eslint/parser": "3.5.0",
     "eslint": "6.6.0",

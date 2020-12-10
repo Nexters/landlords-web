@@ -10,10 +10,7 @@ interface PrivateRouteProps {
   [key: string]: any;
 }
 
-export default function PrivateRoute({
-  component: Component,
-  ...otherProps
-}: PrivateRouteProps) {
+export default function PrivateRoute({ component: Component, ...otherProps }: PrivateRouteProps) {
   const { loginState } = useOAuth();
   const renderView = (props: RouteComponentProps) => {
     if (loginState === LOGIN_STATE.LOADING) {
