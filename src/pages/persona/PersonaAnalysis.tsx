@@ -48,9 +48,9 @@ export default function PersonaAnalysisPage(): ReactElement {
       <S.Title>{sortedTitle}</S.Title>
       <S.Description> {sortedDesc}</S.Description>
       <img style={{ height: 226, objectFit: 'contain' }} src={startIllust} alt='startIllust' />
-      <S.CounterDescription>
+      {/* <S.CounterDescription>
         총 <S.Count>1000</S.Count>명이 체크해방을 참고해 방을 구했어요!
-      </S.CounterDescription>
+      </S.CounterDescription> */}
 
       <S.StartButton onClick={handleStartButtonClick}>{TEXT.START}</S.StartButton>
       <S.BackButton onClick={handleBackButtonClick}>{TEXT.BACK}</S.BackButton>

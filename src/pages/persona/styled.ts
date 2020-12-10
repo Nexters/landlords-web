@@ -88,7 +88,7 @@ const StartButton = styled(Button)`
   line-height: 1.34;
   letter-spacing: normal;
   text-align: center;
-  margin-top: 24px;
+  margin-top: 50px;
 `;
 
 const GoChecklistButton = styled(Button)`
@@ -164,7 +164,7 @@ const BackButton = styled.span`
   bottom: 1px;
   border-width: 0 0 1px;
   border-style: solid;
-  padding-bottom:3px;
+  padding-bottom: 3px;
 `;
 
 const CloseButton = styled.div`
