@@ -18,13 +18,14 @@ export const setAuthorization = (token: string) => {
 
 const execute = async <T>(callback: () => Promise<AxiosResponse<T>>): Promise<Response<T>> => {
   try {
-    const { data } = await callback();
-    return { data, error: false, message: 'OK' };
+    const result = await callback();
+    const { data, status } = result;
+    return { data, error: false, message: 'OK', status: status };
   } catch (err) {
-    if (!err.response) return { data: err, error: true, message: err.message };
-    const { data } = err.response;
+    if (!err.response) return { data: err, error: true, message: err.message, status: 400 };
+    const { data, status } = err.response;
     const message = Array.isArray(data.errors) ? data.errors[0].msg || data.errors[0] : data.errors;
-    return { data, error: true, message };
+    return { data, error: true, message, status: status };
   }
 };
 

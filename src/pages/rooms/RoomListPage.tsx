@@ -1,3 +1,4 @@
+import { apiBaseURL } from 'api/constants';
 import request from 'api/request';
 import { RoomsResponse } from 'entity/response';
 import React, { useEffect } from 'react';
@@ -18,8 +19,12 @@ export default function RoomListPage() {
 
   useEffect(() => {
     const fetchRooms = async () => {
-      const { data, error, message } = await request.get<RoomsResponse>('/rooms');
-      if (error) alert(message);
+      const response = await request.get<RoomsResponse>('/rooms');
+      const { data, error, message, status } = response;
+      if (status === 401) {
+        sessionStorage.clear();
+        window.location.href = `${apiBaseURL}/oauth/kakao`;
+      } else if (error) alert(message);
       else dispatch(setRooms(data.rooms));
     };
     fetchRooms();

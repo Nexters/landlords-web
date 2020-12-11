@@ -5,6 +5,7 @@ import { Room } from './rooms';
 export interface Response<T = object> {
   data: T;
   error: boolean;
+  status: number;
   message?: string;
 }
 
