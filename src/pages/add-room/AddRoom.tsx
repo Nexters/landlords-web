@@ -175,7 +175,12 @@ export default function AddRoom() {
           />
         </S.InputContainer>
         <S.ButtonContainer>
-          <Button title='방 추가하기' bgColor={color.primaryYellow} onClick={handleSubmit} />
+          <Button
+            className='add-button'
+            title='방 추가하기'
+            bgColor={color.primaryYellow}
+            onClick={handleSubmit}
+          />
         </S.ButtonContainer>
       </S.Container>
     </>

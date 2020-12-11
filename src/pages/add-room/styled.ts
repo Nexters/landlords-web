@@ -50,8 +50,8 @@ export const Suffix = styled.span`
 `;
 
 export const ButtonContainer = styled.div`
-  position: fixed;
   width: calc(100vw - 48px);
+  margin: 16px 0 24px 0;
   bottom: 24px;
 `;
 

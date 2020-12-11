@@ -21,11 +21,13 @@ export default function Header({
 }: HeaderProps) {
   return (
     <S.Container>
-      <S.TitleLeftContainer>
-        {leftIconName && <Icon name={leftIconName} size={leftIconSize} onClick={onClick} />}
-        <S.Title>{title}</S.Title>
-      </S.TitleLeftContainer>
-      {children}
+      {leftIconName ? (
+        <Icon name={leftIconName} size={leftIconSize} onClick={onClick} />
+      ) : (
+        <S.EmptyContainer />
+      )}
+      <S.Title>{title}</S.Title>
+      {children || <S.EmptyContainer />}
     </S.Container>
   );
 }
