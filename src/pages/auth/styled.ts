@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import color from 'styles/color';
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: ${color.primaryDeepDarkBlue};
 `;
 
@@ -27,7 +27,7 @@ const ButtonWrapper = styled.div`
   height: 54px;
 `;
 
-const Button = styled.button`
+const Button = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
