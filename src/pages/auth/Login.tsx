@@ -21,7 +21,7 @@ export default function Login() {
 
   return (
     <S.Container>
-      <Loading width={300} height={300} marginTop={24.3} image={complete} />
+      <Loading width={300} height={300} image={complete} />
       <S.ButtonWrapper>
         <S.Button onClick={handleClick}>
           <S.ButtonText>카카오 계정으로 시작하기</S.ButtonText>

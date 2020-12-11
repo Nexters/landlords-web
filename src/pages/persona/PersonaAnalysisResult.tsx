@@ -72,13 +72,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     history.push('/persona');
   };
   return isLoading ? (
-    <Loading
-      width={280}
-      height={200}
-      marginTop={33.9}
-      image={creating}
-      text='나만의 체크리스트 생성중'
-    />
+    <Loading width={280} height={200} image={creating} text='나만의 체크리스트 생성중' />
   ) : (
     <S.ResultContainer>
       <Helmet

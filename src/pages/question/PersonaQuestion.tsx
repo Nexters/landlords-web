@@ -85,13 +85,7 @@ export default function PersonaQuestionPage(): ReactElement {
   });
 
   return questionsState.isLoading ? (
-    <Loading
-      width={180}
-      height={180}
-      marginTop={38.7}
-      image={analyzing}
-      text='나의 자취 유형 분석중'
-    />
+    <Loading width={180} height={180} image={analyzing} text='나의 자취 유형 분석중' />
   ) : (
     <S.Container>
       <S.Header>
