@@ -1,34 +1,34 @@
-import img_0 from "./images/img_0.png";
-import img_1 from "./images/img_1.png";
-import img_2 from "./images/img_2.png";
-import img_3 from "./images/img_3.png";
-import img_4 from "./images/img_4.png";
-import img_5 from "./images/img_5.png";
+import img_0 from './images/img_0.png';
+import img_1 from './images/img_1.png';
+import img_2 from './images/img_2.png';
+import img_3 from './images/img_3.png';
+import img_4 from './images/img_4.png';
+import img_5 from './images/img_5.png';
 
 export default {
-  v: "5.5.7",
+  v: '5.5.7',
   fr: 29.9700012207031,
   ip: 0,
   op: 57.0000023216576,
   w: 260,
   h: 200,
-  nm: "creating",
+  nm: 'creating',
   ddd: 0,
   assets: [
-    { id: "image_0", w: 476, h: 130, u: "", p: img_0, e: 0 },
-    { id: "image_1", w: 476, h: 130, u: "", p: img_1, e: 0 },
-    { id: "image_2", w: 476, h: 130, u: "", p: img_2, e: 0 },
-    { id: "image_3", w: 476, h: 130, u: "", p: img_3, e: 0 },
-    { id: "image_4", w: 516, h: 140, u: "", p: img_4, e: 0 },
-    { id: "image_5", w: 476, h: 130, u: "", p: img_5, e: 0 },
+    { id: 'image_0', w: 476, h: 130, u: '', p: img_0, e: 0 },
+    { id: 'image_1', w: 476, h: 130, u: '', p: img_1, e: 0 },
+    { id: 'image_2', w: 476, h: 130, u: '', p: img_2, e: 0 },
+    { id: 'image_3', w: 476, h: 130, u: '', p: img_3, e: 0 },
+    { id: 'image_4', w: 516, h: 140, u: '', p: img_4, e: 0 },
+    { id: 'image_5', w: 476, h: 130, u: '', p: img_5, e: 0 },
     {
-      id: "comp_0",
+      id: 'comp_0',
       layers: [
         {
           ddd: 0,
           ind: 1,
           ty: 4,
-          nm: "Shape Layer 2",
+          nm: 'Shape Layer 2',
           sr: 1,
           ks: {
             o: { a: 0, k: 100, ix: 11 },
@@ -40,20 +40,20 @@ export default {
           ao: 0,
           shapes: [
             {
-              ty: "gr",
+              ty: 'gr',
               it: [
                 {
-                  ty: "rc",
+                  ty: 'rc',
                   d: 1,
                   s: { a: 0, k: [282.129, 132.254], ix: 2 },
                   p: { a: 0, k: [0, 0], ix: 3 },
                   r: { a: 0, k: 0, ix: 4 },
-                  nm: "Rectangle Path 1",
-                  mn: "ADBE Vector Shape - Rect",
+                  nm: 'Rectangle Path 1',
+                  mn: 'ADBE Vector Shape - Rect',
                   hd: false,
                 },
                 {
-                  ty: "gf",
+                  ty: 'gf',
                   o: { a: 0, k: 100, ix: 10 },
                   r: 1,
                   bm: 0,
@@ -87,12 +87,12 @@ export default {
                   s: { a: 0, k: [0, 0], ix: 5 },
                   e: { a: 0, k: [100, 0], ix: 6 },
                   t: 1,
-                  nm: "Gradient Fill 1",
-                  mn: "ADBE Vector Graphic - G-Fill",
+                  nm: 'Gradient Fill 1',
+                  mn: 'ADBE Vector Graphic - G-Fill',
                   hd: false,
                 },
                 {
-                  ty: "tr",
+                  ty: 'tr',
                   p: { a: 0, k: [-2.406, -50.576], ix: 2 },
                   a: { a: 0, k: [0, 0], ix: 1 },
                   s: { a: 0, k: [70.223, 207.059], ix: 3 },
@@ -100,15 +100,15 @@ export default {
                   o: { a: 0, k: 100, ix: 7 },
                   sk: { a: 0, k: 0, ix: 4 },
                   sa: { a: 0, k: 0, ix: 5 },
-                  nm: "Transform",
+                  nm: 'Transform',
                 },
               ],
-              nm: "Rectangle 1",
+              nm: 'Rectangle 1',
               np: 3,
               cix: 2,
               bm: 0,
               ix: 1,
-              mn: "ADBE Vector Group",
+              mn: 'ADBE Vector Group',
               hd: false,
             },
           ],
@@ -121,7 +121,7 @@ export default {
           ddd: 0,
           ind: 2,
           ty: 4,
-          nm: "Shape Layer 1",
+          nm: 'Shape Layer 1',
           sr: 1,
           ks: {
             o: { a: 0, k: 100, ix: 11 },
@@ -133,20 +133,20 @@ export default {
           ao: 0,
           shapes: [
             {
-              ty: "gr",
+              ty: 'gr',
               it: [
                 {
-                  ty: "rc",
+                  ty: 'rc',
                   d: 1,
                   s: { a: 0, k: [282.129, 132.254], ix: 2 },
                   p: { a: 0, k: [0, 0], ix: 3 },
                   r: { a: 0, k: 0, ix: 4 },
-                  nm: "Rectangle Path 1",
-                  mn: "ADBE Vector Shape - Rect",
+                  nm: 'Rectangle Path 1',
+                  mn: 'ADBE Vector Shape - Rect',
                   hd: false,
                 },
                 {
-                  ty: "gf",
+                  ty: 'gf',
                   o: { a: 0, k: 100, ix: 10 },
                   r: 1,
                   bm: 0,
@@ -180,12 +180,12 @@ export default {
                   s: { a: 0, k: [0, 0], ix: 5 },
                   e: { a: 0, k: [100, 0], ix: 6 },
                   t: 1,
-                  nm: "Gradient Fill 1",
-                  mn: "ADBE Vector Graphic - G-Fill",
+                  nm: 'Gradient Fill 1',
+                  mn: 'ADBE Vector Graphic - G-Fill',
                   hd: false,
                 },
                 {
-                  ty: "tr",
+                  ty: 'tr',
                   p: { a: 0, k: [-2.406, -50.576], ix: 2 },
                   a: { a: 0, k: [0, 0], ix: 1 },
                   s: { a: 0, k: [70.223, 207.059], ix: 3 },
@@ -193,15 +193,15 @@ export default {
                   o: { a: 0, k: 100, ix: 7 },
                   sk: { a: 0, k: 0, ix: 4 },
                   sa: { a: 0, k: 0, ix: 5 },
-                  nm: "Transform",
+                  nm: 'Transform',
                 },
               ],
-              nm: "Rectangle 1",
+              nm: 'Rectangle 1',
               np: 3,
               cix: 2,
               bm: 0,
               ix: 1,
-              mn: "ADBE Vector Group",
+              mn: 'ADBE Vector Group',
               hd: false,
             },
           ],
@@ -214,9 +214,9 @@ export default {
           ddd: 0,
           ind: 3,
           ty: 2,
-          nm: "Layer 2/CH-motion.ai",
-          cl: "ai",
-          refId: "image_0",
+          nm: 'Layer 2/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_0',
           sr: 1,
           ks: {
             o: {
@@ -273,9 +273,9 @@ export default {
           ddd: 0,
           ind: 4,
           ty: 2,
-          nm: "Layer 5/CH-motion.ai",
-          cl: "ai",
-          refId: "image_1",
+          nm: 'Layer 5/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_1',
           sr: 1,
           ks: {
             o: {
@@ -338,9 +338,9 @@ export default {
           ddd: 0,
           ind: 5,
           ty: 2,
-          nm: "Layer 4/CH-motion.ai",
-          cl: "ai",
-          refId: "image_2",
+          nm: 'Layer 4/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_2',
           sr: 1,
           ks: {
             o: {
@@ -403,9 +403,9 @@ export default {
           ddd: 0,
           ind: 6,
           ty: 2,
-          nm: "Layer 3/CH-motion.ai",
-          cl: "ai",
-          refId: "image_3",
+          nm: 'Layer 3/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_3',
           sr: 1,
           ks: {
             o: {
@@ -450,9 +450,9 @@ export default {
           ddd: 0,
           ind: 7,
           ty: 2,
-          nm: "Layer 6/CH-motion.ai",
-          cl: "ai",
-          refId: "image_4",
+          nm: 'Layer 6/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_4',
           sr: 1,
           ks: {
             o: {
@@ -497,9 +497,9 @@ export default {
           ddd: 0,
           ind: 8,
           ty: 2,
-          nm: "Layer 7/CH-motion.ai",
-          cl: "ai",
-          refId: "image_5",
+          nm: 'Layer 7/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_5',
           sr: 1,
           ks: {
             o: {
@@ -556,9 +556,9 @@ export default {
           ddd: 0,
           ind: 9,
           ty: 2,
-          nm: "Layer 5/CH-motion.ai",
-          cl: "ai",
-          refId: "image_1",
+          nm: 'Layer 5/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_1',
           sr: 1,
           ks: {
             o: {
@@ -603,9 +603,9 @@ export default {
           ddd: 0,
           ind: 10,
           ty: 2,
-          nm: "Layer 2/CH-motion.ai",
-          cl: "ai",
-          refId: "image_0",
+          nm: 'Layer 2/CH-motion.ai',
+          cl: 'ai',
+          refId: 'image_0',
           sr: 1,
           ks: {
             o: {
@@ -654,8 +654,8 @@ export default {
       ddd: 0,
       ind: 1,
       ty: 0,
-      nm: "src-creating",
-      refId: "comp_0",
+      nm: 'src-creating',
+      refId: 'comp_0',
       sr: 1,
       ks: {
         o: { a: 0, k: 100, ix: 11 },

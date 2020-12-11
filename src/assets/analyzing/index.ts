@@ -1,28 +1,28 @@
-import img_0 from "./images/img_0.png";
-import img_1 from "./images/img_1.png";
+import img_0 from './images/img_0.png';
+import img_1 from './images/img_1.png';
 
 export default {
-  v: "5.5.7",
+  v: '5.5.7',
   fr: 29.9700012207031,
   ip: 0,
   op: 76.0000030955435,
   w: 180,
   h: 180,
-  nm: "analyzing",
+  nm: 'analyzing',
   ddd: 0,
   assets: [
-    { id: "image_0", w: 115, h: 127, u: "", p: img_0, e: 0 },
-    { id: "image_1", w: 406, h: 428, u: "", p: img_1, e: 0 },
+    { id: 'image_0', w: 115, h: 127, u: '', p: img_0, e: 0 },
+    { id: 'image_1', w: 406, h: 428, u: '', p: img_1, e: 0 },
     {
-      id: "comp_0",
+      id: 'comp_0',
       layers: [
         {
           ddd: 0,
           ind: 1,
           ty: 2,
-          nm: "Layer 1/CH-motion_analyzing.ai",
-          cl: "ai",
-          refId: "image_1",
+          nm: 'Layer 1/CH-motion_analyzing.ai',
+          cl: 'ai',
+          refId: 'image_1',
           sr: 1,
           ks: {
             o: { a: 0, k: 100, ix: 11 },
@@ -59,7 +59,7 @@ export default {
       ddd: 0,
       ind: 1,
       ty: 4,
-      nm: "Shape Layer 1",
+      nm: 'Shape Layer 1',
       sr: 1,
       ks: {
         o: { a: 0, k: 100, ix: 11 },
@@ -71,19 +71,19 @@ export default {
       ao: 0,
       shapes: [
         {
-          ty: "gr",
+          ty: 'gr',
           it: [
             {
               d: 1,
-              ty: "el",
+              ty: 'el',
               s: { a: 0, k: [177.918, 177.918], ix: 2 },
               p: { a: 0, k: [0, 0], ix: 3 },
-              nm: "Ellipse Path 1",
-              mn: "ADBE Vector Shape - Ellipse",
+              nm: 'Ellipse Path 1',
+              mn: 'ADBE Vector Shape - Ellipse',
               hd: false,
             },
             {
-              ty: "st",
+              ty: 'st',
               c: { a: 0, k: [1, 0.784313738346, 0.337254911661, 1], ix: 3 },
               o: { a: 0, k: 100, ix: 4 },
               w: { a: 0, k: 6, ix: 5 },
@@ -91,12 +91,12 @@ export default {
               lj: 1,
               ml: 4,
               bm: 0,
-              nm: "Stroke 1",
-              mn: "ADBE Vector Graphic - Stroke",
+              nm: 'Stroke 1',
+              mn: 'ADBE Vector Graphic - Stroke',
               hd: false,
             },
             {
-              ty: "tr",
+              ty: 'tr',
               p: { a: 0, k: [0, 0], ix: 2 },
               a: { a: 0, k: [0, 0], ix: 1 },
               s: { a: 0, k: [95.54, 95.54], ix: 3 },
@@ -104,15 +104,15 @@ export default {
               o: { a: 0, k: 100, ix: 7 },
               sk: { a: 0, k: 0, ix: 4 },
               sa: { a: 0, k: 0, ix: 5 },
-              nm: "Transform",
+              nm: 'Transform',
             },
           ],
-          nm: "Ellipse 1",
+          nm: 'Ellipse 1',
           np: 3,
           cix: 2,
           bm: 0,
           ix: 1,
-          mn: "ADBE Vector Group",
+          mn: 'ADBE Vector Group',
           hd: false,
         },
       ],
@@ -125,9 +125,9 @@ export default {
       ddd: 0,
       ind: 2,
       ty: 2,
-      nm: "Layer 2/CH-motion_analyzing.ai",
-      cl: "ai",
-      refId: "image_0",
+      nm: 'Layer 2/CH-motion_analyzing.ai',
+      cl: 'ai',
+      refId: 'image_0',
       sr: 1,
       ks: {
         o: { a: 0, k: 100, ix: 11 },
@@ -141,7 +141,7 @@ export default {
       masksProperties: [
         {
           inv: false,
-          mode: "a",
+          mode: 'a',
           pt: {
             a: 0,
             k: {
@@ -169,7 +169,7 @@ export default {
           },
           o: { a: 0, k: 100, ix: 3 },
           x: { a: 0, k: 0, ix: 4 },
-          nm: "Mask 1",
+          nm: 'Mask 1',
         },
       ],
       ip: 0,
@@ -181,8 +181,8 @@ export default {
       ddd: 0,
       ind: 3,
       ty: 0,
-      nm: "src-analyzing",
-      refId: "comp_0",
+      nm: 'src-analyzing',
+      refId: 'comp_0',
       sr: 1,
       ks: {
         o: { a: 0, k: 100, ix: 11 },
@@ -196,7 +196,7 @@ export default {
       masksProperties: [
         {
           inv: false,
-          mode: "a",
+          mode: 'a',
           pt: {
             a: 0,
             k: {
@@ -224,7 +224,7 @@ export default {
           },
           o: { a: 0, k: 100, ix: 3 },
           x: { a: 0, k: 0, ix: 4 },
-          nm: "Mask 1",
+          nm: 'Mask 1',
         },
       ],
       w: 180,
@@ -238,7 +238,7 @@ export default {
       ddd: 0,
       ind: 4,
       ty: 4,
-      nm: "Shape Layer 2",
+      nm: 'Shape Layer 2',
       sr: 1,
       ks: {
         o: { a: 0, k: 100, ix: 11 },
@@ -250,29 +250,29 @@ export default {
       ao: 0,
       shapes: [
         {
-          ty: "gr",
+          ty: 'gr',
           it: [
             {
               d: 1,
-              ty: "el",
+              ty: 'el',
               s: { a: 0, k: [171.848, 171.848], ix: 2 },
               p: { a: 0, k: [0, 0], ix: 3 },
-              nm: "Ellipse Path 1",
-              mn: "ADBE Vector Shape - Ellipse",
+              nm: 'Ellipse Path 1',
+              mn: 'ADBE Vector Shape - Ellipse',
               hd: false,
             },
             {
-              ty: "fl",
+              ty: 'fl',
               c: { a: 0, k: [1, 1, 1, 1], ix: 4 },
               o: { a: 0, k: 100, ix: 5 },
               r: 1,
               bm: 0,
-              nm: "Fill 1",
-              mn: "ADBE Vector Graphic - Fill",
+              nm: 'Fill 1',
+              mn: 'ADBE Vector Graphic - Fill',
               hd: false,
             },
             {
-              ty: "tr",
+              ty: 'tr',
               p: { a: 0, k: [0, 0], ix: 2 },
               a: { a: 0, k: [0, 0], ix: 1 },
               s: { a: 0, k: [100, 100], ix: 3 },
@@ -280,15 +280,15 @@ export default {
               o: { a: 0, k: 100, ix: 7 },
               sk: { a: 0, k: 0, ix: 4 },
               sa: { a: 0, k: 0, ix: 5 },
-              nm: "Transform",
+              nm: 'Transform',
             },
           ],
-          nm: "Ellipse 1",
+          nm: 'Ellipse 1',
           np: 3,
           cix: 2,
           bm: 0,
           ix: 1,
-          mn: "ADBE Vector Group",
+          mn: 'ADBE Vector Group',
           hd: false,
         },
       ],

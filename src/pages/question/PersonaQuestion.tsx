@@ -2,10 +2,10 @@ import request from 'api/request';
 import { Icon, Loading } from 'components';
 import { Choice, PersonaQuestion } from 'entity/persona';
 import { PersonaQuestionsResponse } from 'entity/response';
-import analyzingImg from 'images/analyzing.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import analyzing from '../../assets/analyzing';
 import Card from './card';
 import * as S from './styled';
 
@@ -85,7 +85,13 @@ export default function PersonaQuestionPage(): ReactElement {
   });
 
   return questionsState.isLoading ? (
-    <Loading image={analyzingImg} text='나의 자취 유형 분석중' />
+    <Loading
+      width={180}
+      height={180}
+      marginTop={38.7}
+      image={analyzing}
+      text='나의 자취 유형 분석중'
+    />
   ) : (
     <S.Container>
       <S.Header>

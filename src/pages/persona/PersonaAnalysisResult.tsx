@@ -4,11 +4,11 @@ import request from 'api/request';
 import webShare from 'api/webShare';
 import { Icon, Loading } from 'components';
 import { Persona } from 'entity/persona';
-import creatingImg from 'images/creating.png';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import creating from '../../assets/creating';
 import PersonaMapper from './mapper';
 import * as S from './styled';
 
@@ -72,7 +72,13 @@ export default function PersonaAnalysisResultPage(): ReactElement {
     history.push('/persona');
   };
   return isLoading ? (
-    <Loading image={creatingImg} text='나만의 체크리스트 생성중' />
+    <Loading
+      width={280}
+      height={200}
+      marginTop={33.9}
+      image={creating}
+      text='나만의 체크리스트 생성중'
+    />
   ) : (
     <S.ResultContainer>
       <Helmet

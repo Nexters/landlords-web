@@ -1,9 +1,10 @@
 import { apiBaseURL } from 'api/constants';
 import { useOAuth } from 'api/useOAuth';
-import { Icon } from 'components';
+import { Loading } from 'components';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import complete from '../../assets/complete';
 import { LOGIN_STATE } from '../../constants';
 import * as S from './styled';
 
@@ -20,9 +21,7 @@ export default function Login() {
 
   return (
     <S.Container>
-      <S.IconWrapper>
-        <Icon name='TEMP_LOGO' size='96' />
-      </S.IconWrapper>
+      <Loading width={300} height={300} marginTop={24.3} image={complete} />
       <S.ButtonWrapper>
         <S.Button onClick={handleClick}>
           <S.ButtonText>카카오 계정으로 시작하기</S.ButtonText>

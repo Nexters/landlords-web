@@ -4,9 +4,9 @@ import color from 'styles/color';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: ${color.primaryDeepDarkBlue};
 `;
 

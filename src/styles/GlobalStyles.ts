@@ -7,7 +7,9 @@ const GlobalStyles = createGlobalStyle`
       box-sizing: border-box;
       font-family: Spoqa Han Sans;
     }
-    body{
+    html, body, #root{
+      width: 100%;
+      height: 100%;
       background-color: #ffffff;
     }
     a {
