@@ -15,7 +15,7 @@ const TitleLeftContainer = styled.div`
   display: flex;
   & :first-child {
     margin-right: 8px;
-  };
+  }
 `;
 
 const Title = styled.h1`
@@ -26,4 +26,6 @@ const Title = styled.h1`
   color: ${color.grayscale29};
 `;
 
-export { Container, Title, TitleLeftContainer };
+const EmptyContainer = styled.div``;
+
+export { Container, Title, TitleLeftContainer, EmptyContainer };

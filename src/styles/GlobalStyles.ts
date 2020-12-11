@@ -16,6 +16,9 @@ const GlobalStyles = createGlobalStyle`
       text-decoration: none;
       cursor: pointer;
     }
+    .add-button {
+      margin-bottom: 24px;
+    }
 `;
 
 export default GlobalStyles;
