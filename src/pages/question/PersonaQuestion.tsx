@@ -93,6 +93,7 @@ export default function PersonaQuestionPage(): ReactElement {
           <Icon name='NAVIGATION_BACKWARD' size='16' />
         </S.BackButton>
         <Icon name='TITLE_LOGO' opacity='0.6' />
+        <div></div>
       </S.Header>
 
       <S.TitleWrapper>

@@ -11,7 +11,6 @@ const Container = styled.div`
   padding: 18px 24px 10px 24px;
   height: 58px;
   display: flex;
-  align-items: center;
 `;
 
 const Title = styled.span`
@@ -23,7 +22,7 @@ const Title = styled.span`
   color: ${color.grayscale29};
 `;
 
-const DropdownButton = styled.button`
+const DropdownButton = styled.div`
   width: 117px;
   height: 34px;
   border-radius: 2px;
@@ -45,12 +44,7 @@ const CurrrentLabel = styled.span`
 const DropdownItemsWrapper = styled.div<{ visible: boolean }>`
   display: ${({ visible }) => (visible ? 'grid' : 'none')};
   grid-template-rows: auto auto auto;
-  position: absolute;
-  right: 150px;
-  top: 94px;
-  left: 89px;
-  height: 140px;
-  z-index: 2;
+  z-index: 10000;
   border: 1px solid rgba(0, 0, 0, 0.04);
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
   color: black;
@@ -63,6 +57,7 @@ const DropdownItem = styled.li`
   justify-content: space-between;
   list-style-type: none;
   padding: 0 8px;
+  background-color: ${color.basicWhite};
 `;
 
 const DropdownText = styled.span`

@@ -40,7 +40,7 @@ export default function MenuBar() {
   return (
     <S.Container>
       <S.Title>지금은</S.Title>
-      <div ref={dropdownWrapperRef}>
+      <div style={{ backgroundColor: 'white', zIndex: 1000 }} ref={dropdownWrapperRef}>
         <S.DropdownButton onClick={() => setVisible(!visible)}>
           <S.CurrrentLabel>
             {STATUS_MATCHER[checklistStatus]}

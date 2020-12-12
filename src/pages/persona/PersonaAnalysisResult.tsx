@@ -7,6 +7,8 @@ import { Persona } from 'entity/persona';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useHistory, useLocation } from 'react-router-dom';
+import color from 'styles/color';
+import { ContainerWrapper } from 'styles/styled';
 
 import creating from '../../assets/creating';
 import PersonaMapper from './mapper';
@@ -14,7 +16,7 @@ import * as S from './styled';
 
 enum TEXT {
   GO_CHECKLIST = '나만의 체크리스트 보러가기',
-  RETEST = '자취유형 다시 진단하기',
+  RETEST = '유형 진단 다시하기',
 }
 
 export default function PersonaAnalysisResultPage(): ReactElement {
@@ -74,47 +76,52 @@ export default function PersonaAnalysisResultPage(): ReactElement {
   return isLoading ? (
     <Loading width={280} height={200} image={creating} text='나만의 체크리스트 생성중' />
   ) : (
-    <S.ResultContainer>
-      <Helmet
-        title={`당신의 자취 유형은 ${personaData.type}!`}
-        meta={[
-          { property: 'og:title', content: `당신의 자취 유형은 ${personaData.type}!` },
-          { property: 'og:description', content: `추천공간 : ${personaData.recommended_place[0]}` },
-          {
-            property: 'og:image:url',
-            content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
-          },
-          {
-            property: 'og:image:secure_url',
-            content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
-          },
-          { property: 'og:image:type', content: 'image/png' },
-          { property: 'og:image:width', content: '360' },
-          { property: 'og:image:height', content: '210' },
-        ]}
-      />
-      <S.TitleWrapper>
-        당신의 자취 유형은
-        <S.UserPersona>{personaData.type}!</S.UserPersona>
-      </S.TitleWrapper>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <img style={{ width: 360, height: 210 }} src={PersonaMapper(personaData.type)}></img>
-      </div>
-      <S.RecommendedPlace>추천공간 : {personaData.recommended_place[0]}</S.RecommendedPlace>
-      <S.PersonaDescription>{description}</S.PersonaDescription>
+    <ContainerWrapper bgColor={color.grayscalef9}>
+      <S.Container>
+        <Helmet
+          title={`당신의 자취 유형은 ${personaData.type}!`}
+          meta={[
+            { property: 'og:title', content: `당신의 자취 유형은 ${personaData.type}!` },
+            {
+              property: 'og:description',
+              content: `추천공간 : ${personaData.recommended_place[0]}`,
+            },
+            {
+              property: 'og:image:url',
+              content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
+            },
+            {
+              property: 'og:image:secure_url',
+              content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
+            },
+            { property: 'og:image:type', content: 'image/png' },
+            { property: 'og:image:width', content: '360' },
+            { property: 'og:image:height', content: '210' },
+          ]}
+        />
+        <S.TitleWrapper>
+          당신의 자취 유형은
+          <S.UserPersona>{personaData.type}!</S.UserPersona>
+        </S.TitleWrapper>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <img style={{ width: 360, height: 210 }} src={PersonaMapper(personaData.type)}></img>
+        </div>
+        <S.RecommendedPlace>추천공간 : {personaData.recommended_place[0]}</S.RecommendedPlace>
+        <S.PersonaDescription>{description}</S.PersonaDescription>
 
-      <S.ShareButtonWrapper>
-        <S.ShareButtons>
-          <Icon name='FACEBOOK_BUTTON' size='42' onClick={() => facebookShare(shareUrl)} />
-          <Icon name='KAKAOTALK_BUTTON' size='42' onClick={() => kakaoShare(shareUrl)} />
-          <Icon name='URL_BUTTON' size='42' onClick={() => webShare('title', shareUrl)} />
-        </S.ShareButtons>
-      </S.ShareButtonWrapper>
+        <S.ShareButtonWrapper>
+          <S.ShareButtons>
+            <Icon name='FACEBOOK_BUTTON' size='42' onClick={() => facebookShare(shareUrl)} />
+            <Icon name='KAKAOTALK_BUTTON' size='42' onClick={() => kakaoShare(shareUrl)} />
+            <Icon name='URL_BUTTON' size='42' onClick={() => webShare('title', shareUrl)} />
+          </S.ShareButtons>
+        </S.ShareButtonWrapper>
 
-      <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>
-        {TEXT.GO_CHECKLIST}
-      </S.GoChecklistButton>
-      <S.RetestButton onClick={handleRetestButtonClick}>{TEXT.RETEST}</S.RetestButton>
-    </S.ResultContainer>
+        <S.GoChecklistButton onClick={handleGoChecklistButtonClick}>
+          {TEXT.GO_CHECKLIST}
+        </S.GoChecklistButton>
+        <S.RetestButton onClick={handleRetestButtonClick}>{TEXT.RETEST}</S.RetestButton>
+      </S.Container>
+    </ContainerWrapper>
   );
 }

@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import color from 'styles/color';
 
 const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  background-color: ${color.grayscalef9};
+  min-height: 100%;
 `;
 
 const RoomContainer = styled.div`
@@ -56,8 +54,8 @@ const LogoIcon = styled(Icon)`
 `;
 
 const MypageIcon = styled(Icon)`
-  position: absolute;
   right: 1.5rem;
+  margin: 0 23px 0 -23rem;
 `;
 
 export {

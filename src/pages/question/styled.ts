@@ -4,7 +4,8 @@ import color from 'styles/color';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+
+  height: fit-content;
   padding: 0 24px;
   background-color: ${color.grayscalef9};
 `;
@@ -12,15 +13,15 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   flex-directions: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 46px;
   padding-top: 15px;
 `;
 
 const BackButton = styled.a`
-  position: absolute;
   left: 24px;
+  margin-right: -24px;
 `;
 
 const TitleWrapper = styled.div`

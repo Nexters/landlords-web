@@ -8,7 +8,7 @@ const SINGLE_GRID = `
 `;
 
 const Container = styled.div`
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem;
 `;
 
 const LabelWrapper = styled.div`
