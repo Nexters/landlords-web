@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { roomsAction } from 'store/roomsSlice';
 import color from 'styles/color';
+import { ContainerWrapper } from 'styles/styled';
 
 import InputRow from './InputRow';
 import * as S from './styled';
@@ -82,107 +83,108 @@ export default function AddRoom() {
         leftIconSize='16'
         onClick={() => history.push('/add-room/via-link')}
       />
-      <S.Container>
-        <S.Image src={room.image} />
-        <S.InputContainer>
-          <InputRow
-            value={room.name}
-            name='name'
-            label='방 제목'
-            placeholder='월세 600/50'
-            onChange={handleInput}
-          />
-          <S.Row>
-            <S.Label></S.Label>
-            <S.BuildingTypeButtonsGrid>
-              {Object.keys(SELLING_TYPE_MATCHER).map((key) => (
-                <S.SelectableButton
-                  name={key}
-                  key={key}
-                  onClick={() => setRoom({ ...room, selling_type: key as SellingType })}
-                  selected={key === room.selling_type}>
-                  {SELLING_TYPE_MATCHER[key as SellingType]}
-                </S.SelectableButton>
-              ))}
-            </S.BuildingTypeButtonsGrid>
-          </S.Row>
-          <InputRow
-            value={price}
-            name='price'
-            label={ROOM_CONTENTS_LABEL.price}
-            placeholder='600/50'
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <InputRow
-            value={room.address}
-            name='address'
-            label={ROOM_CONTENTS_LABEL.address}
-            placeholder='서울특별시 관악구 신림동'
-            onChange={handleInput}
-          />
-          <S.GridButtonRow>
-            <S.Label>{ROOM_CONTENTS_LABEL.buildingType}</S.Label>
-            <S.BuildingTypeButtonsGrid>
-              {Object.keys(BUILDING_TYPE_MATHCER).map((key) => (
-                <S.SelectableButton
-                  name={key}
-                  key={key}
-                  onClick={() => setRoom({ ...room, building_type: key as BuildingType })}
-                  selected={key === room.building_type}>
-                  {BUILDING_TYPE_MATHCER[key as BuildingType]}
-                </S.SelectableButton>
-              ))}
-            </S.BuildingTypeButtonsGrid>
-          </S.GridButtonRow>
-          <InputRow
-            type='number'
-            value={`${room.room_size}`}
-            name='room_size'
-            label={ROOM_CONTENTS_LABEL.size}
-            placeholder='8'
-            onChange={handleInput}
-            suffix='평'
-          />
-          <InputRow
-            value={room.floor}
-            name='floor'
-            label={ROOM_CONTENTS_LABEL.floor}
-            placeholder='3/8'
-            onChange={handleInput}
-            suffix='층'
-          />
-          <S.Row>
-            <S.Label>{ROOM_CONTENTS_LABEL.elevator}</S.Label>
-            <Button
-              title='있음'
-              {...getButtonStyleProps(room.has_elevator)}
-              onClick={() => setRoom({ ...room, has_elevator: true })}
+      <ContainerWrapper bgColor={color.grayscalef9}>
+        <S.Container>
+          <S.InputContainer>
+            <InputRow
+              value={room.name}
+              name='name'
+              label='방 제목'
+              placeholder='월세 600/50'
+              onChange={handleInput}
             />
-            <Button
-              title='없음'
-              {...getButtonStyleProps(!room.has_elevator)}
-              onClick={() => setRoom({ ...room, has_elevator: false })}
+            <S.Row>
+              <S.Label></S.Label>
+              <S.BuildingTypeButtonsGrid>
+                {Object.keys(SELLING_TYPE_MATCHER).map((key) => (
+                  <S.SelectableButton
+                    name={key}
+                    key={key}
+                    onClick={() => setRoom({ ...room, selling_type: key as SellingType })}
+                    selected={key === room.selling_type}>
+                    {SELLING_TYPE_MATCHER[key as SellingType]}
+                  </S.SelectableButton>
+                ))}
+              </S.BuildingTypeButtonsGrid>
+            </S.Row>
+            <InputRow
+              value={price}
+              name='price'
+              label={ROOM_CONTENTS_LABEL.price}
+              placeholder='600/50'
+              onChange={(e) => setPrice(e.target.value)}
             />
-          </S.Row>
-          <InputRow
-            type='number'
-            value={`${room.administrative_expenses}`}
-            name='administrative_expenses'
-            label={ROOM_CONTENTS_LABEL.administrationCost}
-            placeholder='5'
-            onChange={handleInput}
-            suffix='만원'
-          />
-        </S.InputContainer>
-        <S.ButtonContainer>
-          <Button
-            className='add-button'
-            title='방 추가하기'
-            bgColor={color.primaryYellow}
-            onClick={handleSubmit}
-          />
-        </S.ButtonContainer>
-      </S.Container>
+            <InputRow
+              value={room.address}
+              name='address'
+              label={ROOM_CONTENTS_LABEL.address}
+              placeholder='서울특별시 관악구 신림동'
+              onChange={handleInput}
+            />
+            <S.GridButtonRow>
+              <S.Label>{ROOM_CONTENTS_LABEL.buildingType}</S.Label>
+              <S.BuildingTypeButtonsGrid>
+                {Object.keys(BUILDING_TYPE_MATHCER).map((key) => (
+                  <S.SelectableButton
+                    name={key}
+                    key={key}
+                    onClick={() => setRoom({ ...room, building_type: key as BuildingType })}
+                    selected={key === room.building_type}>
+                    {BUILDING_TYPE_MATHCER[key as BuildingType]}
+                  </S.SelectableButton>
+                ))}
+              </S.BuildingTypeButtonsGrid>
+            </S.GridButtonRow>
+            <InputRow
+              type='number'
+              value={`${room.room_size}`}
+              name='room_size'
+              label={ROOM_CONTENTS_LABEL.size}
+              placeholder='8'
+              onChange={handleInput}
+              suffix='평'
+            />
+            <InputRow
+              value={room.floor}
+              name='floor'
+              label={ROOM_CONTENTS_LABEL.floor}
+              placeholder='3/8'
+              onChange={handleInput}
+              suffix='층'
+            />
+            <S.Row>
+              <S.Label>{ROOM_CONTENTS_LABEL.elevator}</S.Label>
+              <Button
+                title='있음'
+                {...getButtonStyleProps(room.has_elevator)}
+                onClick={() => setRoom({ ...room, has_elevator: true })}
+              />
+              <Button
+                title='없음'
+                {...getButtonStyleProps(!room.has_elevator)}
+                onClick={() => setRoom({ ...room, has_elevator: false })}
+              />
+            </S.Row>
+            <InputRow
+              type='number'
+              value={`${room.administrative_expenses}`}
+              name='administrative_expenses'
+              label={ROOM_CONTENTS_LABEL.administrationCost}
+              placeholder='5'
+              onChange={handleInput}
+              suffix='만원'
+            />
+          </S.InputContainer>
+          <S.ButtonContainer>
+            <Button
+              className='add-button'
+              title='방 추가하기'
+              bgColor={color.primaryYellow}
+              onClick={handleSubmit}
+            />
+          </S.ButtonContainer>
+        </S.Container>
+      </ContainerWrapper>
     </>
   );
 }
