@@ -8,8 +8,7 @@ const SELECTED_BUTTON_STYLE = `
 
 export const Container = styled.div`
   background-color: ${color.grayscalef9};
-  width: 100vw;
-  height: calc(100vh - 52px);
+  width: 100%;
   padding: 16px 24px 0;
 `;
 
@@ -50,7 +49,6 @@ export const Suffix = styled.span`
 `;
 
 export const ButtonContainer = styled.div`
-  width: calc(100vw - 48px);
   margin: 16px 0 24px 0;
   bottom: 24px;
 `;
