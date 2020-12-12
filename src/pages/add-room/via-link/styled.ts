@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import color from 'styles/color';
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   overflow: hidden;
   padding: 0 24px;
   background: ${color.grayscalef9};

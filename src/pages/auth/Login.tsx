@@ -3,6 +3,8 @@ import { useOAuth } from 'api/useOAuth';
 import { Loading } from 'components';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import color from 'styles/color';
+import { ContainerWrapper } from 'styles/styled';
 
 import complete from '../../assets/complete';
 import { LOGIN_STATE } from '../../constants';
@@ -20,13 +22,14 @@ export default function Login() {
   };
 
   return (
-    <S.Container>
-      <Loading width={300} height={300} image={complete} />
-      <S.ButtonWrapper>
+    <ContainerWrapper bgColor={color.primaryDeepDarkBlue}>
+      <S.Container>
+        <Loading width={300} height={300} image={complete} />
+        <S.Label>나만의 체크리스트를 보고 싶다면?</S.Label>
         <S.Button onClick={handleClick}>
           <S.ButtonText>카카오 계정으로 시작하기</S.ButtonText>
         </S.Button>
-      </S.ButtonWrapper>
-    </S.Container>
+      </S.Container>
+    </ContainerWrapper>
   );
 }

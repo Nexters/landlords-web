@@ -6,8 +6,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  background-color: ${color.primaryDeepDarkBlue};
 `;
 
 const LoadingText = styled.h1`

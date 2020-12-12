@@ -1,5 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
+import color from 'styles/color';
+import { ContainerWrapper } from 'styles/styled';
 
 import * as S from './styled';
 interface LoadingProps {
@@ -10,16 +12,18 @@ interface LoadingProps {
 }
 export default function Loading({ image, text, width, height }: LoadingProps) {
   return (
-    <S.Container>
-      <Lottie
-        options={lottieOptions(image)}
-        height={height}
-        width={width}
-        isStopped={false}
-        isPaused={false}
-      />
-      {text ? <S.LoadingText>{text}...</S.LoadingText> : <></>}
-    </S.Container>
+    <ContainerWrapper bgColor={color.primaryDeepDarkBlue}>
+      <S.Container>
+        <Lottie
+          options={lottieOptions(image)}
+          height={height}
+          width={width}
+          isStopped={false}
+          isPaused={false}
+        />
+        {text ? <S.LoadingText>{text}...</S.LoadingText> : <></>}
+      </S.Container>
+    </ContainerWrapper>
   );
 }
 

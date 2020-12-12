@@ -2,6 +2,8 @@ import { Viewer } from 'entity/persona';
 import { useFetch } from 'hooks';
 import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
+import color from 'styles/color';
+import { ContainerWrapper } from 'styles/styled';
 
 import { startIllust } from '../../assets';
 import * as S from './styled';
@@ -44,16 +46,18 @@ export default function PersonaAnalysisPage(): ReactElement {
   };
 
   return (
-    <S.Container>
-      <S.Title>{sortedTitle}</S.Title>
-      <S.Description> {sortedDesc}</S.Description>
-      <img style={{ height: 226, objectFit: 'contain' }} src={startIllust} alt='startIllust' />
-      {/* <S.CounterDescription>
+    <ContainerWrapper bgColor={color.primaryYellow}>
+      <S.Container>
+        <S.Title>{sortedTitle}</S.Title>
+        <S.Description> {sortedDesc}</S.Description>
+        <img src={startIllust} alt='startIllust' />
+        {/* <S.CounterDescription>
         총 <S.Count>1000</S.Count>명이 체크해방을 참고해 방을 구했어요!
       </S.CounterDescription> */}
 
-      <S.StartButton onClick={handleStartButtonClick}>{TEXT.START}</S.StartButton>
-      <S.BackButton onClick={handleBackButtonClick}>{TEXT.BACK}</S.BackButton>
-    </S.Container>
+        <S.StartButton onClick={handleStartButtonClick}>{TEXT.START}</S.StartButton>
+        <S.BackButton onClick={handleBackButtonClick}>{TEXT.BACK}</S.BackButton>
+      </S.Container>
+    </ContainerWrapper>
   );
 }

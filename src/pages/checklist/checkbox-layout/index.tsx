@@ -59,7 +59,7 @@ export default function CheckboxLayout({ questions }: CheckboxLayoutProps): Reac
                       label={check.contents}
                       checked={check.checked || false}
                       onClick={handleCheckboxClick(check)}
-                      isLong={check.contents.length > 4}
+                      isLong={check.contents?.length > 4}
                     />
                   ))}
                 </S.CheckboxGroup>
@@ -68,7 +68,7 @@ export default function CheckboxLayout({ questions }: CheckboxLayoutProps): Reac
               <S.CheckboxWrapper key={question.uid}>
                 <span>{question.title}</span>
                 <Checkbox
-                  checked={question.checks[0].checked || false}
+                  checked={question.checks[0]?.checked || false}
                   onClick={handleCheckboxClick(question.checks[0])}
                 />
               </S.CheckboxWrapper>
