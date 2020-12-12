@@ -8,7 +8,11 @@ const SELECTED_BUTTON_STYLE = `
 
 export const Container = styled.div`
   background-color: ${color.grayscalef9};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 100%;
+  height: 100%;
   padding: 16px 24px 0;
 `;
 

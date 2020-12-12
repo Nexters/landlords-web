@@ -16,7 +16,8 @@ const GlobalStyles = createGlobalStyle`
     }
     #root{
       min-width: 360px;
-      max-width: 360px;
+      max-width: 400px;
+      width: 100%;
     }
     a {
       text-decoration: none;
