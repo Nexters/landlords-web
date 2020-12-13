@@ -14,6 +14,41 @@ import creating from '../../assets/creating';
 import PersonaMapper from './mapper';
 import * as S from './styled';
 
+type ThumbnailProps = {
+  persona: string;
+  recommend: string;
+  persona_img: string;
+};
+
+function Thumbnail({ persona, recommend, persona_img }: ThumbnailProps): ReactElement {
+  return (
+    <Helmet
+      title={`당신의 자취 유형은 ${persona}!`}
+      meta={[
+        {
+          property: 'og:title',
+          content: `당신의 자취 유형은 ${persona}!`,
+        },
+        {
+          property: 'og:description',
+          content: `추천공간 : ${recommend}`,
+        },
+        {
+          property: 'og:image:url',
+          content: `https://checkhaebang.netlify.app${persona_img}`,
+        },
+        {
+          property: 'og:image:secure_url',
+          content: `https://checkhaebang.netlify.app${persona_img}`,
+        },
+        { property: 'og:image:type', content: 'image/png' },
+        { property: 'og:image:width', content: '360' },
+        { property: 'og:image:height', content: '210' },
+      ]}
+    />
+  );
+}
+
 enum TEXT {
   GO_CHECKLIST = '나만의 체크리스트 보러가기',
   RETEST = '유형 진단 다시하기',
@@ -32,16 +67,18 @@ export default function PersonaAnalysisResultPage(): ReactElement {
   useEffect(() => {
     const fetchAnswer = async () => {
       const params = new URLSearchParams(queryString).get('answer_id');
-      const choices = params!.split(',');
+      if (params) {
+        const choices = params!.split(',');
 
-      const reqParams = new URLSearchParams();
-      choices.forEach((id: string) => {
-        reqParams.append('choice_answers', id);
-      });
+        const reqParams = new URLSearchParams();
+        choices.forEach((id: string) => {
+          reqParams.append('choice_answers', id);
+        });
 
-      const res = await request.get<Persona>('/persona', { params: reqParams });
-      const data = res.data;
-      setPersonaData(data);
+        const res = await request.get<Persona>('/persona', { params: reqParams });
+        const data = res.data;
+        setPersonaData(data);
+      }
     };
     fetchAnswer();
   }, []);
@@ -73,31 +110,17 @@ export default function PersonaAnalysisResultPage(): ReactElement {
   const handleRetestButtonClick = () => {
     history.push('/persona');
   };
+
+  const { type, recommended_place } = personaData;
   return isLoading ? (
     <Loading width={280} height={200} image={creating} text='나만의 체크리스트 생성중' />
   ) : (
     <ContainerWrapper bgColor={color.grayscalef9}>
       <S.Container>
-        <Helmet
-          title={`당신의 자취 유형은 ${personaData.type}!`}
-          meta={[
-            { property: 'og:title', content: `당신의 자취 유형은 ${personaData.type}!` },
-            {
-              property: 'og:description',
-              content: `추천공간 : ${personaData.recommended_place[0]}`,
-            },
-            {
-              property: 'og:image:url',
-              content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
-            },
-            {
-              property: 'og:image:secure_url',
-              content: `https://checkhaebang.com${PersonaMapper(personaData.type)}`,
-            },
-            { property: 'og:image:type', content: 'image/png' },
-            { property: 'og:image:width', content: '360' },
-            { property: 'og:image:height', content: '210' },
-          ]}
+        <Thumbnail
+          persona={type}
+          recommend={recommended_place[0]}
+          persona_img={PersonaMapper(type)}
         />
         <S.TitleWrapper>
           당신의 자취 유형은
