@@ -1,5 +1,6 @@
 import ic_cancel from './cancel-dark.svg';
 import box_checked from './checked-box.svg';
+import common_thumbnail from './common-thumbnail.png';
 import facebookIcon from './facebook.svg';
 import ic_human from './human-normal.svg';
 import kakaoIcon from './kakaotalk.svg';
@@ -36,4 +37,5 @@ export {
   persona_playplay_dodo,
   persona_pro_living_alone,
   persona_smart,
+  common_thumbnail,
 };

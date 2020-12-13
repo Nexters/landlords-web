@@ -10,6 +10,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import color from 'styles/color';
 import { ContainerWrapper } from 'styles/styled';
 
+import { common_thumbnail } from '../../assets';
 import creating from '../../assets/creating';
 import PersonaMapper from './mapper';
 import * as S from './styled';
@@ -117,11 +118,7 @@ export default function PersonaAnalysisResultPage(): ReactElement {
   ) : (
     <ContainerWrapper bgColor={color.grayscalef9}>
       <S.Container>
-        <Thumbnail
-          persona={type}
-          recommend={recommended_place[0]}
-          persona_img={PersonaMapper(type)}
-        />
+        <Thumbnail persona={type} recommend={recommended_place[0]} persona_img={common_thumbnail} />
         <S.TitleWrapper>
           당신의 자취 유형은
           <S.UserPersona>{personaData.type}!</S.UserPersona>
