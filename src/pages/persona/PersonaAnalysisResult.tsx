@@ -35,11 +35,11 @@ function Thumbnail({ persona, recommend, persona_img }: ThumbnailProps): ReactEl
         },
         {
           property: 'og:image:url',
-          content: `https://checkhaebang.netlify.app${persona_img}`,
+          content: `https://checkhaebang.com${persona_img}`,
         },
         {
           property: 'og:image:secure_url',
-          content: `https://checkhaebang.netlify.app${persona_img}`,
+          content: `https://checkhaebang.com${persona_img}`,
         },
         { property: 'og:image:type', content: 'image/png' },
         { property: 'og:image:width', content: '360' },
