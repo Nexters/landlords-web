@@ -72,6 +72,7 @@
     "react-lottie": "^1.2.3",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
+    "react-snap": "^1.23.0",
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
     "resolve": "1.15.0",
@@ -92,9 +93,16 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "postbuild": "react-snap",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "prettier": "prettier --write ./**/*.ts"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/persona/result"
+    ]
   },
   "browserslist": {
     "production": [
